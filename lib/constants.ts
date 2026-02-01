@@ -1,14 +1,15 @@
 // Scam types specific to Malaysia
+// TCG and Precious Metals are prioritized first
 export const SCAM_TYPES = {
+  collectibles_scam: "Collectibles Scam (TCG/Figurines/One Piece/Pokemon)",
+  precious_metals_scam: "Gold/Silver/Precious Metals Scam",
+  ecommerce_scam: "E-commerce Scam",
   macau_scam: "Macau Scam (Phone Impersonation)",
   love_scam: "Love/Romance Scam",
+  investment_scam: "Investment Scam (Forex/Crypto)",
   parcel_scam: "Parcel/Delivery Scam",
   job_scam: "Job Scam",
-  investment_scam: "Investment Scam (Forex/Crypto)",
   loan_scam: "Loan Scam",
-  precious_metals_scam: "Gold/Silver Scam",
-  ecommerce_scam: "E-commerce Scam",
-  collectibles_scam: "Collectibles Scam (TCG/Figurines)",
   mule_recruitment: "Money Mule Recruitment",
   phishing: "Phishing/Fake Website",
   other: "Other",

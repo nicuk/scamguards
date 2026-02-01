@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import {
   Shield,
@@ -7,6 +9,8 @@ import {
   AlertTriangle,
   CheckCircle,
   ArrowRight,
+  Sparkles,
+  Gem,
 } from "lucide-react";
 import { PlatformStats } from "@/components/stats/platform-stats";
 import { Button } from "@/components/ui/button";
@@ -17,8 +21,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useLanguage } from "@/lib/language-context";
 
 export default function HomePage() {
+  const { t, lang } = useLanguage();
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -27,27 +34,25 @@ export default function HomePage() {
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
               <Shield className="h-4 w-4" />
-              Protecting Malaysians from Scams
+              {t("tagline")}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-              Check Before You Trust
+              {t("heroTitle")}
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Search phone numbers, emails, and other details to see if
-              they&apos;ve been reported in scam incidents. Help protect the
-              community by sharing your experience.
+              {t("heroDescription")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="text-lg px-8">
                 <Link href="/search">
                   <Search className="mr-2 h-5 w-5" />
-                  Check Now
+                  {t("checkNow")}
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="text-lg px-8">
                 <Link href="/submit">
                   <FileText className="mr-2 h-5 w-5" />
-                  Report a Scam
+                  {t("reportScam")}
                 </Link>
               </Button>
             </div>
@@ -68,10 +73,9 @@ export default function HomePage() {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">How It Works</h2>
+            <h2 className="text-3xl font-bold mb-4">{t("howItWorksTitle")}</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              ScamGuard helps you make informed decisions by checking community
-              reports
+              {t("howItWorksDesc")}
             </p>
           </div>
 
@@ -83,13 +87,12 @@ export default function HomePage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Search className="h-5 w-5 text-primary" />
-                  Search
+                  {t("step1Title")}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  Enter a phone number, email, bank account, or other details
-                  you want to verify.
+                  {t("step1Desc")}
                 </p>
               </CardContent>
             </Card>
@@ -101,13 +104,12 @@ export default function HomePage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Shield className="h-5 w-5 text-primary" />
-                  Analyze
+                  {t("step2Title")}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  Our system checks community reports and analyzes patterns to
-                  assess risk.
+                  {t("step2Desc")}
                 </p>
               </CardContent>
             </Card>
@@ -119,13 +121,12 @@ export default function HomePage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <CheckCircle className="h-5 w-5 text-primary" />
-                  Decide
+                  {t("step3Title")}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  Get a clear assessment with confidence level to help you make
-                  an informed decision.
+                  {t("step3Desc")}
                 </p>
               </CardContent>
             </Card>
@@ -133,63 +134,102 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Common Scam Types */}
+      {/* Common Scam Types - TCG & Precious Metals FIRST */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">
-              Common Scams in Malaysia
+              {t("commonScamsTitle")}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Be aware of these common fraud schemes targeting Malaysians
+              {t("commonScamsDescription")}
             </p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {[
-              {
-                title: "Macau Scam",
-                description:
-                  "Phone calls impersonating police, bank officers, or court officials",
-              },
-              {
-                title: "Love Scam",
-                description:
-                  "Fake romantic relationships to manipulate victims for money",
-              },
-              {
-                title: "Investment Scam",
-                description:
-                  "Forex, crypto, or other schemes promising unrealistic returns",
-              },
-              {
-                title: "E-commerce Scam",
-                description:
-                  "Fake sellers on platforms like Shopee, Lazada, or Carousell",
-              },
-              {
-                title: "Parcel Scam",
-                description:
-                  "Fake delivery notifications demanding customs or fees",
-              },
-              {
-                title: "Job Scam",
-                description:
-                  "Fake job offers requiring deposits or personal information",
-              },
-            ].map((scam) => (
-              <Card key={scam.title} className="bg-background">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-lg flex items-center gap-2">
-                    <AlertTriangle className="h-4 w-4 text-warning" />
-                    {scam.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription>{scam.description}</CardDescription>
-                </CardContent>
-              </Card>
-            ))}
+            {/* TCG & Collectibles - PRIORITY #1 */}
+            <Card className="bg-background border-2 border-primary/20 relative overflow-hidden">
+              <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-xs px-2 py-1 rounded-bl">
+                Hot
+              </div>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <Sparkles className="h-4 w-4 text-primary" />
+                  {t("collectiblesScam")}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription>{t("collectiblesDesc")}</CardDescription>
+              </CardContent>
+            </Card>
+
+            {/* Gold & Silver - PRIORITY #2 */}
+            <Card className="bg-background border-2 border-amber-500/20 relative overflow-hidden">
+              <div className="absolute top-0 right-0 bg-amber-500 text-white text-xs px-2 py-1 rounded-bl">
+                Hot
+              </div>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <Gem className="h-4 w-4 text-amber-500" />
+                  {t("preciousMetalsScam")}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription>{t("preciousMetalsDesc")}</CardDescription>
+              </CardContent>
+            </Card>
+
+            {/* E-commerce */}
+            <Card className="bg-background">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <AlertTriangle className="h-4 w-4 text-warning" />
+                  {t("ecommerceScam")}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription>{t("ecommerceDesc")}</CardDescription>
+              </CardContent>
+            </Card>
+
+            {/* Macau Scam */}
+            <Card className="bg-background">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <AlertTriangle className="h-4 w-4 text-warning" />
+                  {t("macauScam")}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription>{t("macauDesc")}</CardDescription>
+              </CardContent>
+            </Card>
+
+            {/* Love Scam */}
+            <Card className="bg-background">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <AlertTriangle className="h-4 w-4 text-warning" />
+                  {t("loveScam")}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription>{t("loveDesc")}</CardDescription>
+              </CardContent>
+            </Card>
+
+            {/* Investment Scam */}
+            <Card className="bg-background">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <AlertTriangle className="h-4 w-4 text-warning" />
+                  {t("investmentScam")}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription>{t("investmentDesc")}</CardDescription>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
@@ -251,15 +291,16 @@ export default function HomePage() {
       <section className="py-20 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">
-            Encountered Something Suspicious?
+            {lang === "ms" ? "Jumpa Sesuatu Mencurigakan?" : "Encountered Something Suspicious?"}
           </h2>
           <p className="text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-            Your report could help prevent someone else from becoming a victim.
-            Share your experience to protect the community.
+            {lang === "ms" 
+              ? "Laporan anda boleh membantu orang lain dari menjadi mangsa. Kongsi pengalaman anda untuk melindungi masyarakat."
+              : "Your report could help prevent someone else from becoming a victim. Share your experience to protect the community."}
           </p>
           <Button asChild size="lg" variant="secondary" className="text-lg px-8">
             <Link href="/submit">
-              Report Now
+              {t("reportNow")}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>
