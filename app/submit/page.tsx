@@ -1,0 +1,343 @@
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import {
+  FileText,
+  Loader2,
+  CheckCircle,
+  AlertTriangle,
+  ArrowRight,
+  ShieldCheck,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Select } from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import {
+  DataPointInput,
+  type DataPointEntry,
+} from "@/components/search/data-point-input";
+import { EvidenceUpload } from "@/components/submit/evidence-upload";
+import { SCAM_TYPES, PLATFORMS } from "@/lib/constants";
+
+export default function SubmitPage() {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const [scamType, setScamType] = useState("");
+  const [platform, setPlatform] = useState("");
+  const [description, setDescription] = useState("");
+  const [amountLost, setAmountLost] = useState("");
+  const [evidenceFile, setEvidenceFile] = useState<File | null>(null);
+  const [dataPoints, setDataPoints] = useState<DataPointEntry[]>([
+    { id: crypto.randomUUID(), type: "phone", value: "" },
+  ]);
+  const [confirmed, setConfirmed] = useState(false);
+
+  const scamTypeOptions = Object.entries(SCAM_TYPES).map(([value, label]) => ({
+    value,
+    label,
+  }));
+
+  const platformOptions = PLATFORMS.map((p) => ({ value: p, label: p }));
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+
+    // Validation
+    if (!scamType) {
+      setError("Please select a scam type");
+      return;
+    }
+
+    const validPoints = dataPoints.filter((dp) => dp.value.trim());
+    if (validPoints.length === 0) {
+      setError("Please provide at least one data point");
+      return;
+    }
+
+    if (!confirmed) {
+      setError("Please confirm that the information is accurate");
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      // Use FormData if there's a file, otherwise use JSON
+      if (evidenceFile) {
+        const formData = new FormData();
+        formData.append("scamType", scamType);
+        formData.append("platform", platform || "");
+        formData.append("description", description || "");
+        formData.append("amountLost", amountLost || "");
+        formData.append("dataPoints", JSON.stringify(validPoints.map((dp) => ({
+          type: dp.type,
+          value: dp.value,
+        }))));
+        formData.append("evidence", evidenceFile);
+
+        const response = await fetch("/api/submit", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (!response.ok) {
+          const data = await response.json();
+          throw new Error(data.error || "Failed to submit report");
+        }
+
+        const result = await response.json();
+        setIsVerified(result.isVerified || false);
+      } else {
+        const response = await fetch("/api/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            scamType,
+            platform: platform || null,
+            description: description || null,
+            amountLost: amountLost ? parseFloat(amountLost) : null,
+            dataPoints: validPoints.map((dp) => ({
+              type: dp.type,
+              value: dp.value,
+            })),
+          }),
+        });
+
+        if (!response.ok) {
+          const data = await response.json();
+          throw new Error(data.error || "Failed to submit report");
+        }
+      }
+
+      setIsSubmitted(true);
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "Failed to submit report"
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  if (isSubmitted) {
+    return (
+      <div className="container mx-auto px-4 py-12">
+        <div className="max-w-2xl mx-auto text-center">
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-success/10 mb-6">
+            <CheckCircle className="h-10 w-10 text-success" />
+          </div>
+          <h1 className="text-3xl font-bold mb-4">Report Submitted</h1>
+          {isVerified && (
+            <div className="inline-flex items-center gap-2 bg-success/10 text-success px-4 py-2 rounded-full text-sm font-medium mb-4">
+              <ShieldCheck className="h-4 w-4" />
+              Verified Report (Evidence Included)
+            </div>
+          )}
+          <p className="text-muted-foreground mb-8">
+            Thank you for helping protect the community. Your report has been
+            recorded and will help others identify potential scams.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild>
+              <a href="/search">
+                Check Another
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => {
+                setIsSubmitted(false);
+                setIsVerified(false);
+                setScamType("");
+                setPlatform("");
+                setDescription("");
+                setAmountLost("");
+                setEvidenceFile(null);
+                setDataPoints([
+                  { id: crypto.randomUUID(), type: "phone", value: "" },
+                ]);
+                setConfirmed(false);
+              }}
+            >
+              Submit Another Report
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="container mx-auto px-4 py-12">
+      <div className="max-w-2xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
+            <FileText className="h-8 w-8 text-primary" />
+          </div>
+          <h1 className="text-3xl font-bold mb-2">Report a Scam</h1>
+          <p className="text-muted-foreground">
+            Help protect others by sharing details about suspicious activity
+          </p>
+        </div>
+
+        {/* Warning */}
+        <Alert className="mb-6">
+          <AlertTriangle className="h-4 w-4" />
+          <AlertTitle>Important</AlertTitle>
+          <AlertDescription>
+            Only submit reports about genuine scam attempts. False reports may
+            harm innocent people and could have legal consequences.
+          </AlertDescription>
+        </Alert>
+
+        {/* Form */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Scam Details</CardTitle>
+            <CardDescription>
+              Provide as much information as possible to help others identify
+              this scam.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Scam Type */}
+              <div className="space-y-2">
+                <Label htmlFor="scamType">
+                  Scam Type <span className="text-destructive">*</span>
+                </Label>
+                <Select
+                  id="scamType"
+                  value={scamType}
+                  onChange={(e) => setScamType(e.target.value)}
+                  options={scamTypeOptions}
+                  placeholder="Select scam type"
+                />
+              </div>
+
+              {/* Platform */}
+              <div className="space-y-2">
+                <Label htmlFor="platform">Platform (Optional)</Label>
+                <Select
+                  id="platform"
+                  value={platform}
+                  onChange={(e) => setPlatform(e.target.value)}
+                  options={platformOptions}
+                  placeholder="Where did this happen?"
+                />
+              </div>
+
+              {/* Data Points */}
+              <div className="space-y-2">
+                <DataPointInput
+                  dataPoints={dataPoints}
+                  onChange={setDataPoints}
+                />
+                <p className="text-xs text-muted-foreground">
+                  Add phone numbers, emails, bank accounts, or other identifiers
+                  related to this scam.
+                </p>
+              </div>
+
+              {/* Description */}
+              <div className="space-y-2">
+                <Label htmlFor="description">Description (Optional)</Label>
+                <Textarea
+                  id="description"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  placeholder="Describe what happened (e.g., how the scammer contacted you, what they asked for)"
+                  rows={4}
+                />
+              </div>
+
+              {/* Amount Lost */}
+              <div className="space-y-2">
+                <Label htmlFor="amountLost">Amount Lost (Optional)</Label>
+                <div className="flex gap-2">
+                  <span className="flex items-center px-3 bg-muted rounded-l-md border border-r-0 text-sm text-muted-foreground">
+                    RM
+                  </span>
+                  <Input
+                    id="amountLost"
+                    type="number"
+                    value={amountLost}
+                    onChange={(e) => setAmountLost(e.target.value)}
+                    placeholder="0.00"
+                    className="rounded-l-none"
+                    min="0"
+                    step="0.01"
+                  />
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  If you lost money, enter the amount. This helps track the impact of scams.
+                </p>
+              </div>
+
+              {/* Evidence Upload */}
+              <EvidenceUpload
+                selectedFile={evidenceFile}
+                onFileSelect={setEvidenceFile}
+                isUploading={isLoading}
+              />
+
+              {/* Confirmation */}
+              <div className="flex items-start gap-3 p-4 bg-muted/50 rounded-lg">
+                <input
+                  type="checkbox"
+                  id="confirmed"
+                  checked={confirmed}
+                  onChange={(e) => setConfirmed(e.target.checked)}
+                  className="mt-1"
+                />
+                <label htmlFor="confirmed" className="text-sm">
+                  I confirm that this information is accurate to the best of my
+                  knowledge and I understand that false reports may harm
+                  innocent people.
+                </label>
+              </div>
+
+              {error && (
+                <Alert variant="destructive">
+                  <AlertDescription>{error}</AlertDescription>
+                </Alert>
+              )}
+
+              <Button type="submit" className="w-full" disabled={isLoading}>
+                {isLoading ? (
+                  <>
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    Submitting...
+                  </>
+                ) : (
+                  <>
+                    <FileText className="h-4 w-4 mr-2" />
+                    Submit Report
+                  </>
+                )}
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}
