@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { analyzeReport } from "@/lib/ai/report-analyzer";
+import { analyzeReport, analyzeReportBatch } from "@/lib/ai/report-analyzer";
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { text } = body;
+    const { text, detectMultiple = true } = body;
 
     if (!text || typeof text !== "string") {
       return NextResponse.json(
@@ -27,10 +27,34 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Use batch analyzer for multi-scammer detection
+    if (detectMultiple) {
+      const batchResult = await analyzeReportBatch(text);
+      
+      const totalDataPoints = batchResult.scammers.reduce(
+        (sum, s) => sum + s.dataPoints.length, 0
+      );
+
+      return NextResponse.json({
+        success: true,
+        isMultiple: batchResult.isMultiple,
+        scammers: batchResult.scammers,
+        // Backwards compatibility for single scammer
+        ...(batchResult.singleReport || {}),
+        message: batchResult.isMultiple
+          ? `Detected ${batchResult.scammers.length} scammers with ${totalDataPoints} data point(s). Please review each one.`
+          : totalDataPoints > 0
+            ? `Extracted ${totalDataPoints} data point(s). Please review and correct if needed.`
+            : "Could not extract data points. Please enter them manually.",
+      });
+    }
+
+    // Legacy single report analysis
     const result = await analyzeReport(text);
 
     return NextResponse.json({
       success: true,
+      isMultiple: false,
       ...result,
       message:
         result.dataPoints.length > 0

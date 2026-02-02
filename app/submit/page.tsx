@@ -11,6 +11,7 @@ import {
   ShieldCheck,
   Sparkles,
   List,
+  Users,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -25,6 +26,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
 import {
   DataPointInput,
   type DataPointEntry,
@@ -35,6 +37,19 @@ import { SCAM_TYPES, PLATFORMS, ScamType, DataPointType } from "@/lib/constants"
 
 type InputMode = "smart" | "manual";
 
+interface ScammerEntry {
+  id: string;
+  primaryIdentifier: string;
+  dataPoints: { type: DataPointType; value: string; confidence: number }[];
+  scamType: ScamType | null;
+  scamTypeConfidence: number;
+  platform: string | null;
+  amountLost: number | null;
+  currency: string;
+  summary: string;
+  selected: boolean;
+}
+
 export default function SubmitPage() {
   const router = useRouter();
   const [mode, setMode] = useState<InputMode>("smart");
@@ -42,6 +57,7 @@ export default function SubmitPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [batchSubmitCount, setBatchSubmitCount] = useState(0);
 
   const [scamType, setScamType] = useState("");
   const [platform, setPlatform] = useState("");
@@ -60,7 +76,7 @@ export default function SubmitPage() {
 
   const platformOptions = PLATFORMS.map((p) => ({ value: p, label: p }));
 
-  // Handle AI-analyzed report data
+  // Handle AI-analyzed report data (single scammer)
   const handleAnalyzedReport = (result: {
     dataPoints: { type: DataPointType; value: string }[];
     scamType: ScamType | null;
@@ -102,6 +118,53 @@ export default function SubmitPage() {
     // Switch to manual mode to show/edit the filled form
     setMode("manual");
     setError(null);
+  };
+
+  // Handle batch submission (multiple scammers)
+  const handleBatchSubmit = async (scammers: ScammerEntry[]) => {
+    setIsLoading(true);
+    setError(null);
+    let successCount = 0;
+    const errors: string[] = [];
+
+    for (const scammer of scammers) {
+      try {
+        const response = await fetch("/api/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            scamType: scammer.scamType || "other",
+            platform: scammer.platform || null,
+            description: scammer.summary || `Scam report for ${scammer.primaryIdentifier}`,
+            amountLost: scammer.amountLost,
+            dataPoints: scammer.dataPoints.map((dp) => ({
+              type: dp.type,
+              value: dp.value,
+            })),
+          }),
+        });
+
+        if (response.ok) {
+          successCount++;
+        } else {
+          const data = await response.json();
+          errors.push(`${scammer.primaryIdentifier}: ${data.error || "Failed"}`);
+        }
+      } catch (err) {
+        errors.push(`${scammer.primaryIdentifier}: Network error`);
+      }
+    }
+
+    setIsLoading(false);
+
+    if (successCount > 0) {
+      setBatchSubmitCount(successCount);
+      setIsSubmitted(true);
+    }
+
+    if (errors.length > 0 && successCount < scammers.length) {
+      setError(`${successCount} submitted, ${errors.length} failed: ${errors.slice(0, 2).join(", ")}`);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -189,18 +252,28 @@ export default function SubmitPage() {
     return (
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-2xl mx-auto text-center">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-success/10 mb-6">
-            <CheckCircle className="h-10 w-10 text-success" />
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-100 mb-6">
+            <CheckCircle className="h-10 w-10 text-green-600" />
           </div>
-          <h1 className="text-3xl font-bold mb-4">Report Submitted</h1>
+          <h1 className="text-3xl font-bold mb-4">
+            {batchSubmitCount > 1 
+              ? `${batchSubmitCount} Reports Submitted` 
+              : "Report Submitted"}
+          </h1>
+          {batchSubmitCount > 1 && (
+            <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
+              <Users className="h-4 w-4" />
+              Batch submission complete
+            </div>
+          )}
           {isVerified && (
-            <div className="inline-flex items-center gap-2 bg-success/10 text-success px-4 py-2 rounded-full text-sm font-medium mb-4">
+            <div className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
               <ShieldCheck className="h-4 w-4" />
               Verified Report (Evidence Included)
             </div>
           )}
           <p className="text-muted-foreground mb-8">
-            Thank you for helping protect the community. Your report has been
+            Thank you for helping protect the community. Your report{batchSubmitCount > 1 ? "s have" : " has"} been
             recorded and will help others identify potential scams.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -215,6 +288,7 @@ export default function SubmitPage() {
               onClick={() => {
                 setIsSubmitted(false);
                 setIsVerified(false);
+                setBatchSubmitCount(0);
                 setScamType("");
                 setPlatform("");
                 setDescription("");
@@ -298,7 +372,10 @@ export default function SubmitPage() {
             {/* Smart Report Mode */}
             {mode === "smart" && (
               <div className="space-y-6">
-                <SmartReportPaste onAnalyzed={handleAnalyzedReport} />
+                <SmartReportPaste 
+                  onAnalyzed={handleAnalyzedReport}
+                  onBatchAnalyzed={handleBatchSubmit}
+                />
                 
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">
