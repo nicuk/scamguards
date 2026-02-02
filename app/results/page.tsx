@@ -95,9 +95,9 @@ function ResultsContent() {
         </Alert>
         <div className="mt-6 flex justify-center">
           <Button asChild>
-            <Link href="/search">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Try Again
+            <Link href="/search" className="inline-flex items-center gap-2">
+              <ArrowLeft className="h-4 w-4 flex-shrink-0" />
+              <span>Try Again</span>
             </Link>
           </Button>
         </div>

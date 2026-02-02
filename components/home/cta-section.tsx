@@ -27,9 +27,9 @@ export function CtaSection() {
           variant="secondary"
           className="text-lg px-8"
         >
-          <Link href="/submit">
-            {t("reportNow")}
-            <ArrowRight className="ml-2 h-5 w-5" />
+          <Link href="/submit" className="inline-flex items-center gap-2">
+            <span>{t("reportNow")}</span>
+            <ArrowRight className="h-5 w-5 flex-shrink-0" />
           </Link>
         </Button>
       </div>

@@ -205,9 +205,9 @@ export default function SubmitPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild>
-              <a href="/search">
-                Check Another
-                <ArrowRight className="ml-2 h-4 w-4" />
+              <a href="/search" className="inline-flex items-center gap-2">
+                <span>Check Another</span>
+                <ArrowRight className="h-4 w-4 flex-shrink-0" />
               </a>
             </Button>
             <Button
