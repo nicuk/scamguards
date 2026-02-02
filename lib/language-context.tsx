@@ -16,13 +16,20 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setLangState(detectLanguage());
+    const detectedLang = detectLanguage();
+    setLangState(detectedLang);
     setMounted(true);
+    
+    // Update HTML lang attribute for browser translation support
+    document.documentElement.lang = detectedLang === "ms" ? "ms-MY" : "en-MY";
   }, []);
 
   const setLang = (newLang: Language) => {
     setLangState(newLang);
     saveLanguage(newLang);
+    
+    // Update HTML lang attribute - this triggers browser to offer translation
+    document.documentElement.lang = newLang === "ms" ? "ms-MY" : "en-MY";
   };
 
   const t = (key: keyof typeof translations.en): string => {

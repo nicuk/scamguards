@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Shield, Menu, X, Globe } from "lucide-react";
-import { useState } from "react";
+import { Shield, Menu, X, Globe, Languages } from "lucide-react";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/language-context";
@@ -11,6 +11,7 @@ import { useLanguage } from "@/lib/language-context";
 export function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showTranslateHint, setShowTranslateHint] = useState(false);
   const { lang, setLang, t } = useLanguage();
 
   const navLinks = [
@@ -21,8 +22,23 @@ export function Header() {
   ];
 
   const toggleLanguage = () => {
-    setLang(lang === "en" ? "ms" : "en");
+    const newLang = lang === "en" ? "ms" : "en";
+    setLang(newLang);
+    
+    // Show translation hint when switching away from English
+    if (newLang !== "en") {
+      setShowTranslateHint(true);
+      setTimeout(() => setShowTranslateHint(false), 5000);
+    }
   };
+
+  // Auto-hide translate hint
+  useEffect(() => {
+    if (showTranslateHint) {
+      const timer = setTimeout(() => setShowTranslateHint(false), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [showTranslateHint]);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -117,6 +133,26 @@ export function Header() {
               </Button>
             </div>
           </nav>
+        )}
+
+        {/* Translation Hint Banner */}
+        {showTranslateHint && (
+          <div className="absolute top-full left-0 right-0 bg-primary/10 border-b px-4 py-2 text-center animate-in slide-in-from-top duration-300">
+            <p className="text-sm flex items-center justify-center gap-2">
+              <Languages className="h-4 w-4" />
+              <span>
+                {lang === "ms" 
+                  ? "Untuk terjemahan penuh, guna ciri terjemah pelayar anda (klik kanan → Translate)" 
+                  : "For full translation, use your browser's translate feature (right-click → Translate)"}
+              </span>
+              <button 
+                onClick={() => setShowTranslateHint(false)}
+                className="ml-2 text-muted-foreground hover:text-foreground"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </p>
+          </div>
         )}
       </div>
     </header>
