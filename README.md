@@ -93,7 +93,7 @@ ScamGuard is a community-driven fraud detection system that allows users to chec
 
 This project demonstrates iterative architectural improvement, evolving from a basic MVP to a production-grade system.
 
-### Phase 1: MVP Foundation (Day 1)
+### Phase 1: MVP Foundation
 
 **Goal:** Functional prototype with core search/report capabilities.
 
@@ -105,9 +105,7 @@ This project demonstrates iterative architectural improvement, evolving from a b
 | Security | None | ⚠️ |
 | Admin | None | ❌ |
 
-**Architecture Score: 5/10**
-
-### Phase 2: Production Hardening (Day 2)
+### Phase 2: Production Hardening
 
 **Goal:** Add search intelligence, security, and abuse prevention.
 
@@ -120,9 +118,7 @@ This project demonstrates iterative architectural improvement, evolving from a b
 | Admin | Secure email/password auth with whitelist | Controlled access |
 | Functions | `SECURITY DEFINER SET search_path = ''` | SQL injection prevention |
 
-**Architecture Score: 7/10**
-
-### Phase 3: Intelligence Layer (Day 3)
+### Phase 3: Intelligence Layer
 
 **Goal:** AI-powered features and unified scammer profiling.
 
@@ -134,8 +130,6 @@ This project demonstrates iterative architectural improvement, evolving from a b
 | Confidence Scoring | `confidence = 50 + (report_count * 10)` | Trust signals |
 | Heat Levels | CRITICAL/HIGH/MEDIUM/LOW based on reports | Priority triage |
 | Scammer Profiles | Unified view aggregating all data points | Entity resolution |
-
-**Architecture Score: 9/10**
 
 ---
 
