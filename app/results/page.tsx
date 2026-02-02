@@ -127,19 +127,21 @@ function ResultsContent() {
       />
 
       {/* Actions */}
-      <div className="flex flex-col sm:flex-row gap-4 mt-8">
-        <Button asChild variant="outline" className="flex-1">
-          <Link href="/search">
-            <Search className="h-4 w-4 mr-2" />
-            Search Again
-          </Link>
-        </Button>
-        <Button asChild className="flex-1">
-          <Link href="/submit">
-            <FileText className="h-4 w-4 mr-2" />
-            Report a Scam
-          </Link>
-        </Button>
+      <div className="grid grid-cols-2 gap-4 mt-8">
+        <Link
+          href="/search"
+          className="flex items-center justify-center gap-2 h-11 px-6 rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground text-sm font-medium transition-colors"
+        >
+          <Search className="h-4 w-4 flex-shrink-0" />
+          <span>Search Again</span>
+        </Link>
+        <Link
+          href="/submit"
+          className="flex items-center justify-center gap-2 h-11 px-6 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 text-sm font-medium transition-colors"
+        >
+          <FileText className="h-4 w-4 flex-shrink-0" />
+          <span>Report a Scam</span>
+        </Link>
       </div>
 
       {/* Dispute Link */}
