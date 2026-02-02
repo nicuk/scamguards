@@ -1,15 +1,46 @@
+import { Metadata } from "next";
 import { SearchForm } from "@/components/search/search-form";
 import { Shield, Info } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { PAGE_SEO, SITE_URL, generateBreadcrumbSchema } from "@/lib/seo-config";
 
-export const metadata = {
-  title: "Search - ScamGuard Malaysia",
-  description: "Check if phone numbers, emails, or other details have been reported in scam incidents.",
+export const metadata: Metadata = {
+  title: PAGE_SEO.search.title,
+  description: PAGE_SEO.search.description,
+  keywords: PAGE_SEO.search.keywords,
+  alternates: {
+    canonical: `${SITE_URL}/search`,
+  },
+  openGraph: {
+    title: PAGE_SEO.search.title,
+    description: PAGE_SEO.search.description,
+    url: `${SITE_URL}/search`,
+    type: "website",
+  },
+  twitter: {
+    title: PAGE_SEO.search.title,
+    description: PAGE_SEO.search.description,
+  },
 };
+
+function BreadcrumbJsonLd() {
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: SITE_URL },
+    { name: "Check Scammer", url: `${SITE_URL}/search` },
+  ]);
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+    />
+  );
+}
 
 export default function SearchPage() {
   return (
-    <div className="container mx-auto px-4 py-12">
+    <>
+      <BreadcrumbJsonLd />
+      <div className="container mx-auto px-4 py-12">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
@@ -44,5 +75,6 @@ export default function SearchPage() {
         </Alert>
       </div>
     </div>
+    </>
   );
 }

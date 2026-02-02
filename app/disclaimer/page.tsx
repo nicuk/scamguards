@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { AlertTriangle, Shield, FileText, Mail } from "lucide-react";
 import {
   Card,
@@ -6,16 +7,40 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { PAGE_SEO, SITE_URL, generateBreadcrumbSchema } from "@/lib/seo-config";
 
-export const metadata = {
-  title: "Disclaimer - ScamGuard Malaysia",
-  description:
-    "Legal disclaimer and privacy policy for ScamGuard Malaysia.",
+export const metadata: Metadata = {
+  title: PAGE_SEO.disclaimer.title,
+  description: PAGE_SEO.disclaimer.description,
+  keywords: PAGE_SEO.disclaimer.keywords,
+  alternates: {
+    canonical: `${SITE_URL}/disclaimer`,
+  },
+  openGraph: {
+    title: PAGE_SEO.disclaimer.title,
+    description: PAGE_SEO.disclaimer.description,
+    url: `${SITE_URL}/disclaimer`,
+  },
 };
+
+function BreadcrumbJsonLd() {
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: SITE_URL },
+    { name: "Legal Disclaimer", url: `${SITE_URL}/disclaimer` },
+  ]);
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+    />
+  );
+}
 
 export default function DisclaimerPage() {
   return (
-    <div className="container mx-auto px-4 py-12">
+    <>
+      <BreadcrumbJsonLd />
+      <div className="container mx-auto px-4 py-12">
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
@@ -228,5 +253,6 @@ export default function DisclaimerPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

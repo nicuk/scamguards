@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import {
   Shield,
   Search,
@@ -16,16 +17,67 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { PAGE_SEO, SITE_URL, generateFAQSchema, generateBreadcrumbSchema } from "@/lib/seo-config";
 
-export const metadata = {
-  title: "How It Works - ScamGuard Malaysia",
-  description:
-    "Learn how ScamGuard helps protect Malaysians from scams through community-driven reporting.",
+export const metadata: Metadata = {
+  title: PAGE_SEO.howItWorks.title,
+  description: PAGE_SEO.howItWorks.description,
+  keywords: PAGE_SEO.howItWorks.keywords,
+  alternates: {
+    canonical: `${SITE_URL}/how-it-works`,
+  },
+  openGraph: {
+    title: PAGE_SEO.howItWorks.title,
+    description: PAGE_SEO.howItWorks.description,
+    url: `${SITE_URL}/how-it-works`,
+    type: "website",
+  },
 };
+
+const pageFAQs = [
+  {
+    question: "Is this a replacement for police reports?",
+    answer: "No. ScamGuard is a community awareness tool, not a substitute for official reporting. If you've been scammed, always report to the police and your bank.",
+  },
+  {
+    question: "What if I'm incorrectly reported?",
+    answer: "You can submit a dispute through our dispute form. We take false reports seriously and will review all disputes.",
+  },
+  {
+    question: "How accurate are the results?",
+    answer: "Results are based on community reports and AI analysis. They provide an indication of risk but should not be treated as definitive proof of fraud or safety.",
+  },
+  {
+    question: "Can I report anonymously?",
+    answer: "Yes. We do not require any personal information to submit a report. However, reports with evidence are weighted more heavily in our analysis.",
+  },
+];
+
+function PageJsonLd() {
+  const faqSchema = generateFAQSchema(pageFAQs);
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: SITE_URL },
+    { name: "How It Works", url: `${SITE_URL}/how-it-works` },
+  ]);
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+    </>
+  );
+}
 
 export default function HowItWorksPage() {
   return (
-    <div className="container mx-auto px-4 py-12">
+    <>
+      <PageJsonLd />
+      <div className="container mx-auto px-4 py-12">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
@@ -313,5 +365,6 @@ export default function HowItWorksPage() {
         </section>
       </div>
     </div>
+    </>
   );
 }
