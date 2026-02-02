@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, Shield, CheckCircle } from "lucide-react";
+import { ClipboardPaste, Sparkles, CheckCircle } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -23,13 +23,14 @@ export function HowItWorksSection() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {/* Step 1: Paste */}
           <Card className="relative">
             <div className="absolute -top-4 left-6 bg-primary text-primary-foreground w-8 h-8 rounded-full flex items-center justify-center font-bold">
               1
             </div>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Search className="h-5 w-5 text-primary" />
+                <ClipboardPaste className="h-5 w-5 text-primary" />
                 {t("step1Title")}
               </CardTitle>
             </CardHeader>
@@ -38,13 +39,14 @@ export function HowItWorksSection() {
             </CardContent>
           </Card>
 
-          <Card className="relative">
-            <div className="absolute -top-4 left-6 bg-primary text-primary-foreground w-8 h-8 rounded-full flex items-center justify-center font-bold">
+          {/* Step 2: AI Scans - Highlighted */}
+          <Card className="relative border-2 border-blue-500/30 bg-gradient-to-b from-blue-500/5 to-transparent">
+            <div className="absolute -top-4 left-6 bg-gradient-to-r from-blue-500 to-purple-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">
               2
             </div>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Shield className="h-5 w-5 text-primary" />
+                <Sparkles className="h-5 w-5 text-blue-500" />
                 {t("step2Title")}
               </CardTitle>
             </CardHeader>
@@ -53,13 +55,14 @@ export function HowItWorksSection() {
             </CardContent>
           </Card>
 
+          {/* Step 3: Get Answer */}
           <Card className="relative">
             <div className="absolute -top-4 left-6 bg-primary text-primary-foreground w-8 h-8 rounded-full flex items-center justify-center font-bold">
               3
             </div>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5 text-primary" />
+                <CheckCircle className="h-5 w-5 text-green-500" />
                 {t("step3Title")}
               </CardTitle>
             </CardHeader>

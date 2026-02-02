@@ -8,17 +8,17 @@ export const translations = {
     search: "Search",
     reportScam: "Report Scam",
     howItWorks: "How It Works",
-    checkNow: "Check Now",
+    checkNow: "Check Now (Free)",
     
     // Hero
-    tagline: "Protecting Malaysians from Scams",
-    heroTitle: "Check Before You Trust",
-    heroDescription: "Search phone numbers, emails, and other details to see if they've been reported in scam incidents. Help protect the community by sharing your experience.",
+    tagline: "AI-Powered Scam Detection",
+    heroTitle: "Is This a Scammer?",
+    heroDescription: "Paste any phone number, email, or bank account. Our AI instantly checks if it's been reported as a scam.",
     
     // Buttons
-    reportNow: "Report Now",
+    reportNow: "Report a Scammer",
     submitReport: "Submit Report",
-    searchButton: "Search",
+    searchButton: "Check with AI",
     
     // Common Scams Section
     commonScamsTitle: "Common Scams in Malaysia",
@@ -40,13 +40,13 @@ export const translations = {
     
     // How It Works
     howItWorksTitle: "How It Works",
-    howItWorksDesc: "ScamGuard helps you make informed decisions by checking community reports",
-    step1Title: "Search",
-    step1Desc: "Enter a phone number, email, bank account, or other details you want to verify.",
-    step2Title: "Analyze",
-    step2Desc: "Our system checks community reports and analyzes patterns to assess risk.",
-    step3Title: "Decide",
-    step3Desc: "Get a clear assessment with confidence level to help you make an informed decision.",
+    howItWorksDesc: "3 simple steps to check if someone is a scammer",
+    step1Title: "Paste",
+    step1Desc: "Copy & paste the phone number, email, or bank account you want to check.",
+    step2Title: "AI Scans",
+    step2Desc: "Our AI searches thousands of scam reports and analyzes patterns instantly.",
+    step3Title: "Get Answer",
+    step3Desc: "See if it's suspicious, safe, or unknown — with a confidence score.",
     
     // Submit Page
     submitTitle: "Report a Scam",
@@ -76,17 +76,17 @@ export const translations = {
     search: "Cari",
     reportScam: "Lapor Penipuan",
     howItWorks: "Cara Ia Berfungsi",
-    checkNow: "Semak Sekarang",
+    checkNow: "Semak Sekarang (Percuma)",
     
     // Hero
-    tagline: "Melindungi Rakyat Malaysia dari Penipuan",
-    heroTitle: "Semak Sebelum Percaya",
-    heroDescription: "Cari nombor telefon, emel, dan butiran lain untuk melihat jika ia dilaporkan dalam insiden penipuan. Bantu lindungi masyarakat dengan berkongsi pengalaman anda.",
+    tagline: "Pengesanan Penipuan AI",
+    heroTitle: "Ini Penipu Ke?",
+    heroDescription: "Tampal nombor telefon, emel, atau akaun bank. AI kami semak serta-merta jika ia pernah dilaporkan sebagai penipuan.",
     
     // Buttons
-    reportNow: "Lapor Sekarang",
+    reportNow: "Lapor Penipu",
     submitReport: "Hantar Laporan",
-    searchButton: "Cari",
+    searchButton: "Semak dengan AI",
     
     // Common Scams Section
     commonScamsTitle: "Penipuan Biasa di Malaysia",
@@ -108,13 +108,13 @@ export const translations = {
     
     // How It Works
     howItWorksTitle: "Cara Ia Berfungsi",
-    howItWorksDesc: "ScamGuard membantu anda membuat keputusan berdasarkan laporan komuniti",
-    step1Title: "Cari",
-    step1Desc: "Masukkan nombor telefon, emel, akaun bank, atau butiran lain yang ingin disahkan.",
-    step2Title: "Analisis",
-    step2Desc: "Sistem kami menyemak laporan komuniti dan menganalisis corak untuk menilai risiko.",
-    step3Title: "Keputusan",
-    step3Desc: "Dapatkan penilaian jelas dengan tahap keyakinan untuk membantu keputusan anda.",
+    howItWorksDesc: "3 langkah mudah untuk semak jika seseorang itu penipu",
+    step1Title: "Tampal",
+    step1Desc: "Salin & tampal nombor telefon, emel, atau akaun bank yang ingin disemak.",
+    step2Title: "AI Imbas",
+    step2Desc: "AI kami mencari ribuan laporan penipuan dan analisis corak serta-merta.",
+    step3Title: "Dapat Jawapan",
+    step3Desc: "Lihat jika ia mencurigakan, selamat, atau tidak diketahui — dengan skor keyakinan.",
     
     // Submit Page
     submitTitle: "Lapor Penipuan",

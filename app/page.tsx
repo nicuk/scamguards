@@ -30,29 +30,29 @@ export const metadata: Metadata = {
 // FAQ Schema for rich snippets
 const homeFAQs = [
   {
-    question: "How do I check if someone is a scammer in Malaysia?",
+    question: "How does the AI scam checker work?",
     answer:
-      "Use ScamGuard's free search tool to check phone numbers, emails, bank accounts, or social media profiles. Enter the suspicious details and our AI-powered system will show you if there are any community reports associated with that information.",
+      "Simply paste any phone number, email, or bank account into ScamGuard. Our AI instantly searches thousands of community scam reports and analyzes patterns to tell you if it's suspicious, safe, or unknown — with a confidence score.",
   },
   {
-    question: "Is ScamGuard free to use?",
+    question: "Is ScamGuard's AI scam checker free?",
     answer:
-      "Yes, ScamGuard is completely free. You can search unlimited times and submit reports at no cost. Our mission is to protect the Malaysian community from scams.",
+      "Yes, 100% free! No sign-up, no credit card, no limits. Just paste the suspicious details and get instant AI-powered results. Our mission is to protect all Malaysians from scams.",
+  },
+  {
+    question: "How do I check if someone is a scammer in Malaysia?",
+    answer:
+      "Copy the phone number, email, bank account, or social media from the suspicious person. Paste it into ScamGuard's search box. Click 'Check Now' and our AI will instantly show you if there are any scam reports.",
   },
   {
     question: "How do I report a scammer?",
     answer:
-      "Click 'Report Scam' on our website, select the scam type, enter the scammer's details (phone, email, bank account, etc.), describe what happened, and submit. Your report helps protect others from becoming victims.",
+      "Click 'Report Scam', paste or type the scammer's details (phone, email, bank account), select the scam type, and submit. You can also paste your whole story and our AI will extract the details automatically!",
   },
   {
-    question: "What types of scams does ScamGuard cover?",
+    question: "What types of scams does ScamGuard detect?",
     answer:
-      "ScamGuard covers all common scams in Malaysia including Macau scams, love scams, TCG/collectibles scams, gold/silver investment scams, e-commerce fraud, job scams, and more.",
-  },
-  {
-    question: "Can I dispute a false report against me?",
-    answer:
-      "Yes, if you've been falsely reported, you can submit a dispute through our website. We have a fair review process to protect people from incorrect accusations.",
+      "ScamGuard's AI can detect all common scams in Malaysia: Macau scams, love scams, TCG/collectibles scams (Pokemon, One Piece cards), gold/silver scams, Shopee/Carousell scams, job scams, and more.",
   },
 ];
 

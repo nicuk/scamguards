@@ -7,15 +7,22 @@ export const SITE_NAME = "ScamGuard Malaysia";
 export const SEO_CONFIG = {
   siteName: SITE_NAME,
   siteUrl: SITE_URL,
-  defaultTitle: "ScamGuard Malaysia - Check Scammers & Report Fraud",
+  defaultTitle: "ScamGuard Malaysia - AI Scam Checker | Check Scammers Free",
   defaultDescription:
-    "Malaysia's community-driven scam detection platform. Check phone numbers, emails, bank accounts for scam reports. Report scammers to protect others. Semak penipu Malaysia.",
+    "Free AI-powered scam detection for Malaysia. Instantly check if phone numbers, emails, or bank accounts are scammers. Paste any detail, AI checks thousands of reports. Semak penipu dengan AI.",
   
   // Primary keywords for the site
   keywords: [
+    // AI-focused keywords
+    "ai scam checker",
+    "ai scam detection malaysia",
+    "ai check scammer",
+    "scam checker ai free",
+    
     // English primary
     "scam check malaysia",
     "check scammer malaysia",
+    "is this a scammer",
     "report scammer malaysia",
     "malaysia scam database",
     "phone scam check",
@@ -23,9 +30,11 @@ export const SEO_CONFIG = {
     
     // Malay keywords
     "semak penipu malaysia",
+    "ai semak penipu",
     "lapor penipu",
     "nombor telefon penipu",
     "semak nombor scammer",
+    "ini penipu ke",
     
     // Specific scam types
     "tcg scammer malaysia",
@@ -61,27 +70,29 @@ export const SEO_CONFIG = {
 // Per-page SEO configurations
 export const PAGE_SEO = {
   home: {
-    title: "ScamGuard Malaysia - Check Scammers & Report Fraud | Semak Penipu",
+    title: "ScamGuard Malaysia - Free AI Scam Checker | Is This a Scammer?",
     description:
-      "Malaysia's #1 community scam detection platform. Check if phone numbers, emails, or bank accounts have been reported as scams. Free scammer database. Semak penipu Malaysia secara percuma.",
+      "Free AI scam checker for Malaysia. Paste any phone number, email, or bank account - AI instantly checks if it's a scammer. No sign-up needed. Semak penipu dengan AI percuma.",
     keywords: [
-      "scam check malaysia",
+      "ai scam checker malaysia",
+      "is this a scammer",
       "check scammer malaysia", 
-      "semak penipu malaysia",
-      "malaysia scam database",
-      "report scam malaysia",
+      "semak penipu ai",
+      "free scam check",
+      "ai scam detection",
     ],
   },
   search: {
-    title: "Check Scammer - Search Phone, Email, Bank Account | ScamGuard",
+    title: "AI Scam Checker - Paste Phone, Email, Bank Account | ScamGuard",
     description:
-      "Search our database to check if a phone number, email, bank account, or social media has been reported as a scam in Malaysia. Free instant results.",
+      "Paste any phone number, email, or bank account. Our AI instantly scans thousands of scam reports and tells you if it's suspicious. Free, no sign-up.",
     keywords: [
-      "check scammer phone number",
-      "semak nombor penipu",
+      "ai check scammer",
+      "paste phone number scam check",
+      "semak nombor penipu ai",
       "check email scammer",
       "bank account scammer check",
-      "scammer database malaysia",
+      "instant scam check",
     ],
   },
   submit: {
