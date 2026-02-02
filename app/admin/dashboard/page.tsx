@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import {
   Shield,
-  AlertTriangle,
   CheckCircle,
   XCircle,
   Clock,
@@ -14,6 +13,8 @@ import {
   ExternalLink,
   RefreshCw,
   Trash2,
+  LogOut,
+  User,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -25,6 +26,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { SCAM_TYPES } from "@/lib/constants";
+import { createClient } from "@/lib/supabase/client";
 
 interface Report {
   id: string;
@@ -51,9 +53,13 @@ interface Stats {
   pendingModeration: number;
 }
 
-export default function SecureAdminPage() {
-  const params = useParams();
+interface AdminUser {
+  email: string;
+}
+
+export default function AdminDashboard() {
   const router = useRouter();
+  const [user, setUser] = useState<AdminUser | null>(null);
   const [authorized, setAuthorized] = useState<boolean | null>(null);
   const [stats, setStats] = useState<Stats | null>(null);
   const [reports, setReports] = useState<Report[]>([]);
@@ -61,50 +67,117 @@ export default function SecureAdminPage() {
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState<string | null>(null);
 
-  // Verify token on mount
+  // Check authentication on mount
   useEffect(() => {
-    async function verifyAndFetch() {
+    async function checkAuth() {
       try {
-        const response = await fetch(`/api/admin/verify?token=${params.token}`);
-        if (!response.ok) {
-          setAuthorized(false);
+        const supabase = createClient();
+        const { data: { user: authUser } } = await supabase.auth.getUser();
+
+        if (!authUser?.email) {
+          router.push("/admin/login");
           return;
         }
+
+        // Verify admin whitelist
+        const response = await fetch("/api/admin/check-access", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: authUser.email }),
+        });
+
+        if (!response.ok) {
+          await supabase.auth.signOut();
+          router.push("/admin/login");
+          return;
+        }
+
+        setUser({ email: authUser.email });
         setAuthorized(true);
 
         // Fetch data
-        const [statsRes, reportsRes] = await Promise.all([
-          fetch(`/api/admin/stats?token=${params.token}`),
-          fetch(`/api/admin/reports?token=${params.token}`),
-        ]);
-
-        if (statsRes.ok) {
-          setStats(await statsRes.json());
-        }
-        if (reportsRes.ok) {
-          setReports(await reportsRes.json());
-        }
+        await fetchData();
       } catch (error) {
-        console.error("Auth error:", error);
-        setAuthorized(false);
+        console.error("Auth check error:", error);
+        router.push("/admin/login");
       } finally {
         setLoading(false);
       }
     }
 
-    verifyAndFetch();
-  }, [params.token]);
+    checkAuth();
+  }, [router]);
+
+  const fetchData = async () => {
+    try {
+      const supabase = createClient();
+      
+      // Fetch reports with data points
+      const { data: reportsData, error: reportsError } = await supabase
+        .from("reports")
+        .select(`
+          id,
+          scam_type,
+          platform,
+          description,
+          status,
+          is_verified,
+          created_at,
+          evidence_urls,
+          amount_lost,
+          currency,
+          data_points (
+            id,
+            type,
+            value
+          )
+        `)
+        .order("created_at", { ascending: false });
+
+      if (!reportsError && reportsData) {
+        setReports(reportsData as Report[]);
+      }
+
+      // Fetch stats
+      const { count: totalReports } = await supabase
+        .from("reports")
+        .select("*", { count: "exact", head: true });
+
+      const { count: verifiedReports } = await supabase
+        .from("reports")
+        .select("*", { count: "exact", head: true })
+        .eq("is_verified", true);
+
+      const { count: totalSearches } = await supabase
+        .from("audit_logs")
+        .select("*", { count: "exact", head: true })
+        .eq("action", "search");
+
+      setStats({
+        totalReports: totalReports || 0,
+        verifiedReports: verifiedReports || 0,
+        totalSearches: totalSearches || 0,
+        pendingModeration: 0,
+      });
+    } catch (error) {
+      console.error("Fetch data error:", error);
+    }
+  };
 
   const handleVerify = async (reportId: string, verify: boolean) => {
     setActionLoading(reportId);
     try {
-      const response = await fetch(`/api/admin/verify-report?token=${params.token}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ reportId, verified: verify }),
-      });
+      const supabase = createClient();
+      
+      const { error } = await supabase
+        .from("reports")
+        .update({ 
+          is_verified: verify,
+          status: verify ? "active" : "pending"
+        })
+        .eq("id", reportId);
 
-      if (response.ok) {
+      if (!error) {
         // Update local state
         setReports((prev) =>
           prev.map((r) =>
@@ -114,11 +187,17 @@ export default function SecureAdminPage() {
         if (selectedReport?.id === reportId) {
           setSelectedReport({ ...selectedReport, is_verified: verify });
         }
-        // Refresh stats
-        const statsRes = await fetch(`/api/admin/stats?token=${params.token}`);
-        if (statsRes.ok) {
-          setStats(await statsRes.json());
-        }
+        
+        // Update stats
+        await fetchData();
+
+        // Log action
+        await supabase.from("audit_logs").insert({
+          action: verify ? "admin_verify" : "admin_unverify",
+          entity_type: "report",
+          entity_id: reportId,
+          details: { verified: verify, admin: user?.email },
+        });
       }
     } catch (error) {
       console.error("Verify error:", error);
@@ -134,17 +213,30 @@ export default function SecureAdminPage() {
     
     setActionLoading(reportId);
     try {
-      const response = await fetch(`/api/admin/delete-report?token=${params.token}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ reportId }),
-      });
+      const supabase = createClient();
 
-      if (response.ok) {
+      // Delete related data_points first
+      await supabase.from("data_points").delete().eq("report_id", reportId);
+      
+      // Delete disputes
+      await supabase.from("disputes").delete().eq("report_id", reportId);
+
+      // Delete the report
+      const { error } = await supabase.from("reports").delete().eq("id", reportId);
+
+      if (!error) {
         setReports((prev) => prev.filter((r) => r.id !== reportId));
         if (selectedReport?.id === reportId) {
           setSelectedReport(null);
         }
+
+        // Log action
+        await supabase.from("audit_logs").insert({
+          action: "admin_delete",
+          entity_type: "report",
+          entity_id: reportId,
+          details: { deleted: true, admin: user?.email },
+        });
       }
     } catch (error) {
       console.error("Delete error:", error);
@@ -153,23 +245,20 @@ export default function SecureAdminPage() {
     }
   };
 
-  const refreshData = async () => {
-    setLoading(true);
-    try {
-      const [statsRes, reportsRes] = await Promise.all([
-        fetch(`/api/admin/stats?token=${params.token}`),
-        fetch(`/api/admin/reports?token=${params.token}`),
-      ]);
-
-      if (statsRes.ok) setStats(await statsRes.json());
-      if (reportsRes.ok) setReports(await reportsRes.json());
-    } finally {
-      setLoading(false);
-    }
+  const handleLogout = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    router.push("/admin/login");
   };
 
-  // Show nothing while checking auth (security - don't reveal page exists)
-  if (authorized === null || loading) {
+  const refreshData = async () => {
+    setLoading(true);
+    await fetchData();
+    setLoading(false);
+  };
+
+  // Loading state
+  if (loading || authorized === null) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
@@ -177,16 +266,9 @@ export default function SecureAdminPage() {
     );
   }
 
-  // Show 404 if unauthorized (security - pretend page doesn't exist)
+  // Not authorized - redirect handled in useEffect
   if (!authorized) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold mb-2">404</h1>
-          <p className="text-muted-foreground">Page not found</p>
-        </div>
-      </div>
-    );
+    return null;
   }
 
   return (
@@ -200,10 +282,20 @@ export default function SecureAdminPage() {
           </h1>
           <p className="text-muted-foreground">Secure Administration Panel</p>
         </div>
-        <Button onClick={refreshData} variant="outline" size="sm">
-          <RefreshCw className="h-4 w-4 mr-2" />
-          Refresh
-        </Button>
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <User className="h-4 w-4" />
+            <span>{user?.email}</span>
+          </div>
+          <Button onClick={refreshData} variant="outline" size="sm" disabled={loading}>
+            <RefreshCw className={`h-4 w-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
+            Refresh
+          </Button>
+          <Button onClick={handleLogout} variant="ghost" size="sm">
+            <LogOut className="h-4 w-4 mr-2" />
+            Logout
+          </Button>
+        </div>
       </div>
 
       {/* Stats */}
@@ -329,7 +421,7 @@ export default function SecureAdminPage() {
               </div>
             ) : (
               <div className="space-y-6">
-                {/* Status & Actions */}
+                {/* Status */}
                 <div className="flex items-center gap-2">
                   {selectedReport.is_verified ? (
                     <Badge className="bg-green-500 text-white">
@@ -380,7 +472,7 @@ export default function SecureAdminPage() {
                   <h4 className="text-sm font-medium text-muted-foreground mb-1">
                     Description
                   </h4>
-                  <p className="text-sm whitespace-pre-wrap bg-muted/50 p-3 rounded-lg">
+                  <p className="text-sm whitespace-pre-wrap bg-muted/50 p-3 rounded-lg max-h-32 overflow-y-auto">
                     {selectedReport.description || "No description provided"}
                   </p>
                 </div>
@@ -390,7 +482,7 @@ export default function SecureAdminPage() {
                   <h4 className="text-sm font-medium text-muted-foreground mb-2">
                     Data Points ({selectedReport.data_points?.length || 0})
                   </h4>
-                  <div className="space-y-2">
+                  <div className="space-y-2 max-h-40 overflow-y-auto">
                     {selectedReport.data_points?.map((dp) => (
                       <div
                         key={dp.id}
@@ -399,7 +491,7 @@ export default function SecureAdminPage() {
                         <Badge variant="outline" className="text-xs">
                           {dp.type}
                         </Badge>
-                        <span className="font-mono">{dp.value}</span>
+                        <span className="font-mono truncate">{dp.value}</span>
                       </div>
                     ))}
                   </div>
