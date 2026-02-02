@@ -85,10 +85,13 @@ export async function POST(request: NextRequest) {
 
     const matchedReports = Array.from(reportMap.values());
 
-    // Calculate date range and counts
+    // Calculate date range, counts, and aggregate report counts
     let dateRange: { earliest: string; latest: string } | undefined;
     let verifiedCount = 0;
     let disputedCount = 0;
+    let totalReportCount = 0;
+    let confidenceScore = 50;
+    let heatLevel = "LOW";
     
     if (matchedReports.length > 0) {
       const dates = matchedReports.map((r) => new Date(r.created_at).getTime());
@@ -99,6 +102,21 @@ export async function POST(request: NextRequest) {
       
       verifiedCount = matchedReports.filter((r) => r.is_verified).length;
       disputedCount = matchedReports.filter((r) => r.is_disputed).length;
+      
+      // Get the highest report_count from matched data points
+      const reportCounts = allMatches
+        .filter((m) => m.report_count)
+        .map((m) => m.report_count as number);
+      
+      totalReportCount = reportCounts.length > 0 ? Math.max(...reportCounts) : matchedReports.length;
+      
+      // Calculate confidence score (50 base + 10 per report, max 100)
+      confidenceScore = Math.min(100, 50 + (totalReportCount * 10));
+      
+      // Determine heat level
+      heatLevel = totalReportCount >= 10 ? "CRITICAL" :
+                  totalReportCount >= 5 ? "HIGH" :
+                  totalReportCount >= 3 ? "MEDIUM" : "LOW";
     }
 
     // Analyze with AI
@@ -124,6 +142,17 @@ export async function POST(request: NextRequest) {
       dateRange,
       verifiedCount,
       disputedCount,
+      // New: Scammer profile stats
+      scammerProfile: {
+        totalReportCount,
+        confidenceScore,
+        heatLevel,
+        message: totalReportCount > 1 
+          ? `Reported ${totalReportCount} times by the community`
+          : totalReportCount === 1 
+            ? "First report in our database"
+            : null,
+      },
     });
   } catch (error) {
     console.error("Search API error:", error);

@@ -3,9 +3,25 @@ import { createClient } from "@/lib/supabase/server";
 import { normalizeDataPoint } from "@/lib/utils/normalize";
 import { SCAM_TYPES } from "@/lib/constants";
 
+// Hash IP for privacy
+function hashIP(ip: string): string {
+  let hash = 0;
+  for (let i = 0; i < ip.length; i++) {
+    const char = ip.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash;
+  }
+  return `ip_${Math.abs(hash).toString(16)}`;
+}
+
 export async function POST(request: NextRequest) {
   try {
     const supabase = await createClient();
+    
+    // Get IP for spam prevention
+    const clientIP = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+                     request.headers.get("x-real-ip") || "unknown";
+    const ipHash = hashIP(clientIP);
     
     // Check content type to determine how to parse
     const contentType = request.headers.get("content-type") || "";
@@ -106,31 +122,82 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create data points
-    const dataPointRecords = dataPoints.map((dp) => ({
-      report_id: report.id,
-      type: dp.type,
-      value: dp.value,
-      normalized_value: normalizeDataPoint(dp.type, dp.value),
-    }));
+    // Check for duplicates and create data points with tracking
+    const duplicateInfo: { value: string; reportCount: number; isNew: boolean }[] = [];
+    let hasExistingReports = false;
+    let maxExistingReportCount = 0;
 
-    const { error: dpError } = await supabase
-      .from("data_points")
-      .insert(dataPointRecords);
+    for (const dp of dataPoints) {
+      const normalizedValue = normalizeDataPoint(dp.type, dp.value);
+      
+      // Check if this data point already exists
+      const { data: existingCheck } = await supabase
+        .from("data_points")
+        .select("id, report_count")
+        .eq("type", dp.type)
+        .eq("normalized_value", normalizedValue)
+        .limit(1)
+        .single();
 
-    if (dpError) {
-      console.error("Data points insert error:", dpError);
-      // Don't fail the whole request, report is already created
+      const currentReportCount = existingCheck?.report_count || 0;
+      const newReportCount = currentReportCount + 1;
+
+      if (existingCheck) {
+        hasExistingReports = true;
+        maxExistingReportCount = Math.max(maxExistingReportCount, currentReportCount);
+      }
+
+      // Insert the data point with updated count
+      const { error: dpError } = await supabase
+        .from("data_points")
+        .insert({
+          report_id: report.id,
+          type: dp.type,
+          value: dp.value,
+          normalized_value: normalizedValue,
+          report_count: newReportCount,
+        });
+
+      if (dpError) {
+        console.error("Data point insert error:", dpError);
+      }
+
+      // Update report_count on ALL existing matching data points
+      if (existingCheck) {
+        await supabase
+          .from("data_points")
+          .update({ 
+            report_count: newReportCount,
+            // last_reported_at: new Date().toISOString() // Only if column exists
+          })
+          .eq("type", dp.type)
+          .eq("normalized_value", normalizedValue);
+      }
+
+      duplicateInfo.push({
+        value: dp.value,
+        reportCount: newReportCount,
+        isNew: !existingCheck,
+      });
     }
+
+    // Calculate confidence score based on report count
+    const confidenceScore = Math.min(100, 50 + (maxExistingReportCount * 10));
+    const heatLevel = maxExistingReportCount >= 10 ? "CRITICAL" :
+                      maxExistingReportCount >= 5 ? "HIGH" :
+                      maxExistingReportCount >= 3 ? "MEDIUM" : "LOW";
 
     // Log the submission (audit trail)
     await supabase.from("audit_logs").insert({
       action: "submit",
-      metadata: {
-        report_id: report.id,
+      entity_type: "report",
+      entity_id: report.id,
+      details: {
         scam_type: scamType,
         data_point_count: dataPoints.length,
         has_evidence: isVerified,
+        has_existing_reports: hasExistingReports,
+        max_report_count: maxExistingReportCount + 1,
       },
     });
 
@@ -138,6 +205,17 @@ export async function POST(request: NextRequest) {
       success: true,
       reportId: report.id,
       isVerified,
+      // New: Duplicate detection info
+      duplicateInfo: {
+        hasExistingReports,
+        totalPreviousReports: maxExistingReportCount,
+        confidenceScore,
+        heatLevel,
+        message: hasExistingReports 
+          ? `This scammer has been reported ${maxExistingReportCount} time(s) before. Your report adds to the evidence.`
+          : "Thank you for being the first to report this scammer.",
+        dataPoints: duplicateInfo,
+      },
     });
   } catch (error) {
     console.error("Submit API error:", error);

@@ -58,6 +58,13 @@ export default function SubmitPage() {
   const [isVerified, setIsVerified] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [batchSubmitCount, setBatchSubmitCount] = useState(0);
+  const [duplicateInfo, setDuplicateInfo] = useState<{
+    hasExistingReports: boolean;
+    totalPreviousReports: number;
+    confidenceScore: number;
+    heatLevel: string;
+    message: string;
+  } | null>(null);
 
   const [scamType, setScamType] = useState("");
   const [platform, setPlatform] = useState("");
@@ -216,6 +223,9 @@ export default function SubmitPage() {
 
         const result = await response.json();
         setIsVerified(result.isVerified || false);
+        if (result.duplicateInfo) {
+          setDuplicateInfo(result.duplicateInfo);
+        }
       } else {
         const response = await fetch("/api/submit", {
           method: "POST",
@@ -235,6 +245,11 @@ export default function SubmitPage() {
         if (!response.ok) {
           const data = await response.json();
           throw new Error(data.error || "Failed to submit report");
+        }
+
+        const result = await response.json();
+        if (result.duplicateInfo) {
+          setDuplicateInfo(result.duplicateInfo);
         }
       }
 
@@ -272,6 +287,31 @@ export default function SubmitPage() {
               Verified Report (Evidence Included)
             </div>
           )}
+          
+          {/* Duplicate Detection Info */}
+          {duplicateInfo && duplicateInfo.hasExistingReports && (
+            <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-lg max-w-md mx-auto">
+              <div className="flex items-center gap-2 mb-2">
+                <Badge className={`${
+                  duplicateInfo.heatLevel === "CRITICAL" ? "bg-red-500" :
+                  duplicateInfo.heatLevel === "HIGH" ? "bg-orange-500" :
+                  duplicateInfo.heatLevel === "MEDIUM" ? "bg-yellow-500" : "bg-gray-500"
+                }`}>
+                  {duplicateInfo.heatLevel} PRIORITY
+                </Badge>
+                <span className="text-sm font-medium">
+                  Confidence: {duplicateInfo.confidenceScore}%
+                </span>
+              </div>
+              <p className="text-sm text-amber-800">
+                🔥 {duplicateInfo.message}
+              </p>
+              <p className="text-xs text-amber-600 mt-1">
+                Multiple reports strengthen the case against this scammer.
+              </p>
+            </div>
+          )}
+          
           <p className="text-muted-foreground mb-8">
             Thank you for helping protect the community. Your report{batchSubmitCount > 1 ? "s have" : " has"} been
             recorded and will help others identify potential scams.
