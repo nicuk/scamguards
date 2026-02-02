@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 
-export const revalidate = 60; // Cache for 60 seconds
+export const revalidate = 0; // Don't cache - always fetch fresh
 
 export async function GET(request: NextRequest) {
   try {
@@ -22,22 +22,35 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    // Fallback: Calculate directly (slower but works without materialized view)
-    const { count: reportCount } = await supabase
-      .from("reports")
-      .select("*", { count: "exact", head: true })
-      .eq("status", "active");
+    console.log("platform_stats error, falling back:", statsError?.message);
 
-    const { count: verifiedCount } = await supabase
+    // Fallback: Calculate directly from tables
+    // Get all reports (not filtering by status in case it's null)
+    const { count: reportCount, error: reportError } = await supabase
+      .from("reports")
+      .select("*", { count: "exact", head: true });
+
+    if (reportError) {
+      console.log("Reports count error:", reportError.message);
+    }
+
+    const { count: verifiedCount, error: verifiedError } = await supabase
       .from("reports")
       .select("*", { count: "exact", head: true })
-      .eq("status", "active")
       .eq("is_verified", true);
 
-    const { count: searchCount } = await supabase
+    if (verifiedError) {
+      console.log("Verified count error:", verifiedError.message);
+    }
+
+    const { count: searchCount, error: searchError } = await supabase
       .from("audit_logs")
       .select("*", { count: "exact", head: true })
       .eq("action", "search");
+
+    if (searchError) {
+      console.log("Search count error:", searchError.message);
+    }
 
     return NextResponse.json({
       totalReports: reportCount || 0,

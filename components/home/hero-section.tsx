@@ -23,18 +23,20 @@ export function HeroSection() {
             {t("heroDescription")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="text-lg px-8">
-              <Link href="/search">
-                <Search className="mr-2 h-5 w-5" />
-                {t("checkNow")}
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="text-lg px-8">
-              <Link href="/submit">
-                <FileText className="mr-2 h-5 w-5" />
-                {t("reportScam")}
-              </Link>
-            </Button>
+            <Link
+              href="/search"
+              className="inline-flex items-center justify-center gap-2 h-12 px-8 text-lg font-medium rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+            >
+              <Search className="h-5 w-5 flex-shrink-0" />
+              <span>{t("checkNow")}</span>
+            </Link>
+            <Link
+              href="/submit"
+              className="inline-flex items-center justify-center gap-2 h-12 px-8 text-lg font-medium rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors"
+            >
+              <FileText className="h-5 w-5 flex-shrink-0" />
+              <span>{t("reportScam")}</span>
+            </Link>
           </div>
         </div>
       </div>
