@@ -381,9 +381,9 @@ Yee Rong - Carousell - Labubu scam'"
                 <Button
                   type="button"
                   variant="outline"
-                  onClick={() => setShowResults(false)}
+                  onClick={handleSingleConfirm}
                 >
-                  Cancel
+                  Edit Manually
                 </Button>
               </div>
             </div>
@@ -481,9 +481,9 @@ Yee Rong - Carousell - Labubu scam'"
                 <Button
                   type="button"
                   variant="outline"
-                  onClick={() => setShowResults(false)}
+                  onClick={handleSingleConfirm}
                 >
-                  Cancel
+                  Edit Manually
                 </Button>
               </div>
             </div>
