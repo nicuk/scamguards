@@ -49,7 +49,7 @@ export default function DisclaimerPage() {
           </div>
           <h1 className="text-3xl font-bold mb-4">Legal Disclaimer</h1>
           <p className="text-muted-foreground">
-            Please read this disclaimer carefully before using ScamGuard
+            Please read this disclaimer carefully before using ScamGuards
           </p>
         </div>
 
@@ -64,14 +64,14 @@ export default function DisclaimerPage() {
             </CardHeader>
             <CardContent className="space-y-4 text-muted-foreground">
               <p>
-                ScamGuard is a community-driven platform that aggregates
+                ScamGuards is a community-driven platform that aggregates
                 user-submitted reports about suspected scam activity. The
                 information provided through this service is for informational
                 purposes only and should not be treated as definitive proof of
                 fraud or criminal activity.
               </p>
               <p>
-                <strong>ScamGuard does not:</strong>
+                <strong>ScamGuards does not:</strong>
               </p>
               <ul className="list-disc list-inside space-y-1 ml-4">
                 <li>Verify the accuracy of user-submitted reports</li>
@@ -95,7 +95,7 @@ export default function DisclaimerPage() {
             </CardHeader>
             <CardContent className="space-y-4 text-muted-foreground">
               <p>
-                All reports on ScamGuard are submitted by community members. By
+                All reports on ScamGuards are submitted by community members. By
                 submitting a report, you confirm that:
               </p>
               <ul className="list-disc list-inside space-y-1 ml-4">
@@ -105,7 +105,7 @@ export default function DisclaimerPage() {
                 <li>You accept responsibility for the accuracy of your submission</li>
               </ul>
               <p>
-                ScamGuard reserves the right to remove or modify reports that
+                ScamGuards reserves the right to remove or modify reports that
                 appear to be false, malicious, or in violation of our terms.
               </p>
             </CardContent>
@@ -121,7 +121,7 @@ export default function DisclaimerPage() {
             </CardHeader>
             <CardContent className="space-y-4 text-muted-foreground">
               <p>
-                ScamGuard complies with Malaysia&apos;s Personal Data Protection Act
+                ScamGuards complies with Malaysia&apos;s Personal Data Protection Act
                 (PDPA) 2010. This section explains how we handle data.
               </p>
 
@@ -178,7 +178,7 @@ export default function DisclaimerPage() {
             </CardHeader>
             <CardContent className="space-y-4 text-muted-foreground">
               <p>
-                If you believe you have been incorrectly reported on ScamGuard,
+                If you believe you have been incorrectly reported on ScamGuards,
                 you can submit a dispute through our{" "}
                 <a href="/dispute" className="text-primary hover:underline">
                   dispute form
@@ -206,7 +206,7 @@ export default function DisclaimerPage() {
             </CardHeader>
             <CardContent className="space-y-4 text-muted-foreground">
               <p>
-                To the fullest extent permitted by law, ScamGuard and its
+                To the fullest extent permitted by law, ScamGuards and its
                 operators shall not be liable for:
               </p>
               <ul className="list-disc list-inside space-y-1 ml-4">

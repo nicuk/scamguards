@@ -46,7 +46,7 @@ export interface AnalysisResult {
 }
 
 // Prompt for detecting multiple scammers
-const MULTI_SCAMMER_PROMPT = `You are a scam report analyst for ScamGuard Malaysia. Analyze the following text and determine if it describes ONE scammer or MULTIPLE different scammers.
+const MULTI_SCAMMER_PROMPT = `You are a scam report analyst for ScamGuards Malaysia. Analyze the following text and determine if it describes ONE scammer or MULTIPLE different scammers.
 
 IMPORTANT: Multiple scammers means DIFFERENT individuals/entities, not the same person with multiple contact methods.
 
@@ -85,7 +85,7 @@ If only ONE scammer is found, set isMultiple: false and include just one entry i
 TEXT TO ANALYZE:
 `;
 
-const REPORT_ANALYZER_PROMPT = `You are a compassionate scam report analyst for ScamGuard Malaysia. Your job is to help victims document their experience accurately.
+const REPORT_ANALYZER_PROMPT = `You are a compassionate scam report analyst for ScamGuards Malaysia. Your job is to help victims document their experience accurately.
 
 Analyze the following text and extract ALL relevant information for a scam report.
 

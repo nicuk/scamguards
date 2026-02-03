@@ -383,7 +383,7 @@ Yee Rong - Carousell - Labubu scam'"
                   variant="outline"
                   onClick={() => setShowResults(false)}
                 >
-                  Edit Manually
+                  Cancel
                 </Button>
               </div>
             </div>
@@ -483,7 +483,7 @@ Yee Rong - Carousell - Labubu scam'"
                   variant="outline"
                   onClick={() => setShowResults(false)}
                 >
-                  Edit Manually
+                  Cancel
                 </Button>
               </div>
             </div>

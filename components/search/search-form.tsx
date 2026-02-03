@@ -133,23 +133,21 @@ export function SearchForm() {
           </button>
         </div>
 
-        {/* Smart Paste Mode */}
-        {mode === "smart" && (
-          <div className="space-y-6">
-            <SmartPaste onExtracted={handleExtracted} />
-            
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t" />
-              </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-card px-2 text-muted-foreground">
-                  or enter manually below
-                </span>
-              </div>
+        {/* Smart Paste Mode - always mounted to preserve state */}
+        <div className={mode === "smart" ? "space-y-6" : "hidden"}>
+          <SmartPaste onExtracted={handleExtracted} />
+          
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t" />
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+              <span className="bg-card px-2 text-muted-foreground">
+                or enter manually below
+              </span>
             </div>
           </div>
-        )}
+        </div>
 
         {/* Manual Entry / Edit Mode */}
         <form onSubmit={handleSubmit} className="space-y-6">

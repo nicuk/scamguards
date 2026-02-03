@@ -33,7 +33,7 @@ import {
 } from "@/components/search/data-point-input";
 import { EvidenceUpload } from "@/components/submit/evidence-upload";
 import { SmartReportPaste } from "@/components/submit/smart-report-paste";
-import { SCAM_TYPES, PLATFORMS, ScamType, DataPointType } from "@/lib/constants";
+import { SCAM_TYPES, PLATFORMS, COUNTRIES, ScamType, DataPointType, Country } from "@/lib/constants";
 
 type InputMode = "smart" | "manual";
 
@@ -68,6 +68,7 @@ export default function SubmitPage() {
 
   const [scamType, setScamType] = useState("");
   const [platform, setPlatform] = useState("");
+  const [country, setCountry] = useState("MY"); // Default to Malaysia
   const [description, setDescription] = useState("");
   const [amountLost, setAmountLost] = useState("");
   const [evidenceFile, setEvidenceFile] = useState<File | null>(null);
@@ -82,6 +83,11 @@ export default function SubmitPage() {
   }));
 
   const platformOptions = PLATFORMS.map((p) => ({ value: p, label: p }));
+  
+  const countryOptions = Object.entries(COUNTRIES).map(([value, label]) => ({
+    value,
+    label,
+  }));
 
   // Handle AI-analyzed report data (single scammer)
   const handleAnalyzedReport = (result: {
@@ -203,6 +209,7 @@ export default function SubmitPage() {
         const formData = new FormData();
         formData.append("scamType", scamType);
         formData.append("platform", platform || "");
+        formData.append("country", country);
         formData.append("description", description || "");
         formData.append("amountLost", amountLost || "");
         formData.append("dataPoints", JSON.stringify(validPoints.map((dp) => ({
@@ -233,6 +240,7 @@ export default function SubmitPage() {
           body: JSON.stringify({
             scamType,
             platform: platform || null,
+            country,
             description: description || null,
             amountLost: amountLost ? parseFloat(amountLost) : null,
             dataPoints: validPoints.map((dp) => ({
@@ -331,6 +339,7 @@ export default function SubmitPage() {
                 setBatchSubmitCount(0);
                 setScamType("");
                 setPlatform("");
+                setCountry("MY");
                 setDescription("");
                 setAmountLost("");
                 setEvidenceFile(null);
@@ -338,6 +347,7 @@ export default function SubmitPage() {
                   { id: crypto.randomUUID(), type: "phone", value: "" },
                 ]);
                 setConfirmed(false);
+                setDuplicateInfo(null);
               }}
             >
               Submit Another Report
@@ -409,26 +419,24 @@ export default function SubmitPage() {
               </button>
             </div>
 
-            {/* Smart Report Mode */}
-            {mode === "smart" && (
-              <div className="space-y-6">
-                <SmartReportPaste 
-                  onAnalyzed={handleAnalyzedReport}
-                  onBatchAnalyzed={handleBatchSubmit}
-                />
-                
-                <div className="relative">
-                  <div className="absolute inset-0 flex items-center">
-                    <span className="w-full border-t" />
-                  </div>
-                  <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-card px-2 text-muted-foreground">
-                      or fill in manually below
-                    </span>
-                  </div>
+            {/* Smart Report Mode - always mounted to preserve state */}
+            <div className={mode === "smart" ? "space-y-6" : "hidden"}>
+              <SmartReportPaste 
+                onAnalyzed={handleAnalyzedReport}
+                onBatchAnalyzed={handleBatchSubmit}
+              />
+              
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <span className="w-full border-t" />
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-card px-2 text-muted-foreground">
+                    or fill in manually below
+                  </span>
                 </div>
               </div>
-            )}
+            </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Only show form fields in manual mode or when data exists */}
@@ -458,6 +466,21 @@ export default function SubmitPage() {
                       options={platformOptions}
                       placeholder="Where did this happen?"
                     />
+                  </div>
+
+                  {/* Country */}
+                  <div className="space-y-2">
+                    <Label htmlFor="country">Country</Label>
+                    <Select
+                      id="country"
+                      value={country}
+                      onChange={(e) => setCountry(e.target.value)}
+                      options={countryOptions}
+                      placeholder="Select country"
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      Where the scammer is operating or where the victim is located.
+                    </p>
                   </div>
 
                   {/* Data Points */}

@@ -1,6 +1,6 @@
 {
-  "name": "ScamGuard Malaysia",
-  "short_name": "ScamGuard",
+  "name": "ScamGuards Malaysia",
+  "short_name": "ScamGuards",
   "description": "Malaysia's community-driven scam detection platform. Check phone numbers, emails, bank accounts for scam reports.",
   "start_url": "/",
   "display": "standalone",

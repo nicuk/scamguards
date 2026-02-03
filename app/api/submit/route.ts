@@ -28,6 +28,7 @@ export async function POST(request: NextRequest) {
     
     let scamType: string;
     let platform: string | null;
+    let country: string = "MY"; // Default to Malaysia
     let description: string | null;
     let amountLost: number | null = null;
     let dataPoints: { type: string; value: string }[];
@@ -40,6 +41,7 @@ export async function POST(request: NextRequest) {
       
       scamType = formData.get("scamType") as string;
       platform = (formData.get("platform") as string) || null;
+      country = (formData.get("country") as string) || "MY";
       description = (formData.get("description") as string) || null;
       const amountStr = formData.get("amountLost") as string;
       amountLost = amountStr ? parseFloat(amountStr) : null;
@@ -77,6 +79,7 @@ export async function POST(request: NextRequest) {
       const body = await request.json();
       scamType = body.scamType;
       platform = body.platform || null;
+      country = body.country || "MY";
       description = body.description || null;
       amountLost = body.amountLost || null;
       dataPoints = body.dataPoints || [];
@@ -103,6 +106,7 @@ export async function POST(request: NextRequest) {
       .insert({
         scam_type: scamType,
         platform: platform,
+        country: country,
         description: description,
         evidence_url: evidenceUrl,
         amount_lost: amountLost,
@@ -190,10 +194,10 @@ export async function POST(request: NextRequest) {
     // Log the submission (audit trail)
     await supabase.from("audit_logs").insert({
       action: "submit",
-      entity_type: "report",
-      entity_id: report.id,
-      details: {
+      ip_hash: ipHash,
+      metadata: {
         scam_type: scamType,
+        country: country,
         data_point_count: dataPoints.length,
         has_evidence: isVerified,
         has_existing_reports: hasExistingReports,

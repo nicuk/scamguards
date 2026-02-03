@@ -47,7 +47,7 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <Shield className="h-8 w-8 text-primary" />
-            <span className="font-bold text-xl">ScamGuard</span>
+            <span className="font-bold text-xl">ScamGuards</span>
             <span className="hidden sm:inline text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">
               {t("malaysiaTag")}
             </span>

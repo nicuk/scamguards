@@ -1,4 +1,4 @@
-# ScamGuard Malaysia 🛡️
+# ScamGuards Malaysia 🛡️
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/nicuk/scamguards)
 [![License: Elastic-2.0](https://img.shields.io/badge/License-Elastic--2.0-blue.svg)](LICENSE)
@@ -7,7 +7,7 @@
 
 > **Check before you trust.** — A production-grade, AI-powered scam prevention platform built for Malaysia.
 
-ScamGuard is a community-driven fraud detection system that allows users to check identifiers (phone numbers, emails, bank accounts) against a crowdsourced database of scam reports. The platform uses AI to analyze patterns, detect duplicates, and provide confidence-based risk assessments.
+ScamGuards is a community-driven fraud detection system that allows users to check identifiers (phone numbers, emails, bank accounts) against a crowdsourced database of scam reports. The platform uses AI to analyze patterns, detect duplicates, and provide confidence-based risk assessments.
 
 **🇲🇾 Malaysia-First** — Localized for Malaysian phone formats, banks, e-wallets, and common local scam types.
 

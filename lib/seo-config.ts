@@ -1,13 +1,13 @@
-// Central SEO Configuration for ScamGuard Malaysia
+// Central SEO Configuration for ScamGuards Malaysia
 // Update SITE_URL to your actual domain
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://scamguards.app";
-export const SITE_NAME = "ScamGuard Malaysia";
+export const SITE_NAME = "ScamGuards Malaysia";
 
 export const SEO_CONFIG = {
   siteName: SITE_NAME,
   siteUrl: SITE_URL,
-  defaultTitle: "ScamGuard Malaysia - AI Scam Checker | Check Scammers Free",
+  defaultTitle: "ScamGuards Malaysia - AI Scam Checker | Check Scammers Free",
   defaultDescription:
     "Free AI-powered scam detection for Malaysia. Instantly check if phone numbers, emails, or bank accounts are scammers. Paste any detail, AI checks thousands of reports. Semak penipu dengan AI.",
   
@@ -70,7 +70,7 @@ export const SEO_CONFIG = {
 // Per-page SEO configurations
 export const PAGE_SEO = {
   home: {
-    title: "ScamGuard Malaysia - Free AI Scam Checker | Is This a Scammer?",
+    title: "ScamGuards Malaysia - Free AI Scam Checker | Is This a Scammer?",
     description:
       "Free AI scam checker for Malaysia. Paste any phone number, email, or bank account - AI instantly checks if it's a scammer. No sign-up needed. Semak penipu dengan AI percuma.",
     keywords: [
@@ -83,7 +83,7 @@ export const PAGE_SEO = {
     ],
   },
   search: {
-    title: "AI Scam Checker - Paste Phone, Email, Bank Account | ScamGuard",
+    title: "AI Scam Checker - Paste Phone, Email, Bank Account | ScamGuards",
     description:
       "Paste any phone number, email, or bank account. Our AI instantly scans thousands of scam reports and tells you if it's suspicious. Free, no sign-up.",
     keywords: [
@@ -96,7 +96,7 @@ export const PAGE_SEO = {
     ],
   },
   submit: {
-    title: "Report a Scammer - Submit Scam Report | ScamGuard Malaysia",
+    title: "Report a Scammer - Submit Scam Report | ScamGuards Malaysia",
     description:
       "Report a scammer to help protect the Malaysian community. Submit phone numbers, emails, bank accounts of scammers. Your report helps prevent fraud.",
     keywords: [
@@ -107,9 +107,9 @@ export const PAGE_SEO = {
     ],
   },
   howItWorks: {
-    title: "How ScamGuard Works - Scam Detection Explained | ScamGuard",
+    title: "How ScamGuards Works - Scam Detection Explained | ScamGuards",
     description:
-      "Learn how ScamGuard's community-driven scam detection works. AI-powered analysis, community reports, and privacy protection explained.",
+      "Learn how ScamGuards's community-driven scam detection works. AI-powered analysis, community reports, and privacy protection explained.",
     keywords: [
       "how scam check works",
       "scam detection malaysia",
@@ -117,13 +117,13 @@ export const PAGE_SEO = {
     ],
   },
   disclaimer: {
-    title: "Legal Disclaimer & Privacy Policy | ScamGuard Malaysia",
+    title: "Legal Disclaimer & Privacy Policy | ScamGuards Malaysia",
     description:
-      "ScamGuard's legal disclaimer, privacy policy, and PDPA compliance information. Learn how we handle data and protect user privacy.",
+      "ScamGuards's legal disclaimer, privacy policy, and PDPA compliance information. Learn how we handle data and protect user privacy.",
     keywords: ["scamguard disclaimer", "privacy policy", "PDPA malaysia"],
   },
   dispute: {
-    title: "Dispute a Report - Challenge False Scam Reports | ScamGuard",
+    title: "Dispute a Report - Challenge False Scam Reports | ScamGuards",
     description:
       "Been falsely reported? Submit a dispute to challenge incorrect scam reports. Fair process to protect your reputation.",
     keywords: [
@@ -133,7 +133,7 @@ export const PAGE_SEO = {
     ],
   },
   results: {
-    title: "Scam Check Results | ScamGuard Malaysia",
+    title: "Scam Check Results | ScamGuards Malaysia",
     description:
       "View scam check results for reported phone numbers, emails, and accounts in Malaysia.",
     keywords: ["scam results", "scammer check results"],

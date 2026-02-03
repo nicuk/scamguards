@@ -40,7 +40,7 @@ async function callQwen(prompt: string): Promise<string> {
         messages: [
           {
             role: "system",
-            content: `You are a fraud risk analyst for ScamGuard Malaysia. Analyze search results and provide risk assessments.
+            content: `You are a fraud risk analyst for ScamGuards Malaysia. Analyze search results and provide risk assessments.
 
 IMPORTANT GUIDELINES:
 - Use neutral, non-accusatory language

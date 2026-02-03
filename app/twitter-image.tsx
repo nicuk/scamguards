@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "ScamGuard Malaysia - Community Scam Detection";
+export const alt = "ScamGuards Malaysia - Community Scam Detection";
 export const size = {
   width: 1200,
   height: 630,
@@ -68,7 +68,7 @@ export default async function TwitterImage() {
             textAlign: "center",
           }}
         >
-          ScamGuard Malaysia
+          ScamGuards Malaysia
         </div>
 
         {/* Subtitle */}

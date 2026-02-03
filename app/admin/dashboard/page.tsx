@@ -278,7 +278,7 @@ export default function AdminDashboard() {
         <div>
           <h1 className="text-3xl font-bold flex items-center gap-2">
             <Shield className="h-8 w-8 text-primary" />
-            ScamGuard Admin
+            ScamGuards Admin
           </h1>
           <p className="text-muted-foreground">Secure Administration Panel</p>
         </div>

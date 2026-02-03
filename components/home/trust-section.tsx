@@ -11,7 +11,7 @@ export function TrustSection() {
                 Community-Powered Protection
               </h2>
               <p className="text-muted-foreground mb-6">
-                ScamGuard relies on reports from the community. When someone
+                ScamGuards relies on reports from the community. When someone
                 encounters a scam, they can share the details to help protect
                 others.
               </p>

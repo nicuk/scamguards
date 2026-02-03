@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 const pageFAQs = [
   {
     question: "Is this a replacement for police reports?",
-    answer: "No. ScamGuard is a community awareness tool, not a substitute for official reporting. If you've been scammed, always report to the police and your bank.",
+    answer: "No. ScamGuards is a community awareness tool, not a substitute for official reporting. If you've been scammed, always report to the police and your bank.",
   },
   {
     question: "What if I'm incorrectly reported?",
@@ -84,9 +84,9 @@ export default function HowItWorksPage() {
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
             <HelpCircle className="h-8 w-8 text-primary" />
           </div>
-          <h1 className="text-3xl font-bold mb-4">How ScamGuard Works</h1>
+          <h1 className="text-3xl font-bold mb-4">How ScamGuards Works</h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            ScamGuard is a community-driven platform that helps Malaysians
+            ScamGuards is a community-driven platform that helps Malaysians
             identify potential scams by sharing and searching reported
             information.
           </p>
@@ -292,7 +292,7 @@ export default function HowItWorksPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-muted-foreground">
-                ScamGuard is committed to protecting user privacy while
+                ScamGuards is committed to protecting user privacy while
                 providing a useful service to the community.
               </p>
               <ul className="space-y-2 text-sm text-muted-foreground">
@@ -337,7 +337,7 @@ export default function HowItWorksPage() {
             {[
               {
                 q: "Is this a replacement for police reports?",
-                a: "No. ScamGuard is a community awareness tool, not a substitute for official reporting. If you've been scammed, always report to the police and your bank.",
+                a: "No. ScamGuards is a community awareness tool, not a substitute for official reporting. If you've been scammed, always report to the police and your bank.",
               },
               {
                 q: "What if I'm incorrectly reported?",

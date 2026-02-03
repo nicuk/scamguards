@@ -1,3 +1,16 @@
+// Countries supported (Malaysia-first, but regional coverage)
+export const COUNTRIES = {
+  MY: "Malaysia",
+  SG: "Singapore",
+  ID: "Indonesia",
+  BN: "Brunei",
+  PH: "Philippines",
+  TH: "Thailand",
+  OTHER: "Other",
+} as const;
+
+export type Country = keyof typeof COUNTRIES;
+
 // Scam types specific to Malaysia
 // TCG and Precious Metals are prioritized first
 export const SCAM_TYPES = {

@@ -89,8 +89,8 @@ export const metadata: Metadata = {
 
   // App info
   applicationName: SITE_NAME,
-  creator: "ScamGuard Malaysia",
-  publisher: "ScamGuard Malaysia",
+  creator: "ScamGuards Malaysia",
+  publisher: "ScamGuards Malaysia",
   category: "Security",
 
   // Other

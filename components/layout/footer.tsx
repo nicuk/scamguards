@@ -10,7 +10,7 @@ export function Footer() {
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2">
               <Shield className="h-6 w-6 text-primary" />
-              <span className="font-bold text-lg">ScamGuard</span>
+              <span className="font-bold text-lg">ScamGuards</span>
             </Link>
             <p className="text-sm text-muted-foreground">
               Community-powered scam detection for Malaysia. Together, we can
@@ -105,7 +105,7 @@ export function Footer() {
 
         <div className="border-t mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} ScamGuard Malaysia. All rights
+            © {new Date().getFullYear()} ScamGuards Malaysia. All rights
             reserved.
           </p>
           <p className="text-xs text-muted-foreground mt-2 md:mt-0">
