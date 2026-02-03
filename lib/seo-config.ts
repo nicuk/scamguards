@@ -154,9 +154,7 @@ export function generateOrganizationSchema() {
       name: "Malaysia",
     },
     sameAs: [
-      // Add social media URLs when available
-      // "https://twitter.com/scamguardmy",
-      // "https://facebook.com/scamguardmy",
+      "https://www.facebook.com/profile.php?id=61587108193943",
     ],
   };
 }

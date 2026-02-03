@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Shield } from "lucide-react";
+import { Shield, Facebook } from "lucide-react";
 
 export function Footer() {
   return (
@@ -83,10 +83,21 @@ export function Footer() {
           {/* Contact */}
           <div>
             <h4 className="font-semibold mb-4">Community</h4>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-3 text-sm">
               <li className="text-muted-foreground">
                 Help protect Malaysians from scams by reporting suspicious
                 activity.
+              </li>
+              <li>
+                <a
+                  href="https://www.facebook.com/profile.php?id=61587108193943"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <Facebook className="h-4 w-4" />
+                  <span>Follow us on Facebook</span>
+                </a>
               </li>
             </ul>
           </div>
