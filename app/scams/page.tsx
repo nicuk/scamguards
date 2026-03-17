@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Shield } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { SCAM_TYPES } from "@/lib/scam-data";
-import { SITE_URL } from "@/lib/seo-config";
+import { SITE_URL, generateBreadcrumbSchema } from "@/lib/seo-config";
 
 export const metadata: Metadata = {
   title: "Common Scams in Malaysia - Know the Types | ScamGuards",
@@ -27,8 +27,23 @@ export const metadata: Metadata = {
   },
 };
 
+function ScamsJsonLd() {
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: SITE_URL },
+    { name: "Scam Types", url: `${SITE_URL}/scams` },
+  ]);
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+    />
+  );
+}
+
 export default function ScamsIndexPage() {
   return (
+    <>
+    <ScamsJsonLd />
     <div className="container mx-auto px-4 py-12">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
@@ -64,5 +79,6 @@ export default function ScamsIndexPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

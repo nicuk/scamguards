@@ -3,7 +3,7 @@ import Link from "next/link";
 import { BookOpen, ArrowRight, Clock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { BLOG_POSTS } from "@/lib/blog-data";
-import { SITE_URL } from "@/lib/seo-config";
+import { SITE_URL, generateBreadcrumbSchema } from "@/lib/seo-config";
 
 export const metadata: Metadata = {
   title: "Scam Prevention Blog - Guides & Tips | ScamGuards Malaysia",
@@ -27,8 +27,23 @@ export const metadata: Metadata = {
   },
 };
 
+function BlogJsonLd() {
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: SITE_URL },
+    { name: "Blog", url: `${SITE_URL}/blog` },
+  ]);
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+    />
+  );
+}
+
 export default function BlogIndexPage() {
   return (
+    <>
+    <BlogJsonLd />
     <div className="container mx-auto px-4 py-12">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
@@ -73,5 +88,6 @@ export default function BlogIndexPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
