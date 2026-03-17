@@ -1,37 +1,61 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Search, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/language-context";
 
 export function CtaSection() {
-  const { t, lang } = useLanguage();
+  const { lang } = useLanguage();
 
   return (
     <section className="py-20 bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-3xl font-bold mb-4">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">
           {lang === "ms"
-            ? "Jumpa Sesuatu Mencurigakan?"
-            : "Encountered Something Suspicious?"}
+            ? "Jangan Jadi Mangsa Seterusnya"
+            : "Don\u2019t Be the Next Victim"}
         </h2>
-        <p className="text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
+        <p className="text-primary-foreground/80 mb-4 max-w-2xl mx-auto text-lg">
           {lang === "ms"
-            ? "Laporan anda boleh membantu orang lain dari menjadi mangsa. Kongsi pengalaman anda untuk melindungi masyarakat."
-            : "Your report could help prevent someone else from becoming a victim. Share your experience to protect the community."}
+            ? "Setiap hari, rakyat Malaysia kehilangan wang kepada penipu. Semak dahulu sebelum anda bayar — atau laporkan jika anda sudah kena tipu."
+            : "Every day, Malaysians lose money to scammers. Check first before you pay — or report if you\u2019ve already been cheated."}
         </p>
-        <Button
-          asChild
-          size="lg"
-          variant="secondary"
-          className="text-lg px-8"
-        >
-          <Link href="/submit" className="inline-flex items-center gap-2">
-            <span>{t("reportNow")}</span>
-            <ArrowRight className="h-5 w-5 flex-shrink-0" />
-          </Link>
-        </Button>
+        <p className="text-primary-foreground/60 mb-8 text-sm">
+          {lang === "ms"
+            ? "Percuma. Tiada daftar. 10 saat sahaja."
+            : "Free. No sign-up. 10 seconds."}
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button
+            asChild
+            size="lg"
+            variant="secondary"
+            className="text-lg px-8"
+          >
+            <Link href="/search" className="inline-flex items-center gap-2">
+              <Search className="h-5 w-5" />
+              <span>
+                {lang === "ms" ? "Semak Sekarang" : "Check Someone Now"}
+              </span>
+            </Link>
+          </Button>
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="text-lg px-8 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
+          >
+            <Link href="/submit" className="inline-flex items-center gap-2">
+              <FileText className="h-5 w-5" />
+              <span>
+                {lang === "ms" ? "Lapor Penipu" : "Report a Scammer"}
+              </span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
+        </div>
       </div>
     </section>
   );

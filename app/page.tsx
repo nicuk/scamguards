@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { HeroSection } from "@/components/home/hero-section";
 import { HowItWorksSection } from "@/components/home/how-it-works-section";
+import { FounderStorySection } from "@/components/home/founder-story-section";
 import { ScamTypesSection } from "@/components/home/scam-types-section";
 import { TrustSection } from "@/components/home/trust-section";
 import { CtaSection } from "@/components/home/cta-section";
@@ -86,13 +87,16 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* How It Works */}
+        {/* How It Works — dual path: victim or buyer */}
         <HowItWorksSection />
+
+        {/* Founder Story — why this exists */}
+        <FounderStorySection />
 
         {/* Common Scam Types */}
         <ScamTypesSection />
 
-        {/* Trust Section - Server rendered for SEO */}
+        {/* Trust Section */}
         <TrustSection />
 
         {/* CTA Section */}
