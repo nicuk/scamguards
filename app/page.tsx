@@ -55,6 +55,21 @@ const homeFAQs = [
     answer:
       "ScamGuards's AI can detect all common scams in Malaysia: Macau scams, love scams, TCG/collectibles scams (Pokemon, One Piece cards), gold/silver scams, Shopee/Carousell scams, job scams, and more.",
   },
+  {
+    question: "How much money do Malaysians lose to scams?",
+    answer:
+      "According to PDRM and the Home Ministry, Malaysians lost RM2.77 billion to scams in 2025 — a 76% increase from RM1.57 billion in 2024. The three-year total from 2023 to 2025 exceeds RM5.62 billion. Investment scams cause the highest losses (RM1.37 billion in 2024), while phone scams (Macau scams) are the most common by case count.",
+  },
+  {
+    question: "Can I get my money back after being scammed?",
+    answer:
+      "Act within 30 minutes for the best chance. Call your bank's fraud hotline immediately to request a fund recall. File a police report at your nearest balai polis. Report to CCID at 03-2610 1559. The faster you act, the higher the chance the receiving bank can freeze the scammer's account before withdrawal.",
+  },
+  {
+    question: "Is it safe to buy from WhatsApp groups in Malaysia?",
+    answer:
+      "Not without verification. Most WhatsApp groups have no real seller verification process, even if admins claim they 'filter scammers.' Always check the seller's phone number or bank account on ScamGuards before transferring money. Use COD or platform-protected payment whenever possible.",
+  },
 ];
 
 // JSON-LD for FAQ

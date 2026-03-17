@@ -4,11 +4,14 @@ export interface ScamType {
   metaTitle: string;
   metaDescription: string;
   heroEmoji: string;
+  tldr: string;
+  stats: string;
   what: string;
   howItWorks: string[];
   redFlags: string[];
   whatToDo: string[];
   realExample: string;
+  sources: { label: string; url: string }[];
   faqs: { question: string; answer: string }[];
   keywords: string[];
 }
@@ -21,6 +24,8 @@ export const SCAM_TYPES: ScamType[] = [
     metaDescription:
       "Learn how Macau scams work in Malaysia. Scammers impersonate police, bank officers, or court officials to steal your money. Know the red flags and report scammers.",
     heroEmoji: "📞",
+    tldr: "A Macau scam is a phone call from someone impersonating police, bank officers, or government officials who demand you transfer money to a \"safe account.\" It is the most common scam type in Malaysia, with 28,698 telecommunication fraud cases and RM715.7 million in losses reported in 2024 alone.",
+    stats: "28,698 cases in 2024 · RM715.7 million lost · Most common scam type in Malaysia (Source: CCID/PDRM)",
     what: "A Macau scam is when criminals call you pretending to be police officers, bank officials, court officers, or government agencies like LHDN (tax) or KWSP. They claim you're involved in money laundering, have unpaid taxes, or a warrant for your arrest — then pressure you to transfer money to a \"safe account\" to clear your name.",
     howItWorks: [
       "You receive an unexpected call from someone claiming to be from the police, bank, LHDN, or court",
@@ -46,6 +51,11 @@ export const SCAM_TYPES: ScamType[] = [
     ],
     realExample:
       "A retiree in Penang lost RM400,000 after receiving a call from someone claiming to be a \"Sergeant\" from Bukit Aman. They told her that her IC was used to open bank accounts for drug trafficking and she needed to transfer her life savings to a \"Bank Negara protection account\" within 2 hours or face arrest.",
+    sources: [
+      { label: "CCID Scam Statistics 2024", url: "https://www.scoop.my/news/276554/malaysia-suffers-rm2-7bil-losses-from-online-scams-in-11-months-reveals-ccid/" },
+      { label: "PDRM Commercial Crime Division", url: "https://www.rmp.gov.my/" },
+      { label: "BNM Fraud Alerts", url: "https://www.bnm.gov.my/consumer-alert" },
+    ],
     faqs: [
       {
         question: "Will the police really call me about a case?",
@@ -80,6 +90,8 @@ export const SCAM_TYPES: ScamType[] = [
     metaDescription:
       "Protect yourself from fake TCG sellers in Malaysia. Scammers on WhatsApp groups, Carousell & Facebook sell fake One Piece, Pokemon cards and never deliver. Check sellers first.",
     heroEmoji: "🃏",
+    tldr: "TCG scams target buyers of One Piece, Pokemon, and Dragon Ball cards on WhatsApp groups, Carousell, and Facebook Marketplace. Scammers post stolen photos of rare cards, collect bank transfers, and disappear. E-commerce fraud accounted for 14,881 cases and RM123.7 million in losses in Malaysia in 2024.",
+    stats: "14,881 e-commerce fraud cases in 2024 · RM123.7 million lost · WhatsApp groups and Carousell are top platforms (Source: CCID/PDRM)",
     what: "TCG (Trading Card Game) and collectibles scams target fans of One Piece, Pokemon, Dragon Ball, and other card games. Scammers create fake seller profiles on WhatsApp groups, Facebook Marketplace, and Carousell, offering rare cards at attractive prices. After you pay, the cards never arrive — or you receive cheap fakes.",
     howItWorks: [
       "Scammer joins popular TCG WhatsApp groups or Facebook communities posing as a trusted seller",
@@ -106,6 +118,10 @@ export const SCAM_TYPES: ScamType[] = [
     ],
     realExample:
       "The founder of ScamGuards was scammed while buying in a WhatsApp group called \"COZ on One Piece\" — a community for One Piece TCG collectors. The group claimed to filter out scammers, but a seller collected payment and never delivered. This experience directly led to the creation of ScamGuards.",
+    sources: [
+      { label: "CCID E-commerce Fraud Statistics 2024", url: "https://www.scoop.my/news/276554/malaysia-suffers-rm2-7bil-losses-from-online-scams-in-11-months-reveals-ccid/" },
+      { label: "MCMC Scam Content Removal Report", url: "https://freemalaysiatoday.com/category/nation/2024/09/03/32600-fraud-scam-posts-removed-by-mcmc-this-year" },
+    ],
     faqs: [
       {
         question: "Are WhatsApp TCG groups safe to buy from?",
@@ -140,6 +156,8 @@ export const SCAM_TYPES: ScamType[] = [
     metaDescription:
       "Love scams are the #1 scam in Malaysia by money lost. Learn how romance scammers operate, the warning signs, and how to check suspicious profiles. Free AI scam checker.",
     heroEmoji: "💔",
+    tldr: "A love scam is when a scammer builds a fake romantic relationship with you online, then asks for money. In Malaysia, 978 love scam cases were reported in 2024 with RM43.7 million in losses — but the real figure is likely much higher because many victims don't report due to shame. The average loss per victim is among the highest of any scam type.",
+    stats: "978 reported cases in 2024 · RM43.7 million lost · Average loss ~RM44,700 per victim (Source: CCID/PDRM)",
     what: "A love scam (romance scam) is when a scammer creates a fake online identity to build a romantic relationship with you. Over weeks or months, they gain your trust and affection — then start asking for money. They may claim to need funds for emergencies, travel to visit you, medical bills, or business opportunities. Victims often lose hundreds of thousands of ringgit.",
     howItWorks: [
       "Scammer contacts you on dating apps, Facebook, Instagram, or even WhatsApp with an attractive profile",
@@ -166,6 +184,10 @@ export const SCAM_TYPES: ScamType[] = [
     ],
     realExample:
       "A woman in KL lost RM1.2 million to a man she met on a dating app who claimed to be a British engineer working on an oil rig. Over 8 months, he asked for money for \"medical bills\", \"customs fees\" for a package, and an \"investment opportunity\". He was actually part of a scam syndicate operating from Southeast Asia.",
+    sources: [
+      { label: "CCID Love Scam Statistics 2024", url: "https://www.scoop.my/news/276554/malaysia-suffers-rm2-7bil-losses-from-online-scams-in-11-months-reveals-ccid/" },
+      { label: "PDRM Online Scam Syndicate Busts", url: "https://www.malaymail.com/news/malaysia/2024/12/17/police-bust-up-40-groups-running-online-scams-from-malaysia-collar-426-suspects/160241" },
+    ],
     faqs: [
       {
         question: "How do I know if it's a love scam?",
@@ -200,6 +222,8 @@ export const SCAM_TYPES: ScamType[] = [
     metaDescription:
       "Investment scams in Malaysia promise guaranteed returns through forex, crypto, or gold schemes. Learn to spot fake investment platforms and report scammers. Free AI checker.",
     heroEmoji: "📈",
+    tldr: "Investment scams promise guaranteed returns through forex, crypto, or Ponzi schemes. They are the deadliest scam type in Malaysia by money lost — 9,296 cases with RM1.37 billion in losses in 2024. That's more money lost than all other scam types combined. If someone promises guaranteed returns, it's a scam.",
+    stats: "9,296 cases in 2024 · RM1.37 billion lost · Highest financial loss of any scam type in Malaysia (Source: CCID/PDRM)",
     what: "Investment scams promise unrealistically high returns with little or no risk. In Malaysia, these commonly take the form of forex trading schemes, cryptocurrency platforms, gold investment programs, or Ponzi/pyramid structures. Scammers create professional-looking websites and apps, show fake profit screenshots, and use \"successful\" investors (often paid actors) to recruit victims.",
     howItWorks: [
       "You see an ad on social media or get invited by a friend to an \"exclusive\" investment opportunity",
@@ -226,6 +250,11 @@ export const SCAM_TYPES: ScamType[] = [
     ],
     realExample:
       "A crypto investment platform promoted heavily on Malaysian TikTok and Instagram promised 15% monthly returns. Thousands invested after seeing \"proof\" of withdrawals from early investors. After collecting over RM50 million, the platform suddenly required a \"30% tax deposit\" to withdraw — then the website went offline and the operators vanished.",
+    sources: [
+      { label: "Securities Commission Malaysia Investor Alert", url: "https://www.sc.com.my/regulation/investor-alerts" },
+      { label: "BNM Financial Consumer Alert", url: "https://www.bnm.gov.my/consumer-alert" },
+      { label: "CCID Investment Fraud Statistics", url: "https://www.scoop.my/news/276554/malaysia-suffers-rm2-7bil-losses-from-online-scams-in-11-months-reveals-ccid/" },
+    ],
     faqs: [
       {
         question: "How do I check if an investment company is legitimate?",
@@ -261,6 +290,8 @@ export const SCAM_TYPES: ScamType[] = [
     metaDescription:
       "Avoid online shopping scams on Shopee, Carousell, Facebook Marketplace & Lazada in Malaysia. Learn to spot fake sellers, check before you buy. Free AI scam checker.",
     heroEmoji: "🛒",
+    tldr: "E-commerce scams are fake sellers on Shopee, Carousell, Facebook Marketplace, and Lazada who take your money and never deliver. In 2024, Malaysia recorded 14,881 e-commerce fraud cases with RM123.7 million lost. The number one rule: never pay outside the platform's payment protection system.",
+    stats: "14,881 cases in 2024 · RM123.7 million lost · Second most common scam type by case count (Source: CCID/PDRM)",
     what: "E-commerce scams involve fake sellers on platforms like Shopee, Lazada, Carousell, Facebook Marketplace, and Mudah. They list products (often electronics, branded goods, or concert tickets) at attractive prices, collect payment, and either send nothing, send a fake/broken item, or send a completely different product.",
     howItWorks: [
       "Scammer creates a listing for a popular product at a price just below market (not suspiciously cheap)",
@@ -287,6 +318,10 @@ export const SCAM_TYPES: ScamType[] = [
     ],
     realExample:
       "A university student in Johor Bahru found a PS5 on Carousell for RM1,800 (normal price RM2,500). The seller convinced him to pay via bank transfer \"to avoid platform fees\". After transferring the money, the seller blocked him. The same seller had scammed 12 other people using different names but the same bank account.",
+    sources: [
+      { label: "CCID E-commerce Fraud Data 2024", url: "https://www.scoop.my/news/276554/malaysia-suffers-rm2-7bil-losses-from-online-scams-in-11-months-reveals-ccid/" },
+      { label: "MCMC Removed 66,507 Scam Posts in 2024", url: "https://freemalaysiatoday.com/category/nation/2024/09/03/32600-fraud-scam-posts-removed-by-mcmc-this-year" },
+    ],
     faqs: [
       {
         question: "Is it safe to buy on Shopee and Lazada?",
@@ -322,6 +357,8 @@ export const SCAM_TYPES: ScamType[] = [
     metaDescription:
       "Beware of gold and silver investment scams in Malaysia. Fake dealers promise below-market prices or guaranteed buy-back. Check sellers before investing. Free AI checker.",
     heroEmoji: "🥇",
+    tldr: "Gold and silver scams in Malaysia exploit cultural trust in precious metals. Fake dealers offer below-market prices or guaranteed buy-back schemes, then vanish with your money. Gold investment scams fall under the RM1.37 billion lost to non-existent investment schemes in Malaysia in 2024. Only buy from BNM-registered dealers.",
+    stats: "Part of RM1.37 billion in investment fraud losses in 2024 · Only buy from Bank Negara-registered dealers (Source: BNM, CCID/PDRM)",
     what: "Gold and silver scams in Malaysia exploit the cultural value of precious metals. Scammers create fake dealerships, offer gold at below-market prices, run gold savings schemes with guaranteed returns, or sell gold-plated items as solid gold. Some operate as legitimate-looking businesses for months before disappearing with investors' money.",
     howItWorks: [
       "Company offers gold at prices 10-20% below the market rate, claiming they buy \"direct from mines\"",
@@ -348,6 +385,11 @@ export const SCAM_TYPES: ScamType[] = [
     ],
     realExample:
       "A gold investment company in Kuala Lumpur offered gold savings accounts with a guaranteed 3% monthly return and a buy-back guarantee. Over 2 years, they collected RM80 million from hundreds of investors. The company suddenly closed all branches and the directors fled. Victims who tried to redeem their gold found their certificates were worthless.",
+    sources: [
+      { label: "BNM Financial Consumer Alert List", url: "https://www.bnm.gov.my/consumer-alert" },
+      { label: "SC Malaysia Investor Alert", url: "https://www.sc.com.my/regulation/investor-alerts" },
+      { label: "Ministry of Domestic Trade & Consumer Affairs", url: "https://www.kpdnhep.gov.my/" },
+    ],
     faqs: [
       {
         question: "How do I know if gold is real?",

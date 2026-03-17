@@ -35,7 +35,7 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         heading: "Why TCG Scams Are Exploding in Malaysia",
         content:
-          "The One Piece TCG and Pokemon card markets have exploded in Malaysia. Rare cards sell for hundreds or even thousands of ringgit. Where there's money, scammers follow. WhatsApp groups, Facebook Marketplace, and Carousell have become hunting grounds for fake sellers who post stolen photos of rare cards, collect bank transfers, and vanish.\n\nThe founder of ScamGuards was personally scammed in a WhatsApp group called \"COZ on One Piece\" that claimed to filter out scammers. They didn't. This is why ScamGuards exists.",
+          "The One Piece TCG and Pokemon card markets have exploded in Malaysia. Rare cards sell for hundreds or even thousands of ringgit. Where there's money, scammers follow.\n\nIn 2024, Malaysia recorded 14,881 e-commerce fraud cases with RM123.7 million in losses (Source: CCID/PDRM). WhatsApp groups, Facebook Marketplace, and Carousell have become hunting grounds for fake sellers who post stolen photos of rare cards, collect bank transfers, and vanish. MCMC removed 66,507 scam-related posts in 2024 alone.\n\nThe founder of ScamGuards was personally scammed in a WhatsApp group called \"COZ on One Piece\" that claimed to filter out scammers. They didn't. This is why ScamGuards exists.",
       },
       {
         heading: "The 5 Biggest Red Flags",
@@ -77,7 +77,7 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         heading: "First 30 Minutes Are Critical",
         content:
-          "If you've just been scammed, the clock is ticking. The faster you act, the higher the chance of recovering your money. Here's what to do right now, in this order:\n\n1. **Call your bank immediately** — Use the fraud/scam hotline, not the general line. Tell them you want to request a fund recall. The receiving bank can freeze the account if the money hasn't been withdrawn yet.\n\n2. **Screenshot everything** — Before the scammer blocks you, screenshot the entire WhatsApp conversation, their profile photo, phone number, and any bank account details they sent.\n\n3. **Do NOT delete the chat** — You'll need it as evidence for the police report.",
+          "If you've just been scammed, the clock is ticking. The faster you act, the higher the chance of recovering your money. In 2025, Malaysians lost RM2.77 billion to scams — a 76% increase from 2024 (Source: Home Ministry/PDRM). Most of this money is unrecoverable because victims wait too long.\n\nHere's what to do right now, in this order:\n\n1. **Call your bank immediately** — Use the fraud/scam hotline, not the general line. Tell them you want to request a fund recall. The receiving bank can freeze the account if the money hasn't been withdrawn yet.\n\n2. **Screenshot everything** — Before the scammer blocks you, screenshot the entire WhatsApp conversation, their profile photo, phone number, and any bank account details they sent.\n\n3. **Do NOT delete the chat** — You'll need it as evidence for the police report.",
       },
       {
         heading: "File a Police Report",
@@ -119,7 +119,7 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         heading: "Rule 1-3: Before You Pay",
         content:
-          "**Rule 1: Check first, pay later.** Before you transfer money to anyone you don't personally know, spend 10 seconds checking their details on ScamGuards (scamguards.app/search). Paste their phone number, bank account, or email. It's free.\n\n**Rule 2: Never pay outside the platform.** If you're buying on Shopee, Carousell, or Lazada — ALWAYS pay through the platform. If the seller asks you to \"deal direct\" via bank transfer, they're removing your buyer protection on purpose.\n\n**Rule 3: If it sounds too good, it is.** A PS5 for RM800? A rare One Piece card for half price? An investment with 10% monthly returns? There are no shortcuts. Unrealistic prices and returns are the #1 tool scammers use.",
+          "Malaysia lost RM2.77 billion to scams in 2025 and RM1.57 billion in 2024 (Source: Home Ministry/PDRM). That's over RM4 billion in two years. These three rules alone would have prevented most of it.\n\n**Rule 1: Check first, pay later.** Before you transfer money to anyone you don't personally know, spend 10 seconds checking their details on ScamGuards (scamguards.app/search). Paste their phone number, bank account, or email. It's free.\n\n**Rule 2: Never pay outside the platform.** If you're buying on Shopee, Carousell, or Lazada — ALWAYS pay through the platform. If the seller asks you to \"deal direct\" via bank transfer, they're removing your buyer protection on purpose.\n\n**Rule 3: If it sounds too good, it is.** A PS5 for RM800? A rare One Piece card for half price? An investment with 10% monthly returns? There are no shortcuts. Unrealistic prices and returns are the #1 tool scammers use.",
       },
       {
         heading: "Rule 4-6: Red Flags to Watch",

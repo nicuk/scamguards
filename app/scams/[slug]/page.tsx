@@ -103,11 +103,20 @@ export default function ScamTypePage({
             <span className="text-foreground">{scam.title}</span>
           </nav>
 
-          {/* Hero */}
-          <div className="mb-12">
+          {/* Hero + TLDR (GEO: definitive answer block for AI engines) */}
+          <div className="mb-8">
             <div className="text-5xl mb-4">{scam.heroEmoji}</div>
             <h1 className="text-3xl md:text-4xl font-bold mb-4">{scam.title} in Malaysia</h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">{scam.what}</p>
+            <p className="text-lg font-medium leading-relaxed mb-4">{scam.tldr}</p>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-destructive/10 text-destructive text-sm font-medium">
+              <AlertTriangle className="h-4 w-4" />
+              {scam.stats}
+            </div>
+          </div>
+
+          {/* Full description */}
+          <div className="mb-12">
+            <p className="text-muted-foreground leading-relaxed">{scam.what}</p>
           </div>
 
           {/* Quick check CTA */}
@@ -220,6 +229,27 @@ export default function ScamTypePage({
               ))}
             </div>
           </section>
+
+          {/* Sources (GEO: external citations for AI engines) */}
+          {scam.sources.length > 0 && (
+            <section className="mb-12">
+              <h2 className="text-lg font-bold mb-3">Sources & Official Resources</h2>
+              <ul className="space-y-2">
+                {scam.sources.map((source, i) => (
+                  <li key={i}>
+                    <a
+                      href={source.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-primary hover:underline"
+                    >
+                      {source.label} ↗
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
 
           {/* CTAs */}
           <div className="grid sm:grid-cols-2 gap-4 mb-12">
