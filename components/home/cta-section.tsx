@@ -44,8 +44,8 @@ export function CtaSection() {
           <Button
             asChild
             size="lg"
-            variant="outline"
-            className="text-lg px-8 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
+            variant="secondary"
+            className="text-lg px-8"
           >
             <Link href="/submit" className="inline-flex items-center gap-2">
               <FileText className="h-5 w-5" />
