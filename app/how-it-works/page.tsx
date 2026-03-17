@@ -66,6 +66,33 @@ function PageJsonLd() {
     { name: "Home", url: SITE_URL },
     { name: "How It Works", url: `${SITE_URL}/how-it-works` },
   ]);
+
+  const checkHowTo = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to check if someone is a scammer in Malaysia",
+    description: "Use ScamGuards to instantly check if a phone number, email, or bank account has been reported as a scam.",
+    step: [
+      { "@type": "HowToStep", position: 1, name: "Copy details", text: "Copy the phone number, bank account, or email of the person you want to check." },
+      { "@type": "HowToStep", position: 2, name: "Paste into ScamGuards", text: "Go to scamguards.app/search and paste the details into the search box." },
+      { "@type": "HowToStep", position: 3, name: "Get instant results", text: "Our AI searches thousands of community reports and shows you a risk level with confidence score." },
+    ],
+    totalTime: "PT10S",
+  };
+
+  const reportHowTo = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to report a scammer in Malaysia",
+    description: "Report a scammer on ScamGuards to protect other Malaysians from the same fraud.",
+    step: [
+      { "@type": "HowToStep", position: 1, name: "Go to Report page", text: "Visit scamguards.app/submit and describe what happened." },
+      { "@type": "HowToStep", position: 2, name: "Paste scammer details", text: "Paste the scammer's phone number, bank account, email, or your chat conversation. AI extracts the key details." },
+      { "@type": "HowToStep", position: 3, name: "Submit", text: "Submit your report. The next person who checks that number or account will see the warning." },
+    ],
+    totalTime: "PT2M",
+  };
+
   return (
     <>
       <script
@@ -75,6 +102,14 @@ function PageJsonLd() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(checkHowTo) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(reportHowTo) }}
       />
     </>
   );

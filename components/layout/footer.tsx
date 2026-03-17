@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Shield, Facebook } from "lucide-react";
+import { Shield, Facebook, Heart } from "lucide-react";
 
 export function Footer() {
   return (
@@ -46,6 +46,22 @@ export function Footer() {
                   How It Works
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/scams"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Scam Types
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/blog"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Blog & Guides
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -80,7 +96,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Community */}
           <div>
             <h4 className="font-semibold mb-4">Community</h4>
             <ul className="space-y-3 text-sm">
@@ -98,6 +114,15 @@ export function Footer() {
                   <Facebook className="h-4 w-4" />
                   <span>Follow us on Facebook</span>
                 </a>
+              </li>
+              <li>
+                <Link
+                  href="/donate"
+                  className="inline-flex items-center gap-2 text-pink-600 dark:text-pink-400 hover:text-pink-500 transition-colors font-medium"
+                >
+                  <Heart className="h-4 w-4" />
+                  <span>Support ScamGuards</span>
+                </Link>
               </li>
             </ul>
           </div>

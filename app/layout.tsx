@@ -11,6 +11,7 @@ import {
   generateOrganizationSchema,
   generateWebsiteSchema,
 } from "@/lib/seo-config";
+import { GoogleAnalytics } from "@/components/analytics";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -83,8 +84,9 @@ export const metadata: Metadata = {
   // Verification (add your IDs when you have them)
   verification: {
     google: process.env.GOOGLE_SITE_VERIFICATION || "",
-    // yandex: "",
-    // bing: "",
+    other: {
+      "msvalidate.01": process.env.BING_SITE_VERIFICATION || "",
+    },
   },
 
   // App info
@@ -147,6 +149,7 @@ export default function RootLayout({
         <link rel="alternate" hrefLang="x-default" href={SITE_URL} />
       </head>
       <body className={inter.className}>
+        <GoogleAnalytics />
         <LanguageProvider>
           <div className="min-h-screen flex flex-col">
             <Header />

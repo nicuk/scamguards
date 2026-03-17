@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Shield, Menu, X, Globe, Languages } from "lucide-react";
+import { Shield, Menu, X, Globe, Languages, Heart } from "lucide-react";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -19,6 +19,7 @@ export function Header() {
     { href: "/search", label: t("search") },
     { href: "/submit", label: t("reportScam") },
     { href: "/how-it-works", label: t("howItWorks") },
+    { href: "/scams", label: lang === "ms" ? "Jenis Penipuan" : "Scam Types" },
   ];
 
   const toggleLanguage = () => {
@@ -85,6 +86,13 @@ export function Header() {
             <Button asChild variant="outline" size="sm">
               <Link href="/search">{t("checkNow")}</Link>
             </Button>
+            <Link
+              href="/donate"
+              className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium rounded-md bg-pink-500/10 text-pink-600 dark:text-pink-400 border border-pink-500/20 hover:bg-pink-500/20 transition-colors"
+            >
+              <Heart className="h-3.5 w-3.5" />
+              <span>{lang === "ms" ? "Sumbang" : "Donate"}</span>
+            </Link>
           </div>
 
           {/* Mobile: Language + Menu Button */}
@@ -131,6 +139,14 @@ export function Header() {
               <Button asChild size="sm" className="w-full">
                 <Link href="/search">{t("checkNow")}</Link>
               </Button>
+              <Link
+                href="/donate"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-center gap-2 text-sm font-medium text-pink-600 dark:text-pink-400 py-2"
+              >
+                <Heart className="h-4 w-4" />
+                {lang === "ms" ? "Sumbang" : "Donate"}
+              </Link>
             </div>
           </nav>
         )}

@@ -1,12 +1,12 @@
 import { MetadataRoute } from "next";
+import { getAllScamSlugs } from "@/lib/scam-data";
+import { getAllBlogSlugs } from "@/lib/blog-data";
 
-// Update this to your actual domain
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://scamguards.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  // Static pages
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: BASE_URL,
@@ -33,6 +33,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${BASE_URL}/scams`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/blog`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+    {
+      url: `${BASE_URL}/donate`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
       url: `${BASE_URL}/disclaimer`,
       lastModified: now,
       changeFrequency: "monthly",
@@ -46,5 +64,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  return staticPages;
+  const scamPages: MetadataRoute.Sitemap = getAllScamSlugs().map((slug) => ({
+    url: `${BASE_URL}/scams/${slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  const blogPages: MetadataRoute.Sitemap = getAllBlogSlugs().map((slug) => ({
+    url: `${BASE_URL}/blog/${slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...scamPages, ...blogPages];
 }
