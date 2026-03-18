@@ -167,29 +167,52 @@ export function HowItWorksSection() {
           </p>
         </div>
 
-        {/* Path selector tabs */}
-        <div className="flex justify-center gap-4 mb-10">
+        {/* Path selector — big obvious cards */}
+        <p className="text-center text-sm font-medium text-muted-foreground mb-3">
+          {lang === "ms" ? "👇 Pilih satu:" : "👇 Choose one:"}
+        </p>
+        <div className="grid grid-cols-2 gap-4 max-w-lg mx-auto mb-10">
           <button
             onClick={() => setActivePath("victim")}
-            className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all border-2 ${
+            className={`relative flex flex-col items-center text-center p-5 rounded-2xl transition-all border-2 cursor-pointer ${
               activePath === "victim"
-                ? "border-red-500/50 bg-red-500/10 text-red-600 dark:text-red-400 shadow-sm"
-                : "border-border bg-background text-muted-foreground hover:border-red-500/30 hover:text-foreground"
+                ? "border-red-500 bg-red-500/10 shadow-lg shadow-red-500/10 scale-[1.02]"
+                : "border-border bg-background hover:border-red-500/40 hover:bg-red-500/5"
             }`}
           >
-            <ShieldAlert className="h-5 w-5" />
-            {pathConfig.victim[lang].tab}
+            {activePath === "victim" && (
+              <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-red-500 flex items-center justify-center">
+                <CheckCircle className="h-4 w-4 text-white" />
+              </div>
+            )}
+            <ShieldAlert className={`h-8 w-8 mb-2 ${activePath === "victim" ? "text-red-500" : "text-muted-foreground"}`} />
+            <span className={`font-bold text-base ${activePath === "victim" ? "text-red-600 dark:text-red-400" : "text-foreground"}`}>
+              {pathConfig.victim[lang].tab}
+            </span>
+            <span className="text-xs text-muted-foreground mt-1">
+              {lang === "ms" ? "Saya kena tipu" : "I already lost money"}
+            </span>
           </button>
           <button
             onClick={() => setActivePath("buyer")}
-            className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all border-2 ${
+            className={`relative flex flex-col items-center text-center p-5 rounded-2xl transition-all border-2 cursor-pointer ${
               activePath === "buyer"
-                ? "border-blue-500/50 bg-blue-500/10 text-blue-600 dark:text-blue-400 shadow-sm"
-                : "border-border bg-background text-muted-foreground hover:border-blue-500/30 hover:text-foreground"
+                ? "border-blue-500 bg-blue-500/10 shadow-lg shadow-blue-500/10 scale-[1.02]"
+                : "border-border bg-background hover:border-blue-500/40 hover:bg-blue-500/5"
             }`}
           >
-            <ShieldCheck className="h-5 w-5" />
-            {pathConfig.buyer[lang].tab}
+            {activePath === "buyer" && (
+              <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center">
+                <CheckCircle className="h-4 w-4 text-white" />
+              </div>
+            )}
+            <ShieldCheck className={`h-8 w-8 mb-2 ${activePath === "buyer" ? "text-blue-500" : "text-muted-foreground"}`} />
+            <span className={`font-bold text-base ${activePath === "buyer" ? "text-blue-600 dark:text-blue-400" : "text-foreground"}`}>
+              {pathConfig.buyer[lang].tab}
+            </span>
+            <span className="text-xs text-muted-foreground mt-1">
+              {lang === "ms" ? "Nak beli / transfer" : "I want to check first"}
+            </span>
           </button>
         </div>
 
