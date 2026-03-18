@@ -1,205 +1,176 @@
 # ScamGuards Malaysia 🛡️
 
+[![Live Site](https://img.shields.io/badge/Live-scamguards.app-blue)](https://scamguards.app)
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/nicuk/scamguards)
 [![License: Elastic-2.0](https://img.shields.io/badge/License-Elastic--2.0-blue.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
 [![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
 
-> **Check before you trust.** — A production-grade, AI-powered scam prevention platform built for Malaysia.
+> **Malaysians lost RM2.77 billion to scams in 2025.** ScamGuards is a free, AI-powered platform that lets anyone check if a phone number, email, or bank account has been reported as a scam — in 10 seconds.
 
-ScamGuards is a community-driven fraud detection system that allows users to check identifiers (phone numbers, emails, bank accounts) against a crowdsourced database of scam reports. The platform uses AI to analyze patterns, detect duplicates, and provide confidence-based risk assessments.
-
-**🇲🇾 Malaysia-First** — Localized for Malaysian phone formats, banks, e-wallets, and common local scam types.
+**🔗 Live:** [scamguards.app](https://scamguards.app)
 
 ---
 
-## 📐 Architecture Overview
+## Why This Exists
 
-### System Design
+I got scammed. I was buying in a WhatsApp group called "COZ on One Piece" — a community for One Piece TCG card collectors. I thought the group was safe because they claimed to filter out scammers. Turns out, they don't. I paid. Nothing arrived. The seller vanished.
 
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                              CLIENT LAYER                                    │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐ │
-│  │   Search    │  │   Report    │  │   Dispute   │  │   Admin Dashboard   │ │
-│  │    Page     │  │ Submission  │  │    Form     │  │   (Email Auth)      │ │
-│  └──────┬──────┘  └──────┬──────┘  └──────┬──────┘  └──────────┬──────────┘ │
-└─────────┼────────────────┼────────────────┼────────────────────┼────────────┘
-          │                │                │                    │
-          ▼                ▼                ▼                    ▼
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                           MIDDLEWARE LAYER                                   │
-│  ┌──────────────────────────────────────────────────────────────────────┐   │
-│  │                    Rate Limiting & Abuse Prevention                   │   │
-│  │  • IP-based cooldowns (60s between reports)                          │   │
-│  │  • Auto-ban after threshold (20 submissions → 24hr ban)              │   │
-│  │  • In-memory store for Edge Runtime compatibility                    │   │
-│  └──────────────────────────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────────────────┘
-          │
-          ▼
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                              API LAYER                                       │
-│  ┌────────────┐  ┌────────────┐  ┌────────────┐  ┌────────────────────────┐ │
-│  │  /search   │  │  /submit   │  │  /dispute  │  │  /analyze-report       │ │
-│  │            │  │            │  │            │  │  (Multi-Scammer AI)    │ │
-│  └─────┬──────┘  └─────┬──────┘  └─────┬──────┘  └───────────┬────────────┘ │
-│        │               │               │                     │              │
-│        │               ▼               │                     │              │
-│        │    ┌──────────────────┐       │                     │              │
-│        │    │ Duplicate Check  │       │                     │              │
-│        │    │ & Smart Merge    │       │                     │              │
-│        │    └────────┬─────────┘       │                     │              │
-└────────┼─────────────┼─────────────────┼─────────────────────┼──────────────┘
-         │             │                 │                     │
-         ▼             ▼                 ▼                     ▼
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                            DATA LAYER (Supabase)                             │
-│  ┌─────────────────────────────────────────────────────────────────────┐    │
-│  │                        PostgreSQL + RLS                              │    │
-│  │  ┌─────────┐ ┌─────────────┐ ┌─────────┐ ┌────────────────────────┐ │    │
-│  │  │ reports │ │ data_points │ │disputes │ │ reporter_reputation    │ │    │
-│  │  └────┬────┘ └──────┬──────┘ └────┬────┘ └────────────┬───────────┘ │    │
-│  │       │             │             │                   │             │    │
-│  │       └─────────────┴─────────────┴───────────────────┘             │    │
-│  │                              │                                       │    │
-│  │  ┌───────────────────────────┴───────────────────────────────────┐  │    │
-│  │  │              Materialized Views (Pre-computed)                 │  │    │
-│  │  │  • platform_stats    • scam_type_stats   • daily_stats        │  │    │
-│  │  │  • scammer_search_stats (confidence + heat level)             │  │    │
-│  │  └───────────────────────────────────────────────────────────────┘  │    │
-│  └─────────────────────────────────────────────────────────────────────┘    │
-│                                                                              │
-│  ┌─────────────────────────────────────────────────────────────────────┐    │
-│  │                    Supabase Storage (evidence)                       │    │
-│  └─────────────────────────────────────────────────────────────────────┘    │
-└─────────────────────────────────────────────────────────────────────────────┘
-         │
-         ▼
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                           AI LAYER (Qwen via DashScope)                      │
-│  ┌──────────────────────────┐  ┌────────────────────────────────────────┐   │
-│  │    Search Detective      │  │         Report Analyst                  │   │
-│  │  • Data point extraction │  │  • Multi-scammer detection              │   │
-│  │  • Smart Paste for search│  │  • Grouped preview with user confirm    │   │
-│  │  • Type classification   │  │  • Risk scoring & scam type inference   │   │
-│  └──────────────────────────┘  └────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
+So I built ScamGuards — so no one else has to learn the hard way.
 
 ---
 
-## 🚀 Evolution: From MVP to Production
+## What It Does
 
-This project demonstrates iterative architectural improvement, evolving from a basic MVP to a production-grade system.
+| For Buyers | For Victims |
+|------------|-------------|
+| Paste a phone number, email, or bank account | Report the scammer's details |
+| AI checks thousands of community reports | AI extracts identifiers from your story |
+| Get a risk level + confidence score in seconds | Your report warns the next person |
 
-### Phase 1: MVP Foundation
-
-**Goal:** Functional prototype with core search/report capabilities.
-
-| Component | Implementation | Status |
-|-----------|---------------|--------|
-| Database | Basic tables (reports, data_points, disputes) | ✅ |
-| Search | Exact match only | ✅ |
-| AI | Single prompt for risk scoring | ✅ |
-| Security | None | ⚠️ |
-| Admin | None | ❌ |
-
-### Phase 2: Production Hardening
-
-**Goal:** Add search intelligence, security, and abuse prevention.
-
-| Component | Improvement | Impact |
-|-----------|-------------|--------|
-| Search | Fuzzy matching via `pg_trgm` + full-text search | 3x more matches |
-| Security | Row Level Security (RLS) on all tables | Data isolation |
-| Analytics | Materialized views for platform stats | 100x faster queries |
-| Abuse Prevention | IP-based rate limiting in middleware | Spam blocked |
-| Admin | Secure email/password auth with whitelist | Controlled access |
-| Functions | `SECURITY DEFINER SET search_path = ''` | SQL injection prevention |
-
-### Phase 3: Intelligence Layer
-
-**Goal:** AI-powered features and unified scammer profiling.
-
-| Component | Innovation | Impact |
-|-----------|------------|--------|
-| Smart Paste | AI extracts data points from pasted paragraphs | 80% faster input |
-| Multi-Scammer Detection | AI identifies multiple scammers in single narrative | Batch processing |
-| Duplicate Detection | Smart merge with report count tracking | Data deduplication |
-| Confidence Scoring | `confidence = 50 + (report_count * 10)` | Trust signals |
-| Heat Levels | CRITICAL/HIGH/MEDIUM/LOW based on reports | Priority triage |
-| Scammer Profiles | Unified view aggregating all data points | Entity resolution |
+**100% free. No sign-up. No ads.**
 
 ---
 
-## 🏗️ Database Schema Evolution
+## Features
 
-### Initial Schema (Migration 001)
-```sql
--- Basic normalized structure
-reports (id, scam_type, description, platform, evidence_url)
-data_points (report_id, type, value, normalized_value)
-disputes (report_id, reason, contact_email, status)
-audit_logs (action, ip_hash, metadata)
-```
+### Core Platform
+- **AI-Powered Search** — Paste any identifier, AI searches reports and returns risk assessment with confidence score
+- **Smart Report** — Paste your whole scam story, AI extracts phone numbers, bank accounts, emails automatically
+- **Multi-Scammer Detection** — AI identifies multiple scammers in a single narrative and creates separate reports
+- **Duplicate Detection** — Smart merge prevents duplicate entries while incrementing report counts
+- **Dispute System** — Anyone incorrectly reported can submit a dispute
 
-### Production Schema (Migration 002-003)
-```sql
--- Added for performance & security
-+ reports.reporter_hash          -- Anonymous tracking
-+ reports.amount_lost            -- Financial impact
-+ reports.description_tsv        -- Full-text search vector
-+ rate_limits                    -- Abuse prevention
-+ moderation_queue               -- Auto-flagging
-+ reporter_reputation            -- Trust scoring
-+ Materialized Views             -- Pre-computed analytics
-```
+### Content & SEO
+- **6 Scam Type Pages** — Macau scam, love scam, investment scam, TCG scam, e-commerce scam, gold scam — each with real CCID/PDRM 2024 statistics
+- **3 Blog Guides** — "How to Spot a TCG Scam", "What to Do If Scammed on WhatsApp", "10 Rules to Stay Safe"
+- **Structured Data** — JSON-LD schemas: Organization, WebSite, SearchAction, FAQ, HowTo, Article, Breadcrumb
+- **Bilingual UI** — English + Bahasa Malaysia with browser auto-detect
 
-### Intelligence Schema (Migration 004)
-```sql
--- Added for duplicate detection & profiling
-+ data_points.report_count       -- How many times reported
-+ data_points.first_reported_at  -- Temporal tracking
-+ data_points.last_reported_at   -- Recent activity
-+ data_points.confidence_score   -- Calculated trust
-+ report_submissions             -- Per-datapoint rate limiting
-+ scammer_profiles (VIEW)        -- Aggregated entity view
-+ scammer_search_stats (MATVIEW) -- Pre-computed search enhancement
-```
+### Donations
+- **Stripe Payment Link** — Users can support the project with any amount (min RM5)
+- No server-side payment code — Stripe handles everything
 
-### Confidence & Heat Level Algorithm
+### SEO / AEO / GEO
+- **SEO (8.5/10)** — Per-page meta, canonical URLs, OpenGraph, Twitter cards, auto-generated OG images, comprehensive sitemap (18 URLs)
+- **AEO (7.5/10)** — FAQ schema on 8+ pages, HowTo schema, SearchAction schema, conversational content
+- **GEO (8/10)** — Real PDRM/CCID statistics with source citations, definitive answer blocks, external authority links
+- **Malaysia-specific (9/10)** — geo.region, hreflang en-MY + ms-MY, Malaysian bank names, local scam types, MYR amounts
+
+---
+
+## Architecture
 
 ```
-Confidence Score = min(100, 50 + (unique_reports × 10))
-
-Heat Level:
-  CRITICAL = 10+ reports (100% confidence)
-  HIGH     = 5-9 reports (90-99% confidence)  
-  MEDIUM   = 3-4 reports (70-89% confidence)
-  LOW      = 1-2 reports (50-69% confidence)
+┌─────────────────────────────────────────────────────────────────┐
+│                        CLIENT LAYER                              │
+│  Search │ Report │ Dispute │ Admin │ Blog │ Scam Pages │ Donate │
+└────────────────────────────┬────────────────────────────────────┘
+                             │
+                             ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                      MIDDLEWARE (Edge)                            │
+│  Rate Limiting • IP Cooldowns • Auto-Ban • Request Validation    │
+└────────────────────────────┬────────────────────────────────────┘
+                             │
+                             ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                        API LAYER                                 │
+│  /search │ /submit │ /dispute │ /extract │ /analyze-report       │
+│  /stats  │ /admin/check-access                                   │
+└────────────────────────────┬────────────────────────────────────┘
+                             │
+              ┌──────────────┼──────────────┐
+              ▼                             ▼
+┌─────────────────────────┐   ┌─────────────────────────────────┐
+│   SUPABASE (PostgreSQL) │   │   AI LAYER (Qwen / DashScope)   │
+│  • Reports + Data Points│   │  • Search Detective (extraction) │
+│  • RLS on all tables    │   │  • Report Analyst (multi-scam)   │
+│  • Materialized Views   │   │  • Smart Paste (auto-parse)      │
+│  • Full-text + Fuzzy    │   │  • Confidence scoring            │
+└─────────────────────────┘   └─────────────────────────────────┘
 ```
 
 ---
 
-## 🔐 Security Architecture
+## Tech Stack
 
-### Defense in Depth
+| Layer | Technology | Why |
+|-------|------------|-----|
+| Framework | Next.js 14 (App Router) | SSG for content pages, edge-ready API |
+| Language | TypeScript | Type safety |
+| Styling | Tailwind CSS + shadcn/ui | Rapid, consistent UI |
+| Database | Supabase (PostgreSQL) | RLS, full-text search, storage |
+| AI | Qwen via DashScope | Cost-effective, fast inference |
+| Analytics | Google Analytics 4 | Traffic tracking |
+| Payments | Stripe Payment Links | Zero server-side code |
+| Deployment | Vercel | Edge functions, auto-scaling |
+
+---
+
+## Project Structure
+
+```
+scamguard/
+├── app/
+│   ├── api/
+│   │   ├── search/            # Fuzzy + exact + full-text search
+│   │   ├── submit/            # Report submission with duplicate detection
+│   │   ├── dispute/           # Challenge reports
+│   │   ├── extract/           # AI data point extraction
+│   │   ├── analyze-report/    # Multi-scammer AI analysis
+│   │   ├── stats/             # Platform statistics
+│   │   └── admin/             # Protected admin endpoints
+│   ├── admin/                 # Login + dashboard
+│   ├── blog/                  # Blog listing + [slug] articles
+│   ├── scams/                 # Scam types listing + [slug] pages
+│   ├── donate/                # Donation page + thank-you
+│   ├── search/                # Search interface
+│   ├── submit/                # Smart Report paste
+│   ├── results/               # Search results display
+│   ├── how-it-works/          # Dual-path how it works
+│   ├── disclaimer/            # Legal
+│   ├── dispute/               # Dispute form
+│   ├── sitemap.ts             # Dynamic sitemap (18 URLs)
+│   └── robots.ts              # Robots.txt
+├── components/
+│   ├── home/                  # Hero, HowItWorks, FounderStory, ScamTypes, Trust, CTA
+│   ├── layout/                # Header + Footer (with donate link)
+│   ├── search/                # SmartSearchPaste
+│   ├── stats/                 # Platform stats display
+│   ├── ui/                    # shadcn/ui components
+│   └── analytics.tsx          # Google Analytics
+├── lib/
+│   ├── ai/                    # AI analysis (search + report)
+│   ├── supabase/              # Client (browser + server)
+│   ├── blog-data.ts           # Blog content (3 articles)
+│   ├── scam-data.ts           # Scam type content (6 types + stats)
+│   ├── seo-config.ts          # Centralized SEO config + JSON-LD generators
+│   ├── i18n.ts                # English + Malay translations
+│   └── language-context.tsx   # Client-side language switching
+├── middleware.ts              # Rate limiting, abuse prevention
+└── public/
+    └── manifest.json          # PWA manifest
+```
+
+---
+
+## Security
 
 ```
 Layer 1: Middleware (Edge)
-├── IP-based rate limiting
-├── Submission cooldowns (60s)
-├── Auto-ban thresholds (20 → 24hr ban)
+├── IP-based rate limiting (60/hr search, 5/hr submit)
+├── Submission cooldowns (60s between reports)
+├── Auto-ban after threshold (20 submissions → 24hr ban)
 └── Request validation
 
 Layer 2: API Routes
 ├── Input sanitization
-├── Type validation (Zod)
+├── Type validation
 └── Error boundary handling
 
 Layer 3: Database (Supabase)
-├── Row Level Security (RLS)
+├── Row Level Security (RLS) on all tables
 ├── Function search_path hardening
 ├── Prepared statements (no SQL injection)
 └── Audit logging
@@ -210,156 +181,22 @@ Layer 4: Admin Access
 └── Session management
 ```
 
-### Security Decisions
-
-| Concern | Decision | Rationale |
-|---------|----------|-----------|
-| Authentication | Public submit, admin-only verify | Balance accessibility with control |
-| Rate Limiting | In-memory (Edge compatible) | Vercel Edge Runtime constraint |
-| IP Tracking | SHA-256 hash, not raw IP | PDPA compliance |
-| Admin Auth | Email whitelist + Supabase Auth | Simple, secure, auditable |
-| SQL Injection | `SET search_path = ''` on all functions | Supabase linter compliance |
-
 ---
 
-## 🤖 AI Architecture
+## Malaysia-Specific
 
-### Dual-Persona Design
-
-The system uses two specialized AI personas optimized for different tasks:
-
-#### 1. Search Detective (Data Extraction)
-```
-Input:  "got scammed by john at 0123456789 on telegram @scammer123"
-Output: [
-  { type: "name", value: "john", confidence: 85 },
-  { type: "phone", value: "0123456789", confidence: 95 },
-  { type: "telegram", value: "@scammer123", confidence: 90 }
-]
-```
-
-#### 2. Report Analyst (Multi-Scammer Detection)
-```
-Input:  Paragraph describing scam with multiple perpetrators
-Output: {
-  isMultiple: true,
-  scammers: [
-    { name: "Scammer A", dataPoints: [...], riskScore: 85 },
-    { name: "Scammer B", dataPoints: [...], riskScore: 78 }
-  ]
-}
-```
-
-### Smart Hybrid Workflow
-
-```
-User pastes scam story
-        │
-        ▼
-┌───────────────────┐
-│   AI Analysis     │
-│  (Qwen qwen-max)  │
-└────────┬──────────┘
-         │
-    ┌────┴────┐
-    ▼         ▼
-Single    Multiple
-Scammer   Scammers
-    │         │
-    ▼         ▼
-Standard  Grouped
-  Form    Preview
-    │         │
-    ▼         ▼
- Submit   Select &
-          Confirm
-             │
-             ▼
-        Batch Submit
-        (N reports)
-```
-
----
-
-## 📊 Performance Optimizations
-
-| Optimization | Implementation | Improvement |
-|--------------|----------------|-------------|
-| Fuzzy Search | `pg_trgm` GIN indexes | Sub-100ms on 100K records |
-| Full-Text Search | `tsvector` with GIN | Semantic matching |
-| Pre-computed Stats | Materialized views | 100x faster dashboard |
-| Composite Indexes | `(status, created_at DESC)` | Optimized common queries |
-| Connection Pooling | Supabase built-in | Handles concurrent load |
-
----
-
-## 🇲🇾 Localization
-
-### Malaysia-Specific Features
-
-- **Phone Validation:** `01X-XXXXXXX` format with carrier detection
-- **Banks:** Maybank, CIMB, Public Bank, RHB, Hong Leong, etc.
+- **Phone formats:** `01X-XXXXXXX` with carrier detection
+- **Banks:** Maybank, CIMB, Public Bank, RHB, Hong Leong, Bank Islam, AmBank
 - **E-Wallets:** Touch 'n Go, GrabPay, Boost, ShopeePay
-- **Scam Types:** Macau, Love, Parcel, Job, Investment, Loan, Collectibles (TCG)
+- **Scam types:** Macau scam, love scam, TCG/collectibles, gold/silver, investment, e-commerce
+- **Statistics:** Real CCID/PDRM 2024 data on every scam page
 - **Currency:** MYR with RM formatting
-- **Languages:** English + Bahasa Malaysia with browser auto-translate hints
+- **Languages:** English + Bahasa Malaysia
+- **Compliance:** PDPA 2010
 
 ---
 
-## 🛠️ Tech Stack
-
-| Layer | Technology | Why |
-|-------|------------|-----|
-| Framework | Next.js 14 (App Router) | Server components, edge-ready |
-| Language | TypeScript | Type safety, better DX |
-| Styling | Tailwind CSS + shadcn/ui | Rapid, consistent UI |
-| Database | Supabase (PostgreSQL) | RLS, real-time, storage |
-| AI | Qwen via DashScope | Cost-effective, fast inference |
-| Deployment | Vercel | Edge functions, auto-scaling |
-| Auth | Supabase Auth | Built-in, secure |
-
----
-
-## 📁 Project Structure
-
-```
-scamguard/
-├── app/
-│   ├── api/
-│   │   ├── search/           # Fuzzy + exact + full-text search
-│   │   ├── submit/           # Report submission with duplicate detection
-│   │   ├── dispute/          # Challenge reports
-│   │   ├── extract/          # AI data point extraction
-│   │   ├── analyze-report/   # Multi-scammer AI analysis
-│   │   └── admin/            # Protected admin endpoints
-│   ├── admin/
-│   │   ├── login/            # Email/password auth
-│   │   └── dashboard/        # Report management
-│   ├── search/               # Search interface
-│   ├── submit/               # Smart Report paste
-│   └── results/              # Search results display
-├── components/
-│   ├── ui/                   # shadcn/ui components
-│   ├── search/               # SmartSearchPaste
-│   └── submit/               # SmartReportPaste (multi-scammer)
-├── lib/
-│   ├── ai/
-│   │   ├── scam-analyzer.ts  # Search extraction
-│   │   └── report-analyzer.ts# Multi-scammer detection
-│   ├── supabase/             # Client (browser + server)
-│   └── utils/                # Normalization, validation
-├── middleware.ts             # Rate limiting, abuse prevention
-└── supabase/
-    └── migrations/
-        ├── 001_initial_schema.sql
-        ├── 002_production_upgrade.sql
-        ├── 003_production_10_of_10.sql
-        └── 004_duplicate_detection.sql  # Latest
-```
-
----
-
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -370,60 +207,70 @@ scamguard/
 ### Quick Start
 
 ```bash
-# Clone
 git clone https://github.com/nicuk/scamguards.git
 cd scamguards
-
-# Install
 npm install
-
-# Configure
 cp .env.example .env.local
 # Edit .env.local with your keys
-
-# Database setup (in Supabase SQL Editor)
-# Run: supabase/FULL_SCHEMA.sql
-# Then: supabase/migrations/004_duplicate_detection.sql
-
-# Create storage bucket: "evidence" (public)
-
-# Run
 npm run dev
 ```
 
 ### Environment Variables
 
-| Variable | Description |
-|----------|-------------|
-| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon key |
-| `DASHSCOPE_API_KEY` | Alibaba Cloud DashScope key |
-| `ADMIN_EMAILS` | Comma-separated admin emails |
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `NEXT_PUBLIC_SUPABASE_URL` | Yes | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Yes | Supabase anon key |
+| `DASHSCOPE_API_KEY` | Yes | Alibaba Cloud DashScope key |
+| `ADMIN_EMAILS` | Yes | Comma-separated admin emails |
+| `NEXT_PUBLIC_SITE_URL` | Yes | Production URL (https://scamguards.app) |
+| `NEXT_PUBLIC_STRIPE_DONATE_LINK` | No | Stripe Payment Link for donations |
+| `NEXT_PUBLIC_GA_ID` | No | Google Analytics 4 measurement ID |
+| `GOOGLE_SITE_VERIFICATION` | No | Google Search Console verification |
+| `BING_SITE_VERIFICATION` | No | Bing Webmaster Tools verification |
+
+### Database Setup
+
+Run the SQL migrations in order in the Supabase SQL Editor:
+
+1. `supabase/FULL_SCHEMA.sql`
+2. `supabase/migrations/004_duplicate_detection.sql`
+3. Create storage bucket: `evidence` (public)
 
 ---
 
-## 📈 Roadmap
+## National Scam Statistics
 
-- [ ] Real-time notifications for new reports matching saved searches
-- [ ] Batch report verification for admins
-- [ ] Public API for third-party integrations
-- [ ] Mobile app (React Native)
-- [ ] ML-based scam pattern prediction
+Data displayed on the site, sourced from PDRM/CCID and the Home Ministry:
+
+| Year | Cases | Losses | Source |
+|------|-------|--------|--------|
+| 2023 | — | RM1.28 billion | Home Ministry |
+| 2024 | 67,735 | RM1.57 billion | CCID |
+| 2025 | — | RM2.77 billion (+76%) | Home Ministry |
+| **3-year total** | — | **RM5.62 billion** | — |
+
+Top scam types by losses (2024): Investment (RM1.37B), Telecom/Macau (RM715.7M), E-finance (RM458.1M), E-commerce (RM123.7M), Love (RM43.7M).
 
 ---
 
-## 📄 License
+## Support
+
+ScamGuards is a free passion project. If it helped you, consider:
+
+- **Donating:** [scamguards.app/donate](https://scamguards.app/donate)
+- **Reporting:** Share scammer details to protect others
+- **Sharing:** Tell someone about ScamGuards before they pay a stranger
+
+---
+
+## License
 
 [Elastic License 2.0](LICENSE) — Free to use, modify, and self-host. Commercial SaaS requires separate license.
 
 ---
 
-## 🙏 Acknowledgments
-
-Built with modern best practices for security, performance, and user experience. Contributions welcome.
-
----
-
 <p align="center">
-  <strong>Protecting Malaysians from scams, one check at a time.</strong>
+  <strong>Protecting Malaysians from scams, one check at a time.</strong><br>
+  <a href="https://scamguards.app">scamguards.app</a>
 </p>
