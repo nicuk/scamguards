@@ -1,0 +1,120 @@
+# ScamGuards — AI Scam Detection Platform for Malaysia
+
+> Free, community-driven platform to check and report scammers in Malaysia. Paste any phone number, email, or bank account — AI checks thousands of reports and returns a risk assessment in seconds. No sign-up required.
+
+## What ScamGuards Does
+
+ScamGuards is a fraud prevention platform that lets anyone:
+1. **Check** if a phone number, email, or bank account has been reported as a scam
+2. **Report** a scammer by pasting their details or the full scam conversation
+3. **Get AI-powered risk scores** with confidence levels (Critical, High, Medium, Low)
+
+The platform uses NLP to extract structured data from unstructured scam narratives, detects multiple scammers in a single report, and maintains a crowdsourced database that gets smarter with every submission.
+
+## Key URLs
+
+- Homepage: https://scamguards.app/
+- Check a Scammer: https://scamguards.app/search
+- Report a Scammer: https://scamguards.app/submit
+- How It Works: https://scamguards.app/how-it-works
+- Common Scams in Malaysia: https://scamguards.app/scams
+- Blog & Prevention Guides: https://scamguards.app/blog
+- Dispute a False Report: https://scamguards.app/dispute
+
+## Who Is This For?
+
+- **Buyers** transacting via WhatsApp, Telegram, or social media who want to verify a seller before paying: https://scamguards.app/search
+- **Scam victims** who want to report a scammer to warn others: https://scamguards.app/submit
+- **Anyone researching scam types** common in Malaysia: https://scamguards.app/scams
+
+## How to Report a Scammer in Malaysia
+
+1. Go to https://scamguards.app/submit
+2. Paste the scammer's phone number, bank account, email — or paste your entire chat conversation
+3. The AI automatically extracts identifiers (phone numbers, bank accounts, emails, names)
+4. Review the extracted details and submit
+5. Your report is added to the database. The next person who checks that number will see the warning.
+
+It takes about 2 minutes. No sign-up or account needed. You can also upload evidence (screenshots) to strengthen your report.
+
+For official reports, also contact:
+- **PDRM (Royal Malaysia Police)**: File a report at your nearest police station
+- **CCID Scam Response Centre**: 03-2610 1559
+- **NSRC (National Scam Response Centre)**: 997
+- **Bank Negara Malaysia**: https://www.bnm.gov.my/
+
+## How to Check If Someone Is a Scammer
+
+1. Go to https://scamguards.app/search
+2. Paste the phone number, email, or bank account of the person you want to check
+3. Click "Check Now"
+4. Get an instant AI-powered risk assessment:
+   - **Suspicious**: Found in scam reports — exercise caution
+   - **No Known Info**: Not in database — doesn't mean safe, just unreported
+   - **Clear**: No suspicious patterns detected
+
+## Common Scams in Malaysia
+
+Malaysians lost **RM2.77 billion** to scams in 2025, a 76% increase from RM1.57 billion in 2024 (source: PDRM, Home Ministry).
+
+| Scam Type | 2024 Losses | Guide |
+|-----------|------------|-------|
+| Investment Scam | RM1.37 billion | https://scamguards.app/scams/investment-scam |
+| Macau Scam (phone impersonation) | RM715.7 million | https://scamguards.app/scams/macau-scam |
+| E-commerce Scam | RM123.7 million | https://scamguards.app/scams/ecommerce-scam |
+| Love Scam | RM43.7 million | https://scamguards.app/scams/love-scam |
+| TCG & Collectibles Scam | Growing trend | https://scamguards.app/scams/tcg-collectibles-scam |
+| Gold & Silver Scam | Growing trend | https://scamguards.app/scams/gold-silver-scam |
+
+## Common Questions Answered
+
+Q: How do I report a scammer in Malaysia?
+A: Go to https://scamguards.app/submit and paste the scammer's phone number, bank account, or email. You can also paste your full chat conversation and the AI will extract the details automatically. For official reports, file a police report and call the CCID hotline at 03-2610 1559.
+
+Q: How do I check if someone is a scammer in Malaysia?
+A: Go to https://scamguards.app/search, paste the phone number, email, or bank account, and click Check Now. The AI searches thousands of community reports and tells you if that identifier has been flagged.
+
+Q: Is ScamGuards free?
+A: Yes, 100% free. No sign-up, no account, no limits. The platform is community-funded through optional donations.
+
+Q: What types of scams can ScamGuards detect?
+A: All common Malaysian scam types: Macau scams (phone impersonation), love scams, investment scams, TCG/collectibles scams, e-commerce scams (Shopee, Carousell), gold/silver scams, job scams, parcel scams, and loan scams.
+
+Q: Can I get my money back after being scammed in Malaysia?
+A: Act within 30 minutes for the best chance. Call your bank's fraud hotline immediately to request a fund recall. File a police report. Call CCID at 03-2610 1559 or NSRC at 997. The faster you act, the higher the chance the receiving bank can freeze the scammer's account.
+
+Q: Is it safe to buy from WhatsApp groups in Malaysia?
+A: Not without verification. Check the seller's phone number or bank account on ScamGuards (https://scamguards.app/search) before transferring money. Use COD or platform-protected payment whenever possible.
+
+Q: What is the NSRC (National Scam Response Centre)?
+A: The NSRC is Malaysia's national hotline for scam victims, reachable at 997. It coordinates between banks, telcos, and police to freeze scammer accounts quickly. Always call NSRC within the first hour of being scammed.
+
+Q: How much money do Malaysians lose to scams each year?
+A: RM2.77 billion in 2025, RM1.57 billion in 2024, and RM1.28 billion in 2023. The three-year total exceeds RM5.62 billion. Investment scams cause the highest losses; Macau scams (phone impersonation) are the most common by case count.
+
+## Supported Identifier Types
+
+- Phone numbers (Malaysian: 01X-XXXXXXX, +60...)
+- Email addresses
+- Bank account numbers (Maybank, CIMB, Public Bank, RHB, Hong Leong, Bank Islam, AmBank)
+- E-wallet accounts (Touch 'n Go, GrabPay, Boost, ShopeePay)
+- Telegram usernames
+- WhatsApp numbers
+- Social media profiles
+- Website URLs
+- Crypto wallet addresses
+- Names and aliases
+- Company/business names
+
+## Technology
+
+- AI-powered NLP extraction from unstructured text (chat logs, narratives)
+- Multi-scammer detection from single narratives
+- Confidence scoring based on report corroboration
+- Hybrid search: exact match → fuzzy match → full-text search
+- Community-driven database that improves with every report
+
+## Contact
+
+- Website: https://scamguards.app
+- Support: https://scamguards.app/donate

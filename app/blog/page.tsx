@@ -3,7 +3,7 @@ import Link from "next/link";
 import { BookOpen, ArrowRight, Clock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { BLOG_POSTS } from "@/lib/blog-data";
-import { SITE_URL, generateBreadcrumbSchema } from "@/lib/seo-config";
+import { SITE_URL, generatePageGraphSchema, generateBreadcrumbSchema, generateItemListSchema } from "@/lib/seo-config";
 
 export const metadata: Metadata = {
   title: "Scam Prevention Blog - Guides & Tips | ScamGuards Malaysia",
@@ -32,10 +32,23 @@ function BlogJsonLd() {
     { name: "Home", url: SITE_URL },
     { name: "Blog", url: `${SITE_URL}/blog` },
   ]);
+  const itemListSchema = generateItemListSchema(
+    BLOG_POSTS.map((post, i) => ({
+      name: post.title,
+      url: `${SITE_URL}/blog/${post.slug}`,
+      position: i + 1,
+    }))
+  );
+  const pageGraph = generatePageGraphSchema(
+    `${SITE_URL}/blog`,
+    "Scam Prevention Guides",
+    "Practical guides to protect yourself from scams in Malaysia.",
+    [breadcrumbSchema, itemListSchema]
+  );
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(pageGraph) }}
     />
   );
 }

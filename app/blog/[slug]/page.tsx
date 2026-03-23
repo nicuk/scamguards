@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Clock, ArrowLeft, Search, FileText } from "lucide-react";
 import { BLOG_POSTS, getBlogBySlug, getAllBlogSlugs } from "@/lib/blog-data";
-import { SITE_URL, generateBreadcrumbSchema } from "@/lib/seo-config";
+import { SITE_URL, generatePageGraphSchema, generateArticleSchema, generateBreadcrumbSchema } from "@/lib/seo-config";
 
 export function generateStaticParams() {
   return getAllBlogSlugs().map((slug) => ({ slug }));
@@ -43,40 +43,31 @@ export default function BlogPostPage({
   const post = getBlogBySlug(params.slug);
   if (!post) notFound();
 
+  const postUrl = `${SITE_URL}/blog/${post.slug}`;
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: "Home", url: SITE_URL },
     { name: "Blog", url: `${SITE_URL}/blog` },
-    { name: post.title, url: `${SITE_URL}/blog/${post.slug}` },
+    { name: post.title, url: postUrl },
   ]);
-
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: post.title,
+  const articleSchema = generateArticleSchema({
+    title: post.title,
     description: post.metaDescription,
-    datePublished: post.publishedAt,
-    dateModified: post.updatedAt,
-    author: {
-      "@type": "Organization",
-      name: "ScamGuards Malaysia",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "ScamGuards Malaysia",
-      url: SITE_URL,
-    },
-    mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
-  };
+    url: postUrl,
+    publishedAt: post.publishedAt,
+    updatedAt: post.updatedAt,
+  });
+  const pageGraph = generatePageGraphSchema(
+    postUrl,
+    post.title,
+    post.metaDescription,
+    [breadcrumbSchema, articleSchema]
+  );
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageGraph) }}
       />
 
       <article className="container mx-auto px-4 py-12">

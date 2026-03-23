@@ -6,7 +6,7 @@ import { ScamTypesSection } from "@/components/home/scam-types-section";
 import { TrustSection } from "@/components/home/trust-section";
 import { CtaSection } from "@/components/home/cta-section";
 import { PlatformStats } from "@/components/stats/platform-stats";
-import { PAGE_SEO, SITE_URL, generateFAQSchema } from "@/lib/seo-config";
+import { PAGE_SEO, SITE_URL, generatePageGraphSchema, generateFAQSchema } from "@/lib/seo-config";
 
 // Enhanced SEO metadata for homepage
 export const metadata: Metadata = {
@@ -72,15 +72,18 @@ const homeFAQs = [
   },
 ];
 
-// JSON-LD for FAQ
-function FAQJsonLd() {
+function HomeJsonLd() {
   const faqSchema = generateFAQSchema(homeFAQs);
+  const pageGraph = generatePageGraphSchema(
+    SITE_URL,
+    PAGE_SEO.home.title,
+    PAGE_SEO.home.description,
+    [faqSchema]
+  );
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: JSON.stringify(faqSchema),
-      }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(pageGraph) }}
     />
   );
 }
@@ -88,7 +91,7 @@ function FAQJsonLd() {
 export default function HomePage() {
   return (
     <>
-      <FAQJsonLd />
+      <HomeJsonLd />
       <div className="flex flex-col">
         {/* Hero Section */}
         <HeroSection />

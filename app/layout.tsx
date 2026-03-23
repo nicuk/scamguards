@@ -8,8 +8,7 @@ import {
   SEO_CONFIG,
   SITE_URL,
   SITE_NAME,
-  generateOrganizationSchema,
-  generateWebsiteSchema,
+  generateRootGraphSchema,
 } from "@/lib/seo-config";
 import { GoogleAnalytics } from "@/components/analytics";
 
@@ -101,26 +100,13 @@ export const metadata: Metadata = {
   },
 };
 
-// JSON-LD Structured Data Component
 function JsonLd() {
-  const organizationSchema = generateOrganizationSchema();
-  const websiteSchema = generateWebsiteSchema();
-
+  const graphSchema = generateRootGraphSchema();
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(organizationSchema),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(websiteSchema),
-        }}
-      />
-    </>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(graphSchema) }}
+    />
   );
 }
 
@@ -147,6 +133,7 @@ export default function RootLayout({
         <link rel="alternate" hrefLang="en-MY" href={SITE_URL} />
         <link rel="alternate" hrefLang="ms-MY" href={SITE_URL} />
         <link rel="alternate" hrefLang="x-default" href={SITE_URL} />
+        <link rel="alternate" type="application/rss+xml" title="ScamGuards Malaysia" href={`${SITE_URL}/feed.xml`} />
       </head>
       <body className={inter.className}>
         <GoogleAnalytics />

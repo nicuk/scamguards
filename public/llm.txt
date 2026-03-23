@@ -1,0 +1,29 @@
+# ScamGuards
+
+> Free AI-powered scam detection platform for Malaysia. Check phone numbers, emails, and bank accounts against a crowdsourced scam database. Report scammers to protect the community.
+
+## Key Pages
+- Homepage: https://scamguards.app/
+- Check a Scammer: https://scamguards.app/search
+- Report a Scammer: https://scamguards.app/submit
+- How It Works: https://scamguards.app/how-it-works
+- Common Scams in Malaysia: https://scamguards.app/scams
+- Blog & Guides: https://scamguards.app/blog
+
+## Scam Type Guides
+- Macau Scam: https://scamguards.app/scams/macau-scam
+- Love Scam: https://scamguards.app/scams/love-scam
+- Investment Scam: https://scamguards.app/scams/investment-scam
+- TCG & Collectibles Scam: https://scamguards.app/scams/tcg-collectibles-scam
+- E-commerce Scam: https://scamguards.app/scams/ecommerce-scam
+- Gold & Silver Scam: https://scamguards.app/scams/gold-silver-scam
+
+## Blog Guides
+- How to Spot a TCG Card Scam: https://scamguards.app/blog/how-to-spot-tcg-scam-malaysia
+- What to Do If Scammed on WhatsApp: https://scamguards.app/blog/what-to-do-if-scammed-whatsapp-malaysia
+- 10 Rules to Stay Safe Online: https://scamguards.app/blog/protect-yourself-online-scams-malaysia
+
+## Optional
+- Dispute a Report: https://scamguards.app/dispute
+- Donate / Support: https://scamguards.app/donate
+- Disclaimer: https://scamguards.app/disclaimer

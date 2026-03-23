@@ -24,7 +24,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { PAGE_SEO, SITE_URL, generateFAQSchema, generateBreadcrumbSchema } from "@/lib/seo-config";
+import { PAGE_SEO, SITE_URL, generatePageGraphSchema, generateFAQSchema, generateBreadcrumbSchema } from "@/lib/seo-config";
 
 export const metadata: Metadata = {
   title: PAGE_SEO.howItWorks.title,
@@ -68,7 +68,6 @@ function PageJsonLd() {
   ]);
 
   const checkHowTo = {
-    "@context": "https://schema.org",
     "@type": "HowTo",
     name: "How to check if someone is a scammer in Malaysia",
     description: "Use ScamGuards to instantly check if a phone number, email, or bank account has been reported as a scam.",
@@ -81,7 +80,6 @@ function PageJsonLd() {
   };
 
   const reportHowTo = {
-    "@context": "https://schema.org",
     "@type": "HowTo",
     name: "How to report a scammer in Malaysia",
     description: "Report a scammer on ScamGuards to protect other Malaysians from the same fraud.",
@@ -93,25 +91,18 @@ function PageJsonLd() {
     totalTime: "PT2M",
   };
 
+  const pageGraph = generatePageGraphSchema(
+    `${SITE_URL}/how-it-works`,
+    PAGE_SEO.howItWorks.title,
+    PAGE_SEO.howItWorks.description,
+    [faqSchema, breadcrumbSchema, checkHowTo, reportHowTo]
+  );
+
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(checkHowTo) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(reportHowTo) }}
-      />
-    </>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(pageGraph) }}
+    />
   );
 }
 

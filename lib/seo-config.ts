@@ -1,6 +1,3 @@
-// Central SEO Configuration for ScamGuards Malaysia
-// Update SITE_URL to your actual domain
-
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://scamguards.app";
 export const SITE_NAME = "ScamGuards Malaysia";
 
@@ -10,33 +7,27 @@ export const SEO_CONFIG = {
   defaultTitle: "ScamGuards Malaysia - AI Scam Checker | Check Scammers Free",
   defaultDescription:
     "Free AI-powered scam detection for Malaysia. Instantly check if phone numbers, emails, or bank accounts are scammers. Paste any detail, AI checks thousands of reports. Semak penipu dengan AI.",
-  
-  // Primary keywords for the site
+
   keywords: [
-    // AI-focused keywords
     "ai scam checker",
     "ai scam detection malaysia",
     "ai check scammer",
     "scam checker ai free",
-    
-    // English primary
+    "how to report scammer malaysia",
+    "report scammer malaysia",
+    "scam database malaysia",
     "scam check malaysia",
     "check scammer malaysia",
     "is this a scammer",
-    "report scammer malaysia",
     "malaysia scam database",
     "phone scam check",
     "scammer phone number malaysia",
-    
-    // Malay keywords
     "semak penipu malaysia",
     "ai semak penipu",
     "lapor penipu",
     "nombor telefon penipu",
     "semak nombor scammer",
     "ini penipu ke",
-    
-    // Specific scam types
     "tcg scammer malaysia",
     "one piece card scammer",
     "pokemon card scammer malaysia",
@@ -47,27 +38,19 @@ export const SEO_CONFIG = {
     "macau scam malaysia",
     "love scam malaysia",
     "investment scam malaysia",
-    
-    // E-wallet & banking
     "touch n go scammer",
     "maybank scammer",
     "cimb scammer",
   ],
 
-  // Open Graph defaults
   ogImage: `${SITE_URL}/og-image.png`,
   ogType: "website" as const,
-  
-  // Twitter defaults
   twitterCard: "summary_large_image" as const,
-  twitterSite: "@scamguardmy", // Update if you have Twitter
-  
-  // Locale
+  twitterSite: "@scamguardmy",
   locale: "en_MY",
   alternateLocale: "ms_MY",
 };
 
-// Per-page SEO configurations
 export const PAGE_SEO = {
   home: {
     title: "ScamGuards Malaysia - Free AI Scam Checker | Is This a Scammer?",
@@ -76,10 +59,12 @@ export const PAGE_SEO = {
     keywords: [
       "ai scam checker malaysia",
       "is this a scammer",
-      "check scammer malaysia", 
+      "check scammer malaysia",
+      "how to report scammer malaysia",
       "semak penipu ai",
       "free scam check",
       "ai scam detection",
+      "scam database malaysia",
     ],
   },
   search: {
@@ -96,22 +81,25 @@ export const PAGE_SEO = {
     ],
   },
   submit: {
-    title: "Report a Scammer - Submit Scam Report | ScamGuards Malaysia",
+    title: "Report a Scammer in Malaysia - Free Scam Reporting | ScamGuards",
     description:
-      "Report a scammer to help protect the Malaysian community. Submit phone numbers, emails, bank accounts of scammers. Your report helps prevent fraud.",
+      "Report a scammer in Malaysia for free. Submit phone numbers, emails, bank accounts. Paste your whole scam story — AI extracts the details. Protect others from the same fraud.",
     keywords: [
       "report scammer malaysia",
-      "lapor penipu",
+      "how to report scammer",
+      "lapor penipu malaysia",
       "submit scam report",
       "report fraud malaysia",
+      "report online scam malaysia",
     ],
   },
   howItWorks: {
-    title: "How ScamGuards Works - Scam Detection Explained | ScamGuards",
+    title: "How to Check & Report Scammers in Malaysia | ScamGuards",
     description:
-      "Learn how ScamGuards's community-driven scam detection works. AI-powered analysis, community reports, and privacy protection explained.",
+      "Learn how to check if someone is a scammer and how to report scammers in Malaysia. AI-powered detection, community reports, and privacy protection.",
     keywords: [
-      "how scam check works",
+      "how to check scammer malaysia",
+      "how to report scammer malaysia",
       "scam detection malaysia",
       "community scam reporting",
     ],
@@ -140,47 +128,107 @@ export const PAGE_SEO = {
   },
 };
 
-// JSON-LD Structured Data
-export function generateOrganizationSchema() {
+// --- @graph-based JSON-LD generators ---
+
+const ORG_ID = `${SITE_URL}/#org`;
+const WEBSITE_ID = `${SITE_URL}/#website`;
+
+export function generateRootGraphSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: SITE_NAME,
-    url: SITE_URL,
-    logo: `${SITE_URL}/logo.png`,
-    description: SEO_CONFIG.defaultDescription,
-    areaServed: {
-      "@type": "Country",
-      name: "Malaysia",
-    },
-    sameAs: [
-      "https://www.facebook.com/profile.php?id=61587108193943",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": ORG_ID,
+        name: SITE_NAME,
+        url: SITE_URL,
+        logo: {
+          "@type": "ImageObject",
+          url: `${SITE_URL}/icon.svg`,
+        },
+        description: SEO_CONFIG.defaultDescription,
+        areaServed: { "@type": "Country", name: "Malaysia" },
+        sameAs: [
+          "https://www.facebook.com/profile.php?id=61587108193943",
+          "https://github.com/nicuk/scamguards",
+        ],
+      },
+      {
+        "@type": "WebSite",
+        "@id": WEBSITE_ID,
+        name: SITE_NAME,
+        url: SITE_URL,
+        description: SEO_CONFIG.defaultDescription,
+        publisher: { "@id": ORG_ID },
+        potentialAction: {
+          "@type": "SearchAction",
+          target: {
+            "@type": "EntryPoint",
+            urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
+          },
+          "query-input": "required name=search_term_string",
+        },
+        inLanguage: ["en-MY", "ms-MY"],
+      },
     ],
   };
 }
 
-export function generateWebsiteSchema() {
+export function generatePageGraphSchema(
+  pageUrl: string,
+  pageName: string,
+  pageDescription: string,
+  extras: Record<string, unknown>[] = []
+) {
   return {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: SITE_NAME,
-    url: SITE_URL,
-    description: SEO_CONFIG.defaultDescription,
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${pageUrl}/#webpage`,
+        url: pageUrl,
+        name: pageName,
+        description: pageDescription,
+        isPartOf: { "@id": WEBSITE_ID },
+        about: { "@id": ORG_ID },
+        inLanguage: "en-MY",
+        speakable: {
+          "@type": "SpeakableSpecification",
+          cssSelector: ["h1", "#faq", "#how-it-works", ".tldr"],
+        },
       },
-      "query-input": "required name=search_term_string",
+      ...extras,
+    ],
+  };
+}
+
+export function generateArticleSchema(post: {
+  title: string;
+  description: string;
+  url: string;
+  publishedAt: string;
+  updatedAt: string;
+}) {
+  return {
+    "@type": "Article",
+    headline: post.title,
+    description: post.description,
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt,
+    author: { "@id": ORG_ID },
+    publisher: {
+      "@id": ORG_ID,
+      "@type": "Organization",
+      name: SITE_NAME,
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/icon.svg` },
     },
-    inLanguage: ["en-MY", "ms-MY"],
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${post.url}/#webpage` },
+    isPartOf: { "@id": WEBSITE_ID },
   };
 }
 
 export function generateFAQSchema(faqs: { question: string; answer: string }[]) {
   return {
-    "@context": "https://schema.org",
     "@type": "FAQPage",
     mainEntity: faqs.map((faq) => ({
       "@type": "Question",
@@ -197,13 +245,26 @@ export function generateBreadcrumbSchema(
   items: { name: string; url: string }[]
 ) {
   return {
-    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: items.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
       item: item.url,
+    })),
+  };
+}
+
+export function generateItemListSchema(
+  items: { name: string; url: string; position: number }[]
+) {
+  return {
+    "@type": "ItemList",
+    itemListElement: items.map((item) => ({
+      "@type": "ListItem",
+      position: item.position,
+      name: item.name,
+      url: item.url,
     })),
   };
 }

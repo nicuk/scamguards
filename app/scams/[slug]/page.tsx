@@ -20,7 +20,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { SCAM_TYPES, getScamBySlug, getAllScamSlugs } from "@/lib/scam-data";
-import { SITE_URL, generateFAQSchema, generateBreadcrumbSchema } from "@/lib/seo-config";
+import { SITE_URL, generatePageGraphSchema, generateFAQSchema, generateBreadcrumbSchema } from "@/lib/seo-config";
 
 export function generateStaticParams() {
   return getAllScamSlugs().map((slug) => ({ slug }));
@@ -66,7 +66,6 @@ export default function ScamTypePage({
   ]);
 
   const howToSchema = {
-    "@context": "https://schema.org",
     "@type": "HowTo",
     name: `How to protect yourself from ${scam.title} in Malaysia`,
     description: scam.metaDescription,
@@ -77,19 +76,18 @@ export default function ScamTypePage({
     })),
   };
 
+  const pageGraph = generatePageGraphSchema(
+    `${SITE_URL}/scams/${scam.slug}`,
+    scam.metaTitle,
+    scam.metaDescription,
+    [faqSchema, breadcrumbSchema, howToSchema]
+  );
+
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageGraph) }}
       />
 
       <div className="container mx-auto px-4 py-12">

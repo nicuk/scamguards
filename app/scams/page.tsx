@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Shield } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { SCAM_TYPES } from "@/lib/scam-data";
-import { SITE_URL, generateBreadcrumbSchema } from "@/lib/seo-config";
+import { SITE_URL, generatePageGraphSchema, generateBreadcrumbSchema, generateItemListSchema } from "@/lib/seo-config";
 
 export const metadata: Metadata = {
   title: "Common Scams in Malaysia - Know the Types | ScamGuards",
@@ -32,10 +32,23 @@ function ScamsJsonLd() {
     { name: "Home", url: SITE_URL },
     { name: "Scam Types", url: `${SITE_URL}/scams` },
   ]);
+  const itemListSchema = generateItemListSchema(
+    SCAM_TYPES.map((scam, i) => ({
+      name: scam.title,
+      url: `${SITE_URL}/scams/${scam.slug}`,
+      position: i + 1,
+    }))
+  );
+  const pageGraph = generatePageGraphSchema(
+    `${SITE_URL}/scams`,
+    "Common Scams in Malaysia",
+    "Learn about the most common scams targeting Malaysians and how to protect yourself.",
+    [breadcrumbSchema, itemListSchema]
+  );
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(pageGraph) }}
     />
   );
 }
