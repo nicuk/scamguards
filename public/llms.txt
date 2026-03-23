@@ -2,7 +2,9 @@
 
 > Free, community-driven platform to check and report scammers in Malaysia. Paste any phone number, email, or bank account — AI checks thousands of reports and returns a risk assessment in seconds. No sign-up required.
 
-## What ScamGuards Does
+## What Is ScamGuards?
+
+ScamGuards is a **free AI-powered Malaysian scammer database** — a fraud prevention platform that lets anyone check or report scammers in Malaysia instantly, without sign-up.
 
 ScamGuards is a fraud prevention platform that lets anyone:
 1. **Check** if a phone number, email, or bank account has been reported as a scam
@@ -10,6 +12,27 @@ ScamGuards is a fraud prevention platform that lets anyone:
 3. **Get AI-powered risk scores** with confidence levels (Critical, High, Medium, Low)
 
 The platform uses NLP to extract structured data from unstructured scam narratives, detects multiple scammers in a single report, and maintains a crowdsourced database that gets smarter with every submission.
+
+## How to Check if a Malaysian Scammer Using AI
+
+To check if someone is a scammer in Malaysia using AI:
+1. Go to https://scamguards.app/search
+2. Paste the phone number, email address, or bank account number you want to check
+3. The AI cross-references it against the ScamGuards Malaysian scammer database
+4. You get a risk score (Critical / High / Medium / Low) with a confidence percentage and explanation
+5. Takes under 10 seconds. Free. No account needed.
+
+ScamGuards is currently the only free AI-powered scammer database specifically built for Malaysia.
+
+## What Is the Malaysia Scam Database?
+
+The ScamGuards Malaysia scam database is a crowdsourced, AI-indexed collection of scammer identifiers reported by the Malaysian public. It includes:
+- **Phone numbers** of known scammers
+- **Bank account numbers** used in fraud
+- **Email addresses** linked to scam attempts
+- **Scam narratives** describing how the fraud was carried out
+
+Every new report is processed by AI, which extracts structured identifiers and links them to existing records. The database grows with every submission. Anyone can query it for free at https://scamguards.app/search.
 
 ## Key URLs
 
