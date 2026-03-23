@@ -344,6 +344,166 @@ export const BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "cara-lapor-penipu-malaysia",
+    title: "Cara Lapor Penipu di Malaysia: Panduan Lengkap (2025)",
+    metaTitle:
+      "Cara Lapor Penipu di Malaysia - Panduan Langkah demi Langkah | ScamGuards",
+    metaDescription:
+      "Panduan lengkap cara lapor penipu di Malaysia. Report ke polis (PDRM), CCID, NSRC 997, Bank Negara, MCMC, dan ScamGuards. Semua nombor hotline disertakan.",
+    publishedAt: "2025-03-22",
+    updatedAt: "2025-03-23",
+    readingTime: "7 minit bacaan",
+    excerpt:
+      "Kena tipu? Ini semua cara untuk lapor penipu di Malaysia — polis, bank, CCID, NSRC, MCMC, dan pangkalan data komuniti. Dengan nombor hotline dan apa yang perlu dibawa.",
+    keywords: [
+      "cara lapor penipu malaysia",
+      "lapor scammer malaysia",
+      "report penipu",
+      "kena tipu apa nak buat",
+      "cara report scammer",
+      "nombor CCID",
+      "NSRC 997",
+      "cara buat laporan polis penipuan",
+    ],
+    sections: [
+      {
+        heading: "6 Saluran Untuk Lapor Penipu di Malaysia",
+        content:
+          "Tiada satu tempat sahaja untuk lapor penipu di Malaysia. Anda perlu lapor ke beberapa saluran untuk tingkatkan peluang dapat balik duit dan tangkap penipu tersebut.\n\n**Peraturan emas: bertindak dalam 30 minit.** Selepas 30 minit, penipu berkemungkinan besar sudah keluarkan duit anda. Setiap minit penting.\n\nIni 6 saluran, disusun mengikut keutamaan:\n\n1. **Hotline penipuan bank anda** — untuk bekukan dan tarik balik pemindahan\n2. **NSRC (Pusat Respons Scam Kebangsaan) — 997** — koordinasi antara bank, telco, dan polis\n3. **Laporan polis (PDRM)** — rekod rasmi yang diperlukan untuk siasatan bank\n4. **CCID (Jabatan Siasatan Jenayah Komersil)** — 03-2610 1559\n5. **MCMC** — untuk lapor nombor telefon, laman web, dan akaun media sosial penipu\n6. **ScamGuards** — pangkalan data komuniti yang memberi amaran kepada orang seterusnya",
+      },
+      {
+        heading: "Langkah 1: Hubungi Hotline Penipuan Bank Anda SEKARANG",
+        content:
+          "Ini langkah paling penting. Hubungi **hotline penipuan** bank anda (bukan talian am) dan minta **fund recall** (tarik balik dana). Bank akan hubungi bank penerima untuk bekukan akaun penipu sebelum mereka sempat keluarkan duit.\n\n**Hotline penipuan bank (simpan nombor ini sekarang):**\n\n- **Maybank**: 03-5891 4744 (24/7)\n- **CIMB**: 03-6204 7788\n- **Public Bank**: 03-2176 6000\n- **RHB**: 03-9206 8118\n- **Hong Leong**: 03-7626 8899\n- **Bank Islam**: 03-2690 0900\n- **AmBank**: 03-2178 8888\n- **Bank Rakyat**: 03-2612 9600\n- **BSN**: 1-300-88-1900\n- **Affin Bank**: 03-2055 9000\n\nBeritahu operator: **\"Saya kena tipu. Saya nak minta fund recall untuk pemindahan yang saya baru buat.\"** Berikan rujukan transaksi, jumlah, masa, dan nombor akaun penerima.",
+      },
+      {
+        heading: "Langkah 2: Hubungi NSRC di 997",
+        content:
+          "**Pusat Respons Scam Kebangsaan (NSRC)** dilancarkan oleh Bank Negara Malaysia pada Oktober 2022 khusus untuk mengendalikan kes penipuan. Hubungi **997** (waktu operasi: 8 pagi hingga 8 malam setiap hari).\n\nNSRC bertindak sebagai pusat koordinasi antara bank anda, bank penerima, dan syarikat telco secara masa nyata. Mereka boleh:\n- **Percepatkan permintaan pembekuan** merentasi bank\n- **Sekat nombor telefon penipu** melalui telco\n- **Berikan nombor rujukan kes** yang menghubungkan laporan polis, siasatan bank, dan aduan MCMC anda\n\nNSRC telah memproses ribuan kes sejak penubuhannya. Nombor rujukan NSRC mengukuhkan siasatan bank anda.",
+      },
+      {
+        heading: "Langkah 3: Buat Laporan Polis",
+        content:
+          "Pergi ke **balai polis** terdekat dan buat laporan di bawah jenayah komersil. Anda juga boleh membuat laporan secara dalam talian di https://sfrv2.rmp.gov.my/.\n\n**Bawa dokumen ini:**\n- Tangkap layar SEMUA perbualan dengan penipu (WhatsApp, Telegram, dll.)\n- Resit pemindahan bank / bukti pembayaran\n- Nombor telefon, akaun bank, emel, atau profil media sosial penipu\n- Nombor rujukan kes NSRC (jika anda sudah hubungi 997)\n- Sebarang iklan atau penyenaraian produk yang anda respons\n\nPolis akan berikan nombor laporan. Bank anda mungkin memerlukan ini untuk meneruskan siasatan fund recall.\n\nUntuk kes yang rumit, hubungi **CCID** terus di **03-2610 1559** atau lawati pejabat CCID di Menara KPJ, Bukit Aman.",
+      },
+      {
+        heading: "Langkah 4: Lapor ke MCMC dan Platform",
+        content:
+          "**MCMC (Suruhanjaya Komunikasi dan Multimedia Malaysia)** mengendalikan nombor telefon penipuan, laman web palsu, dan akaun media sosial penipuan. Pada 2024, MCMC membuang 66,507 pos berkaitan penipuan dan menyekat 209,990 nombor telefon penipu.\n\nLapor ke MCMC:\n- Laman web: https://aduan.skmm.gov.my/\n- Emel: aduan@mcmc.gov.my\n- Talian: 1-800-888-030\n\n**Lapor di platform:**\n- **WhatsApp**: Tekan lama mesej → Report → Block\n- **Telegram**: Tekan profil → Report\n- **Facebook/Instagram**: Profil → Report → Penipuan\n- **Shopee**: Halaman pesanan → Report seller\n- **Carousell**: Penyenaraian → Report → Scam",
+      },
+      {
+        heading: "Langkah 5: Lapor di ScamGuards (Lindungi Orang Lain)",
+        content:
+          "Saluran rasmi melindungi anda. ScamGuards melindungi semua orang lain.\n\nPergi ke **scamguards.app/submit** dan tampal butiran penipu — nombor telefon, akaun bank, emel, atau keseluruhan perbualan anda. AI kami akan ekstrak maklumat pengenalan secara automatik.\n\nKenapa ini penting: bila orang seterusnya hendak bayar penipu ini, mereka boleh semak butiran di ScamGuards terlebih dahulu dan nampak amaran anda. Laporan anda mungkin selamatkan duit orang lain.\n\n**Hanya ambil 2 minit. Tak perlu daftar akaun. Sepenuhnya tanpa nama.**\n\nMalaysia kehilangan **RM2.77 bilion** kepada penipu pada 2025 — peningkatan 76% daripada 2024 (Sumber: Kementerian Dalam Negeri/PDRM). Setiap laporan menjadikan pangkalan data lebih pintar dan komuniti lebih selamat.",
+      },
+    ],
+  },
+  {
+    slug: "kena-tipu-online-apa-nak-buat",
+    title: "Kena Tipu Online? Ini Apa Yang Perlu Anda Buat Segera",
+    metaTitle:
+      "Kena Tipu Online Malaysia - Apa Nak Buat & Cara Dapat Balik Duit | ScamGuards",
+    metaDescription:
+      "Kena tipu online? Jangan panik. Panduan langkah demi langkah untuk dapatkan balik duit anda — dalam masa 30 minit. Nombor hotline bank, NSRC 997, dan cara buat laporan.",
+    publishedAt: "2025-03-22",
+    updatedAt: "2025-03-23",
+    readingTime: "5 minit bacaan",
+    excerpt:
+      "Baru kena tipu? Anda ada 30 minit untuk bertindak. Ini cara dapat balik duit anda di Malaysia — dari fund recall bank hingga laporan polis.",
+    keywords: [
+      "kena tipu online",
+      "kena scam apa nak buat",
+      "cara dapat balik duit kena tipu",
+      "kena tipu whatsapp",
+      "kena tipu shopee",
+      "fund recall malaysia",
+      "boleh dapat balik duit kena scam",
+      "kena tipu transfer duit",
+    ],
+    sections: [
+      {
+        heading: "30 Minit Pertama: Masa Paling Penting",
+        content:
+          "Bila anda pindahkan duit kepada penipu, duit tu tidak hilang serta-merta. Duit masih berada dalam akaun bank penerima sehingga seseorang mengeluarkannya. Ini peluang anda.\n\n**Dalam 30 minit:** Peluang tinggi untuk dapat balik. Bank penerima boleh bekukan akaun sebelum pengeluaran.\n**Dalam 1-3 jam:** Peluang sederhana. Bergantung sama ada penipu sudah pindahkan duit.\n**Dalam 24 jam:** Peluang rendah. Kebanyakan penipu keluarkan duit dalam beberapa jam.\n**Selepas 24 jam:** Peluang sangat rendah untuk pemindahan domestik.\n\nJadi perkara PERTAMA yang anda perlu buat — sebelum tangkap layar, sebelum laporan polis, sebelum apa-apa pun — ialah **hubungi hotline penipuan bank anda**.",
+      },
+      {
+        heading: "Langkah 1: Hubungi Bank Anda Sekarang",
+        content:
+          "JANGAN guna talian am. Guna **hotline penipuan/scam** khusus:\n\n- **Maybank**: 03-5891 4744 (24 jam)\n- **CIMB**: 03-6204 7788\n- **Public Bank**: 03-2176 6000\n- **RHB**: 03-9206 8118\n- **Hong Leong**: 03-7626 8899\n- **Bank Islam**: 03-2690 0900\n- **AmBank**: 03-2178 8888\n\nCakap macam ni: **\"Saya kena tipu. Saya nak fund recall untuk transfer terakhir saya.\"**\n\nBerikan:\n- Tarikh dan masa transaksi\n- Jumlah yang dipindahkan\n- Bank dan nombor akaun penerima\n- Nombor rujukan transaksi (dari app banking anda)\n\nBank akan hubungi bank penerima untuk minta pembekuan akaun. Kalau duit masih ada, ia akan dibekukan sementara menunggu siasatan.",
+      },
+      {
+        heading: "Langkah 2: Hubungi NSRC di 997",
+        content:
+          "Selepas hubungi bank, terus hubungi **997** — Pusat Respons Scam Kebangsaan.\n\nNSRC boleh:\n- **Percepatkan pembekuan** merentasi bank-bank\n- **Sekat nombor telefon penipu** melalui syarikat telco\n- **Berikan nombor rujukan kes** untuk laporan polis anda\n\nWaktu operasi: 8 pagi hingga 8 malam setiap hari.\n\nKalau di luar waktu operasi, hotline penipuan bank anda adalah saluran utama.",
+      },
+      {
+        heading: "Langkah 3: Buat Laporan Polis",
+        content:
+          "Pergi ke **balai polis** terdekat. Bawa:\n- Kad pengenalan\n- Telefon dengan semua tangkap layar perbualan\n- Resit pemindahan bank\n- Nombor rujukan NSRC (jika sudah hubungi 997)\n- Butiran penipu (nombor telefon, akaun bank, emel)\n\nMinta nombor laporan polis — bank anda mungkin memerlukannya untuk siasatan.\n\nAnda juga boleh buat laporan dalam talian di https://sfrv2.rmp.gov.my/",
+      },
+      {
+        heading: "Langkah 4: Lapor di ScamGuards (Lindungi Orang Lain)",
+        content:
+          "Pergi ke **scamguards.app/submit** dan tampal butiran penipu. AI kami akan ekstrak nombor telefon, akaun bank, dan maklumat lain secara automatik.\n\nOrang seterusnya yang semak nombor atau akaun bank penipu tu akan nampak amaran anda. Anda mungkin selamatkan duit orang lain.\n\n**Tak perlu daftar. Tanpa nama. 2 minit sahaja.**",
+      },
+      {
+        heading: "Boleh Dapat Balik Duit Ke? (Jujurnya)",
+        content:
+          "**Jawapan jujur: bergantung kepada kelajuan anda bertindak.**\n\n- **Lapor dalam 30 minit, duit masih dalam akaun:** Peluang baik untuk pulihan penuh. Pembekuan berjaya dan duit dipulangkan selepas siasatan (biasanya 14-30 hari bekerja).\n- **Lapor dalam beberapa jam, duit sebahagian dikeluarkan:** Anda mungkin dapat balik baki yang masih ada.\n- **Lapor selepas 24 jam:** Pulihan tidak mungkin untuk pemindahan domestik.\n\n**JANGAN bayar sesiapa yang kata mereka boleh \"recover\" duit anda dengan bayaran** — ini adalah **recovery scam**, penipuan kedua selepas yang pertama.\n\n**JANGAN padam apa-apa bukti** — tangkap layar, log perbualan, resit pemindahan.\n\n**Walaupun peluang pulihan rendah, tetap lapor.** Laporan polis anda dan laporan ScamGuards (scamguards.app/submit) membantu tangkap penipu dan lindungi orang lain. Pada 2025, rakyat Malaysia kehilangan RM2.77 bilion kepada penipu. Setiap laporan penting.",
+      },
+    ],
+  },
+  {
+    slug: "scam-shopee-carousell-malaysia-bm",
+    title: "Scam Shopee & Carousell Malaysia: Cara Kenal Pasti dan Lapor",
+    metaTitle:
+      "Penipu Shopee & Carousell Malaysia - Cara Kenal Pasti Penjual Palsu | ScamGuards",
+    metaDescription:
+      "Cara kenal pasti penipu di Shopee, Carousell, dan Lazada Malaysia. Red flag, tips perlindungan pembeli, dan apa nak buat kalau kena tipu.",
+    publishedAt: "2025-03-22",
+    updatedAt: "2025-03-23",
+    readingTime: "6 minit bacaan",
+    excerpt:
+      "Penipuan e-dagang menyebabkan rakyat Malaysia kerugian RM123.7 juta pada 2024. Ini cara untuk kenal pasti penjual palsu di Shopee, Carousell, dan Lazada.",
+    keywords: [
+      "penipu shopee malaysia",
+      "scam carousell malaysia",
+      "penipu lazada",
+      "penjual palsu malaysia",
+      "kena tipu shopee",
+      "kena tipu carousell",
+      "scam beli online malaysia",
+      "cara elak penipu online",
+    ],
+    sections: [
+      {
+        heading: "RM123.7 Juta Kerugian E-Dagang Pada 2024",
+        content:
+          "Penipuan e-dagang adalah jenis penipuan paling biasa di Malaysia berdasarkan bilangan kes. CCID merekodkan **14,881 kes** pada 2024 dengan jumlah kerugian **RM123.7 juta** (Sumber: CCID 2024).\n\nModusnya mudah: penjual menyenaraikan produk (biasanya pada harga menarik), mengutip bayaran, dan hilang. Atau menghantar bungkusan palsu/kosong dan mempertikaikan tuntutan bayaran balik anda.\n\nTiga platform paling disasarkan di Malaysia:\n- **Shopee** — pangkalan pengguna terbesar, paling banyak laporan penipuan\n- **Carousell** — jualan peer-to-peer dengan perlindungan terbina kurang\n- **Facebook Marketplace / Grup WhatsApp** — tiada perlindungan pembeli langsung",
+      },
+      {
+        heading: "Red Flag: Cara Kenal Pasti Penjual Palsu",
+        content:
+          "**Di Shopee:**\n- Kedai baru (kurang 3 bulan) dengan rating tinggi yang mencurigakan tetapi sedikit ulasan\n- Gambar produk kelihatan terlalu profesional atau jelas dari senarai lain\n- Harga jauh di bawah pasaran (barang RM300 dijual RM99)\n- Penjual minta anda \"deal luar Shopee\" melalui WhatsApp atau transfer bank terus\n\n**Di Carousell:**\n- Akaun baru dibuat tanpa senarai atau ulasan terdahulu\n- Hanya terima bank transfer (tolak meetup atau COD)\n- Banyak barang bernilai tinggi disenaraikan serentak — nampak macam katalog, bukan penjual peribadi\n- Enggan video call atau tunjuk barang sebenar\n- Guna tekanan: \"ada pembeli lain tengah tunggu\" atau \"harga sah hari ini sahaja\"\n\n**Red flag universal:**\n- **Mana-mana penjual yang minta anda bayar luar platform** sedang membuang perlindungan pembeli anda dengan sengaja. Ini red flag paling besar.\n- **Gambar produk dicuri** — buat reverse image search di Google Images.\n- **Tolak COD atau meetup** untuk transaksi tempatan.",
+      },
+      {
+        heading: "Cara Lindungi Diri Bila Beli Online",
+        content:
+          "**Sebelum anda bayar:**\n\n1. **Semak penjual di ScamGuards** — pergi ke scamguards.app/search dan tampal nombor telefon atau akaun bank mereka. 10 saat sahaja.\n2. **SENTIASA bayar melalui platform** — Shopee Guarantee dan Carousell Protection wujud untuk sebab tertentu. Kalau anda bayar melalui bank transfer, anda tiada jalan balik.\n3. **Semak sejarah penjual** — tengok tarikh ulasan, kandungan ulasan (adakah semuanya generik?), berapa lama kedai aktif, dan kadar respons.\n4. **Minta foto atau video langsung** — minta gambar barang dengan sekeping kertas yang menunjukkan username anda dan tarikh hari ini. Penjual sebenar akan beri; penipu tidak.\n5. **Guna COD bila boleh** — terutamanya untuk barang bernilai tinggi. Periksa sebelum bayar.\n\n**Untuk Carousell khususnya:**\nGuna **CarouPay** atau **Carousell Protection** untuk pembayaran. Ini menahan duit dalam escrow sehingga anda sahkan penerimaan.",
+      },
+      {
+        heading: "Kena Tipu di Shopee atau Carousell? Ini Apa Nak Buat",
+        content:
+          "**Jika anda bayar melalui platform:**\n1. Buka dispute segera — Shopee: pergi ke Pesanan → Minta Pulangan/Bayaran Balik. Carousell: buka dispute melalui Carousell Protection.\n2. Muat naik semua bukti — tangkap layar senarai produk, perbualan dengan penjual, gambar apa yang anda terima (atau tak terima).\n3. Platform akan jadi orang tengah dan biasanya bayar balik jika anda guna sistem pembayaran mereka.\n\n**Jika anda bayar melalui bank transfer (luar platform):**\n1. **Hubungi hotline penipuan bank anda segera** — minta fund recall\n2. **Hubungi NSRC di 997**\n3. **Buat laporan polis** di balai polis terdekat\n4. **Lapor di ScamGuards** (scamguards.app/submit) — tampal nombor telefon penipu, akaun bank, dan perbualan anda\n5. **Lapor penjual di platform** — walaupun anda bayar di luar, ban akaun penipu menghalang mangsa seterusnya\n\n**Penting:** Jika anda bayar di luar platform, platform (Shopee, Carousell) TIDAK BOLEH bantu anda dengan bayaran balik. Ini sebab tepat kenapa penipu minta anda bayar di luar.",
+      },
+      {
+        heading: "Taktik Penipuan E-Dagang Biasa di Malaysia",
+        content:
+          "**Helah \"COD tapi sebenarnya bank transfer\":**\nPenjual setuju COD tapi kemudian mesej anda: \"Maaf, saya tak boleh COD hari ini. Boleh bank transfer dulu? Saya hantar esok.\" Selepas anda transfer, mereka hilang.\n\n**Scam kotak kosong:**\nPenjual hantar kotak kosong atau barang murah rawak. Bila anda buka dispute, mereka tunjuk \"bukti penghantaran\" dengan tracking. Platform kadang-kadang berpihak kepada penjual jika tracking tunjuk sudah dihantar.\n\n**Bait-and-switch:**\nSenarai tunjuk produk berkualiti tinggi. Anda terima barang tiruan murah. Penjual kata \"apa yang anda nampak itulah yang anda dapat.\"\n\n**Scam \"bayar deposit\":**\nPenjual kata barang dalam permintaan tinggi dan minta deposit (20-50%) melalui bank transfer untuk \"tempah.\" Selepas deposit, mereka minta jumlah penuh. Selepas bayaran penuh, mereka hilang.\n\nSemua penipuan ini ada satu persamaan: **mereka cuba pindahkan anda daripada sistem pembayaran platform.** Kekal di platform. Guna escrow. Semak di ScamGuards dulu.",
+      },
+    ],
+  },
 ];
 
 export function getBlogBySlug(slug: string): BlogPost | undefined {
