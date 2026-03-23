@@ -345,6 +345,61 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
   },
   {
+    slug: "whatsapp-scammer-malaysia-how-to-check",
+    title: "WhatsApp Scammer Malaysia: How to Check a Number Before You Pay (2025)",
+    metaTitle:
+      "WhatsApp Scammer Malaysia - Check Any Number Before Paying | ScamGuards",
+    metaDescription:
+      "How to check if a WhatsApp number is a scammer in Malaysia. Red flags to spot, how to verify before paying, and how to report WhatsApp scammers. Free AI scammer checker.",
+    publishedAt: "2025-03-23",
+    updatedAt: "2025-03-23",
+    readingTime: "6 min read",
+    excerpt:
+      "Someone contacted you on WhatsApp wanting to sell something or offer a deal? Check the number first. Here's how to spot a WhatsApp scammer in Malaysia before you lose your money.",
+    keywords: [
+      "whatsapp scammer malaysia",
+      "check whatsapp scammer",
+      "scammer numbers malaysia check",
+      "whatsapp scammer phone number",
+      "how to spot whatsapp scammer malaysia",
+      "malaysia whatsapp scam",
+      "verify whatsapp seller malaysia",
+      "whatsapp scam malaysia 2025",
+    ],
+    sections: [
+      {
+        heading: "WhatsApp Scams Are Surging in Malaysia",
+        content:
+          "WhatsApp is Malaysia's default communication platform — and scammers know it. Whether it's a seller in a buy-sell group, someone offering a job, a \"bank officer\" calling about your account, or a stranger offering investment returns, WhatsApp is now the primary tool for fraud in Malaysia.\n\nThe CCID recorded **14,881 e-commerce scam cases** in 2024 — the vast majority initiated via WhatsApp or Telegram. Many victims only realise they've been scammed after transferring money to a stranger they met in a WhatsApp group.\n\n**The safest move: check the number before you pay.** It takes 10 seconds and costs nothing.",
+      },
+      {
+        heading: "How to Check if a WhatsApp Number Is a Scammer",
+        content:
+          "**Method 1: ScamGuards (fastest)**\n1. Copy the WhatsApp number\n2. Go to **scamguards.app/search**\n3. Paste the number\n4. The AI cross-references it against the Malaysian scammer database and returns a risk score in seconds\n\nIf the number has been reported before, you'll see the scam type, risk level, and report count. If it's clean, that's a good sign — though not a guarantee.\n\n**Method 2: Google the number**\nPaste the number into Google with quotes: `\"+60123456789 scammer\"`. If it shows up in Lowyat forums, Facebook scam groups, or other complaint sites, it's been flagged before.\n\n**Method 3: Check on Semak Mule (PDRM)**\nThe police run a portal at https://ccid.rmp.gov.my/semakmule/ where you can check if a bank account number has been flagged as a \"mule account\" used in financial crime.\n\n**Method 4: Reverse lookup**\nApps like GetContact or Truecaller sometimes have community-tagged labels. If a number is widely tagged as \"SCAMMER\" or \"FRAUD\", that's a clear warning.",
+      },
+      {
+        heading: "Red Flags: How to Spot a WhatsApp Scammer",
+        content:
+          "**Profile red flags:**\n- New account (no profile picture, or stock photo profile pic)\n- Profile shows foreign country code but claims to be in Malaysia\n- No mutual groups or contacts\n- Account created recently (you can sometimes see this via WhatsApp Business)\n\n**Conversation red flags:**\n- **Pressure tactics:** \"Offer only valid today\", \"Another buyer is waiting\", \"Need to confirm now\"\n- **Too good to be true pricing:** Selling RM500 items for RM100, claiming it's urgent sale\n- **Asks to move off-platform:** Wants you to contact via a different number or app\n- **Refuses video call:** Won't show the item live on camera\n- **Wants bank transfer only:** Refuses DuitNow QR, refuses meetup, refuses COD\n- **Sends fake receipts or screenshots:** Payment confirmations that look off\n\n**The biggest red flag:** Any seller who insists on bank transfer before you receive the item and refuses all other arrangements is almost certainly a scammer.",
+      },
+      {
+        heading: "Common WhatsApp Scam Types in Malaysia (2025)",
+        content:
+          "**Buy-sell group scams**\nScammer joins Facebook or WhatsApp buy-sell groups, lists in-demand items (PS5, iPhones, concert tickets, trading cards) at attractive prices, collects payment, and disappears. The item never arrives.\n\n**\"Bank officer\" scams (Macau Scam variant)**\nCaller claims to be from your bank or PDRM, says your account is compromised, and instructs you to transfer funds to a \"safe account\". Bank officers will **never** ask you to transfer money.\n\n**Job scam via WhatsApp**\nSomeone messages you about a high-paying work-from-home job. After you \"accept\", they ask for a deposit or training fee. No job exists.\n\n**Investment group scams**\nAdded to a WhatsApp group with testimonials of high returns. Early \"investors\" (all fake accounts) show profit screenshots. You invest. You lose everything.\n\n**Parcel scam**\nMessage claiming you have an undelivered parcel and need to pay a customs/release fee via link. The link steals your banking credentials.",
+      },
+      {
+        heading: "What to Do If You've Already Paid a WhatsApp Scammer",
+        content:
+          "Act immediately — the first 30 minutes matter most.\n\n1. **Call your bank's fraud hotline** (not the general line) and request a fund recall:\n   - Maybank: 03-5891 4744\n   - CIMB: 03-6204 7788\n   - Public Bank: 03-2176 6000\n   - RHB: 03-9206 8118\n\n2. **Call NSRC at 997** — National Scam Response Centre coordinates cross-bank freezing of scammer accounts (8am–8pm daily)\n\n3. **Make a police report** at your nearest station or online at https://sfrv2.rmp.gov.my/\n\n4. **Report the number at ScamGuards** — go to **scamguards.app/submit**, paste the WhatsApp number and your conversation. This warns the next person who checks that number.\n\n5. **Report and block on WhatsApp** — open the chat → tap the contact name → Report → Block. This flags the account to WhatsApp for removal.\n\nFor a complete step-by-step guide: [How to Report a Scammer in Malaysia](/blog/how-to-report-scammer-malaysia)",
+      },
+      {
+        heading: "How to Report a WhatsApp Scammer's Number",
+        content:
+          "Reporting to multiple channels maximises impact:\n\n**ScamGuards** (warns the public immediately):\n- scamguards.app/submit — paste the number and conversation\n\n**MCMC** (gets the number blocked by telcos):\n- https://aduan.skmm.gov.my/\n- Hotline: 1-800-888-030\n- MCMC blocked 209,990 scammer numbers in 2024\n\n**WhatsApp itself:**\n- Open chat → Tap contact name → Scroll down → Report\n\n**PDRM Semak Mule:**\n- If they gave you a bank account: report at https://ccid.rmp.gov.my/semakmule/\n\nThe more reports a number accumulates in ScamGuards, the higher its risk score — making it easier for the next person to avoid the same trap.",
+      },
+    ],
+  },
+  {
     slug: "cara-lapor-penipu-malaysia",
     title: "Cara Lapor Penipu di Malaysia: Panduan Lengkap (2025)",
     metaTitle:
