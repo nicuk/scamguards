@@ -11,6 +11,7 @@ import {
   generateRootGraphSchema,
 } from "@/lib/seo-config";
 import { GoogleAnalytics } from "@/components/analytics";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -137,6 +138,7 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <GoogleAnalytics />
+        <Analytics />
         <LanguageProvider>
           <div className="min-h-screen flex flex-col">
             <Header />
