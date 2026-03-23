@@ -248,7 +248,7 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
   },
   {
-    slug: "get-money-back-after-scammed-malaysia",
+    slug: "how-to-get-money-back-scammed-malaysia",
     title: "How to Get Your Money Back After Being Scammed in Malaysia",
     metaTitle:
       "Get Money Back After Scam in Malaysia - Fund Recall Guide | ScamGuards",
