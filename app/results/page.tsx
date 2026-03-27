@@ -32,7 +32,7 @@ function ResultsContent() {
         // Build the search inputs from URL params
         const count = parseInt(searchParams.get("count") || "0");
         if (count === 0) {
-          setError("No search parameters provided");
+          setError("We couldn't load your search. Go back and try again.");
           setIsLoading(false);
           return;
         }
@@ -47,7 +47,7 @@ function ResultsContent() {
         }
 
         if (inputs.length === 0) {
-          setError("No valid search parameters");
+          setError("We couldn't read what you searched for. Please try the search page again.");
           setIsLoading(false);
           return;
         }
@@ -60,14 +60,14 @@ function ResultsContent() {
         });
 
         if (!response.ok) {
-          throw new Error("Failed to fetch results");
+          throw new Error("We couldn't load your results.");
         }
 
         const data = await response.json();
         setResult(data);
       } catch (err) {
         console.error("Search error:", err);
-        setError("Failed to fetch results. Please try again.");
+        setError("Something went wrong. Please try again.");
       } finally {
         setIsLoading(false);
       }
@@ -80,7 +80,7 @@ function ResultsContent() {
     return (
       <div className="flex flex-col items-center justify-center py-20">
         <Loader2 className="h-12 w-12 animate-spin text-primary mb-4" />
-        <p className="text-muted-foreground">Analyzing information...</p>
+        <p className="text-muted-foreground">Checking for matches...</p>
       </div>
     );
   }
@@ -90,14 +90,14 @@ function ResultsContent() {
       <div className="max-w-2xl mx-auto">
         <Alert variant="destructive">
           <AlertCircle className="h-4 w-4" />
-          <AlertTitle>Error</AlertTitle>
+          <AlertTitle>Something went wrong</AlertTitle>
           <AlertDescription>{error}</AlertDescription>
         </Alert>
         <div className="mt-6 flex justify-center">
           <Button asChild>
             <Link href="/search" className="inline-flex items-center gap-2">
               <ArrowLeft className="h-4 w-4 flex-shrink-0" />
-              <span>Try Again</span>
+              <span>Back to search</span>
             </Link>
           </Button>
         </div>
@@ -108,9 +108,9 @@ function ResultsContent() {
   if (!result) {
     return (
       <div className="text-center py-20">
-        <p className="text-muted-foreground">No results to display</p>
+        <p className="text-muted-foreground">Nothing to show here yet.</p>
         <Button asChild className="mt-4">
-          <Link href="/search">Start a Search</Link>
+          <Link href="/search">Check someone</Link>
         </Button>
       </div>
     );
@@ -133,14 +133,14 @@ function ResultsContent() {
           className="flex items-center justify-center gap-2 h-11 px-6 rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground text-sm font-medium transition-colors"
         >
           <Search className="h-4 w-4 flex-shrink-0" />
-          <span>Search Again</span>
+          <span>Check another</span>
         </Link>
         <Link
           href="/submit"
           className="flex items-center justify-center gap-2 h-11 px-6 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 text-sm font-medium transition-colors"
         >
           <FileText className="h-4 w-4 flex-shrink-0" />
-          <span>Report a Scam</span>
+          <span>Report this scammer</span>
         </Link>
       </div>
 
@@ -148,9 +148,9 @@ function ResultsContent() {
       {result.analysis.status === "suspicious" && (
         <div className="mt-6 text-center">
           <p className="text-sm text-muted-foreground">
-            Think this is incorrect?{" "}
+            Think this is wrong?{" "}
             <Link href="/dispute" className="text-primary hover:underline">
-              Submit a dispute
+              Let us know
             </Link>
           </p>
         </div>
@@ -163,9 +163,9 @@ export default function ResultsPage() {
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold mb-2">Search Results</h1>
+        <h1 className="text-3xl font-bold mb-2">Here's What We Found</h1>
         <p className="text-muted-foreground">
-          Analysis based on community-submitted reports
+          Based on what people in the community have reported
         </p>
       </div>
 
@@ -173,7 +173,7 @@ export default function ResultsPage() {
         fallback={
           <div className="flex flex-col items-center justify-center py-20">
             <Loader2 className="h-12 w-12 animate-spin text-primary mb-4" />
-            <p className="text-muted-foreground">Loading...</p>
+            <p className="text-muted-foreground">Getting your results...</p>
           </div>
         }
       >

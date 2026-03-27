@@ -62,7 +62,7 @@ export function ResultCard({
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Shield className="h-5 w-5" />
-            Assessment Summary
+            What We Found
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -73,10 +73,10 @@ export function ResultCard({
             <div className="mt-4 p-4 bg-muted/50 rounded-lg">
               <div className="flex items-center gap-2 mb-2">
                 <AlertCircle className="h-4 w-4 text-warning" />
-                <span className="font-medium">Report Information</span>
+                <span className="font-medium">What people reported</span>
               </div>
               <p className="text-sm text-muted-foreground">
-                Found in <strong>{reportCount}</strong> community report(s)
+                Found in <strong>{reportCount}</strong> community {reportCount === 1 ? "report" : "reports"}
                 {dateRange && (
                   <>
                     {" "}
@@ -97,13 +97,13 @@ export function ResultCard({
                 {verifiedCount > 0 && (
                   <Badge variant="success" className="flex items-center gap-1">
                     <ShieldCheck className="h-3 w-3" />
-                    {verifiedCount} verified with evidence
+                    {verifiedCount} backed up with proof
                   </Badge>
                 )}
                 {disputedCount > 0 && (
                   <Badge variant="warning" className="flex items-center gap-1">
                     <ShieldAlert className="h-3 w-3" />
-                    {disputedCount} disputed
+                    {disputedCount} challenged
                   </Badge>
                 )}
               </div>
@@ -116,9 +116,9 @@ export function ResultCard({
       {result.matched_fields.length > 0 && (
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">Matched Information</CardTitle>
+            <CardTitle className="text-lg">What Matched</CardTitle>
             <CardDescription>
-              These data types matched with existing reports
+              These contact details matched reports we already have
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -140,10 +140,10 @@ export function ResultCard({
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
               <Info className="h-5 w-5" />
-              Analysis Factors
+              Why We Think This
             </CardTitle>
             <CardDescription>
-              Factors that contributed to this assessment
+              Things that affected the result
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -164,12 +164,10 @@ export function ResultCard({
         <div className="flex items-start gap-3">
           <Info className="h-5 w-5 text-muted-foreground flex-shrink-0 mt-0.5" />
           <div className="text-sm text-muted-foreground">
-            <p className="font-medium mb-1">Important Disclaimer</p>
+            <p className="font-medium mb-1">Keep in mind</p>
             <p>
-              This assessment is based on community-submitted reports and should
-              not be treated as definitive proof of fraud. Always exercise
-              caution and verify information through official channels when
-              possible.
+              This is based on what people have reported — it's not proof by itself.
+              Be careful, and check with your bank or the police if you're unsure.
             </p>
           </div>
         </div>

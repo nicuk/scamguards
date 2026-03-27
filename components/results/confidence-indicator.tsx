@@ -20,7 +20,7 @@ export function ConfidenceIndicator({
       case "suspicious":
         return {
           icon: AlertTriangle,
-          label: "Suspicious",
+          label: "Likely a Scammer",
           bgColor: "bg-destructive/10",
           textColor: "text-destructive",
           borderColor: "border-destructive/30",
@@ -29,7 +29,7 @@ export function ConfidenceIndicator({
       case "no_known_info":
         return {
           icon: HelpCircle,
-          label: "No Known Information",
+          label: "No Reports Found",
           bgColor: "bg-muted",
           textColor: "text-muted-foreground",
           borderColor: "border-muted-foreground/30",
@@ -38,7 +38,7 @@ export function ConfidenceIndicator({
       case "clear":
         return {
           icon: CheckCircle,
-          label: "Clear",
+          label: "Looks Safe",
           bgColor: "bg-success/10",
           textColor: "text-success",
           borderColor: "border-success/30",
@@ -47,7 +47,7 @@ export function ConfidenceIndicator({
       default:
         return {
           icon: HelpCircle,
-          label: "Unknown",
+          label: "Not Sure",
           bgColor: "bg-muted",
           textColor: "text-muted-foreground",
           borderColor: "border-muted-foreground/30",
@@ -82,7 +82,7 @@ export function ConfidenceIndicator({
             {config.label}
           </h2>
           <p className="text-sm text-muted-foreground">
-            Confidence: {confidence}%
+            How sure we are: {confidence}%
           </p>
         </div>
       </div>
