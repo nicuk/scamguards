@@ -33,9 +33,9 @@ const recentTemplates = new Map<string, { count: number; firstSeen: number }>();
 
 function cleanOldTemplates() {
   const oneHourAgo = Date.now() - 3600000;
-  for (const [key, val] of recentTemplates) {
+  recentTemplates.forEach((val, key) => {
     if (val.firstSeen < oneHourAgo) recentTemplates.delete(key);
-  }
+  });
 }
 
 export function scoreCredibility(
