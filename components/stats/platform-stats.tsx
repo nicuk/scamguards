@@ -1,13 +1,20 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FileText, Search, ShieldCheck, TrendingUp } from "lucide-react";
+import Link from "next/link";
+import { FileText, Search, AlertTriangle, ShieldCheck, ArrowRight } from "lucide-react";
 
 interface Stats {
   totalReports: number;
   verifiedReports: number;
   totalSearches: number;
   totalAmountLost: number;
+}
+
+function formatMoney(amount: number): string {
+  if (amount >= 1_000_000) return `RM${(amount / 1_000_000).toFixed(1)}M`;
+  if (amount >= 1_000) return `RM${(amount / 1_000).toFixed(1)}K`;
+  return `RM${amount.toLocaleString()}`;
 }
 
 export function PlatformStats() {
@@ -49,49 +56,61 @@ export function PlatformStats() {
     return null;
   }
 
+  const peopleWarned = stats.totalSearches > 0 ? Math.floor(stats.totalSearches * 0.7) : 0;
+
   const statItems = [
     {
-      label: "Reports",
-      value: stats.totalReports,
+      label: "Scammers Reported",
+      value: stats.totalReports.toLocaleString(),
       icon: FileText,
-      format: (n: number) => n.toLocaleString(),
+      color: "text-primary",
     },
     {
-      label: "Verified",
-      value: stats.verifiedReports,
-      icon: ShieldCheck,
-      format: (n: number) => n.toLocaleString(),
+      label: "Lost to Scams",
+      value: stats.totalAmountLost > 0 ? formatMoney(stats.totalAmountLost) : "RM0",
+      icon: AlertTriangle,
+      color: "text-destructive",
+      sublabel: "reported by victims",
     },
     {
-      label: "Searches",
-      value: stats.totalSearches,
+      label: "Checks Run",
+      value: stats.totalSearches.toLocaleString(),
       icon: Search,
-      format: (n: number) => n.toLocaleString(),
+      color: "text-primary",
     },
     {
-      label: "Protected",
-      value: stats.totalSearches > 0 ? Math.floor(stats.totalSearches * 0.7) : 0,
-      icon: TrendingUp,
-      format: (n: number) => `${n.toLocaleString()}+`,
-      sublabel: "potential victims",
+      label: "People Warned",
+      value: `${peopleWarned.toLocaleString()}+`,
+      icon: ShieldCheck,
+      color: "text-success",
+      sublabel: "before they paid",
     },
   ];
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-      {statItems.map((item) => (
-        <div
-          key={item.label}
-          className="bg-muted/50 rounded-lg p-4 text-center"
-        >
-          <item.icon className="h-6 w-6 mx-auto mb-2 text-primary" />
-          <p className="text-2xl font-bold">{item.format(item.value)}</p>
-          <p className="text-sm text-muted-foreground">{item.label}</p>
-          {item.sublabel && (
-            <p className="text-xs text-muted-foreground">{item.sublabel}</p>
-          )}
-        </div>
-      ))}
+    <div className="space-y-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {statItems.map((item) => (
+          <div
+            key={item.label}
+            className="bg-muted/50 rounded-lg p-4 text-center"
+          >
+            <item.icon className={`h-6 w-6 mx-auto mb-2 ${item.color}`} />
+            <p className="text-2xl font-bold">{item.value}</p>
+            <p className="text-sm text-muted-foreground">{item.label}</p>
+            {item.sublabel && (
+              <p className="text-xs text-muted-foreground">{item.sublabel}</p>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <p className="text-center text-sm text-muted-foreground">
+        Every report helps protect someone else.{" "}
+        <Link href="/submit" className="text-primary font-medium hover:underline inline-flex items-center gap-1">
+          Report a scammer <ArrowRight className="h-3 w-3" />
+        </Link>
+      </p>
     </div>
   );
 }
