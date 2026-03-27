@@ -2,13 +2,14 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { FileText, Search, AlertTriangle, ShieldCheck, ArrowRight } from "lucide-react";
+import { FileText, Search, AlertTriangle, Database, ArrowRight } from "lucide-react";
 
 interface Stats {
   totalReports: number;
   verifiedReports: number;
   totalSearches: number;
   totalAmountLost: number;
+  totalDataPoints: number;
 }
 
 function formatMoney(amount: number): string {
@@ -56,14 +57,19 @@ export function PlatformStats() {
     return null;
   }
 
-  const peopleWarned = stats.totalSearches > 0 ? Math.floor(stats.totalSearches * 0.7) : 0;
-
   const statItems = [
     {
       label: "Scammers Reported",
       value: stats.totalReports.toLocaleString(),
       icon: FileText,
       color: "text-primary",
+    },
+    {
+      label: "Numbers & Accounts Flagged",
+      value: stats.totalDataPoints.toLocaleString(),
+      icon: Database,
+      color: "text-primary",
+      sublabel: "phones, emails, bank accounts",
     },
     {
       label: "Lost to Scams",
@@ -77,13 +83,6 @@ export function PlatformStats() {
       value: stats.totalSearches.toLocaleString(),
       icon: Search,
       color: "text-primary",
-    },
-    {
-      label: "People Warned",
-      value: `${peopleWarned.toLocaleString()}+`,
-      icon: ShieldCheck,
-      color: "text-success",
-      sublabel: "before they paid",
     },
   ];
 

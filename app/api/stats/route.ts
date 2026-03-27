@@ -19,6 +19,7 @@ export async function GET(request: NextRequest) {
         verifiedReports: stats.verified_reports || 0,
         totalSearches: stats.total_searches || 0,
         totalAmountLost: stats.total_amount_lost || 0,
+        totalDataPoints: stats.total_data_points || 0,
       });
     }
 
@@ -52,11 +53,20 @@ export async function GET(request: NextRequest) {
       console.log("Search count error:", searchError.message);
     }
 
+    const { count: dataPointCount, error: dpError } = await supabase
+      .from("data_points")
+      .select("*", { count: "exact", head: true });
+
+    if (dpError) {
+      console.log("Data points count error:", dpError.message);
+    }
+
     return NextResponse.json({
       totalReports: reportCount || 0,
       verifiedReports: verifiedCount || 0,
       totalSearches: searchCount || 0,
       totalAmountLost: 0,
+      totalDataPoints: dataPointCount || 0,
     });
   } catch (error) {
     console.error("Stats API error:", error);
@@ -66,6 +76,7 @@ export async function GET(request: NextRequest) {
       verifiedReports: 0,
       totalSearches: 0,
       totalAmountLost: 0,
+      totalDataPoints: 0,
     });
   }
 }
