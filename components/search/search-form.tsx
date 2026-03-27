@@ -65,7 +65,7 @@ export function SearchForm() {
     }
 
     if (validPoints.length === 0) {
-      setError("Please enter at least one value to search");
+      setError("Please type in at least one detail to search.");
       return;
     }
 
@@ -98,13 +98,23 @@ export function SearchForm() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Search className="h-5 w-5" />
-          Check for Reports
+          Enter the Details
         </CardTitle>
         <CardDescription>
-          Paste a scam message for AI extraction, or enter details manually.
+          Type in a phone number, email, or bank account and we'll check if it's been reported as a scammer.
         </CardDescription>
       </CardHeader>
       <CardContent>
+        {/* How it works explanation */}
+        <div className="mb-6 p-4 rounded-lg bg-muted/60 border text-sm space-y-2">
+          <p className="font-medium">What you'll see after checking:</p>
+          <ul className="text-muted-foreground space-y-1">
+            <li className="flex items-start gap-2"><span className="mt-0.5 shrink-0">→</span><span>A risk score showing how likely this contact is a scammer.</span></li>
+            <li className="flex items-start gap-2"><span className="mt-0.5 shrink-0">→</span><span>How many times this number, email, or account has been reported.</span></li>
+            <li className="flex items-start gap-2"><span className="mt-0.5 shrink-0">→</span><span>The types of scams linked to it and any other accounts connected to the same scammer.</span></li>
+          </ul>
+        </div>
+
         {/* Mode Toggle */}
         <div className="flex gap-2 mb-6 p-1 bg-muted rounded-lg">
           <button
@@ -117,7 +127,7 @@ export function SearchForm() {
             }`}
           >
             <Sparkles className="h-4 w-4" />
-            Smart Paste
+            Paste a Message
           </button>
           <button
             type="button"
@@ -129,7 +139,7 @@ export function SearchForm() {
             }`}
           >
             <List className="h-4 w-4" />
-            Manual Entry
+            Type It In
           </button>
         </div>
 
@@ -143,7 +153,7 @@ export function SearchForm() {
             </div>
             <div className="relative flex justify-center text-xs uppercase">
               <span className="bg-card px-2 text-muted-foreground">
-                or enter manually below
+                or type it in below
               </span>
             </div>
           </div>
@@ -155,7 +165,7 @@ export function SearchForm() {
             <>
               <div className="space-y-2">
                 <label className="text-sm font-medium">
-                  {mode === "smart" ? "Or enter manually:" : "Information to Check"}
+                  {mode === "smart" ? "Or type it in below:" : "Details to check:"}
                 </label>
                 <DataPointInput
                   dataPoints={dataPoints}
@@ -196,8 +206,7 @@ export function SearchForm() {
           )}
 
           <p className="text-xs text-muted-foreground text-center">
-            Results show community-reported information and should not be
-            treated as definitive proof of fraud. Always exercise caution.
+            Results are based on community reports. Always use your own judgement too.
           </p>
         </form>
       </CardContent>

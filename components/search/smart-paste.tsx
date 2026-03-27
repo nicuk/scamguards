@@ -29,7 +29,7 @@ export function SmartPaste({ onExtracted, onScamTypeDetected }: SmartPasteProps)
 
   const handleExtract = async () => {
     if (!text.trim()) {
-      setError("Please paste some text to analyze");
+      setError("Please paste a message first.");
       return;
     }
 
@@ -90,19 +90,18 @@ export function SmartPaste({ onExtracted, onScamTypeDetected }: SmartPasteProps)
     <div className="space-y-4">
       <div className="flex items-center gap-2 mb-2">
         <Sparkles className="h-5 w-5 text-primary" />
-        <span className="font-medium">Smart Paste</span>
+        <span className="font-medium">Paste a Message</span>
         <Badge variant="secondary" className="text-xs">AI-Powered</Badge>
       </div>
 
       <p className="text-sm text-muted-foreground">
-        Paste a scam message, WhatsApp conversation, or any text. AI will automatically
-        extract phone numbers, emails, bank accounts, and other details.
+        Paste any suspicious message or chat. AI will find the phone numbers, emails, and bank accounts in it — then check if they've been reported as a scammer.
       </p>
 
       <Textarea
         value={text}
         onChange={(e) => setText(e.target.value)}
-        placeholder="Paste the scam message here...
+        placeholder="Paste the suspicious message here...
 
 Example:
 'Hello, I am selling One Piece cards. Please transfer RM500 to my Maybank account 1234567890. Contact me at 012-345 6789 or email me at seller@email.com'"
@@ -126,12 +125,12 @@ Example:
         {isExtracting ? (
           <>
             <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-            Analyzing with AI...
+            Scanning your message...
           </>
         ) : (
           <>
             <Sparkles className="h-4 w-4 mr-2" />
-            Extract Data Points
+            Scan This Message
           </>
         )}
       </Button>
@@ -142,14 +141,15 @@ Example:
           <div className="flex items-center gap-2">
             <CheckCircle className="h-5 w-5 text-success" />
             <span className="font-medium">
-              Found {extractedPoints.length} data point(s)
+              Found {extractedPoints.length} contact detail{extractedPoints.length !== 1 ? "s" : ""}
             </span>
           </div>
 
           {suggestedScamType && (
             <div className="text-sm">
-              <span className="text-muted-foreground">Detected scam type: </span>
+              <span className="text-muted-foreground">Looks like a </span>
               <Badge variant="outline">{suggestedScamType.replace(/_/g, " ")}</Badge>
+              <span className="text-muted-foreground"> scam</span>
             </div>
           )}
 
@@ -192,7 +192,7 @@ Example:
               <div className="flex gap-2">
                 <Button type="button" onClick={handleConfirm} className="flex-1">
                   <CheckCircle className="h-4 w-4 mr-2" />
-                  Use These Data Points
+                  Search for Reports
                 </Button>
                 <Button
                   type="button"
@@ -205,7 +205,7 @@ Example:
             </>
           ) : (
             <p className="text-sm text-muted-foreground">
-              No data points found. Try pasting more detailed text or enter manually below.
+              No contact details found in that message. Try pasting more of the conversation, or type them in yourself below.
             </p>
           )}
         </div>

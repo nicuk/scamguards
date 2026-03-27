@@ -62,7 +62,7 @@ export function SmartReportPaste({ onAnalyzed, onBatchAnalyzed }: SmartReportPas
 
   const handleAnalyze = async () => {
     if (!text.trim()) {
-      setError("Please paste your scam experience");
+      setError("Please paste a message or write what happened first.");
       return;
     }
 
@@ -181,13 +181,12 @@ export function SmartReportPaste({ onAnalyzed, onBatchAnalyzed }: SmartReportPas
     <div className="space-y-4">
       <div className="flex items-center gap-2 mb-2">
         <Sparkles className="h-5 w-5 text-primary" />
-        <span className="font-medium">Smart Report</span>
+        <span className="font-medium">Tell My Story</span>
         <Badge variant="secondary" className="text-xs">AI-Powered</Badge>
       </div>
 
       <p className="text-sm text-muted-foreground">
-        Paste your scam experience - the full story, chat messages, or a list of scammers.
-        AI will extract details and detect multiple scammers automatically.
+        Paste the chat, message, or just write what happened in your own words. AI will read it and pull out the important details for you — even if there are multiple scammers.
       </p>
 
       <Textarea
@@ -222,12 +221,12 @@ Yee Rong - Carousell - Labubu scam'"
         {isAnalyzing ? (
           <>
             <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-            Analyzing your report...
+            Reading your story...
           </>
         ) : (
           <>
             <Sparkles className="h-4 w-4 mr-2" />
-            Analyze & Extract Details
+            Read My Story
           </>
         )}
       </Button>
@@ -239,12 +238,12 @@ Yee Rong - Carousell - Labubu scam'"
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <CheckCircle className="h-5 w-5 text-green-500" />
-              <span className="font-medium">Analysis Complete</span>
+              <span className="font-medium">Done! Here's what we found</span>
             </div>
             {result.isMultiple && (
               <Badge className="bg-blue-100 text-blue-800">
                 <Users className="h-3 w-3 mr-1" />
-                {result.scammers.length} Scammers Detected
+                {result.scammers.length} Scammers Found
               </Badge>
             )}
           </div>
@@ -255,8 +254,8 @@ Yee Rong - Carousell - Labubu scam'"
               <Alert className="bg-blue-50 border-blue-200">
                 <Users className="h-4 w-4 text-blue-600" />
                 <AlertDescription className="text-blue-800">
-                  We detected <strong>{result.scammers.length} different scammers</strong> in your submission.
-                  Please review each one and select which to report.
+                  We found <strong>{result.scammers.length} different scammers</strong> in what you wrote.
+                  Tick the ones you want to report.
                 </AlertDescription>
               </Alert>
 
@@ -286,7 +285,7 @@ Yee Rong - Carousell - Labubu scam'"
                       <User className="h-4 w-4 text-muted-foreground" />
                       <span className="font-medium">{scammer.primaryIdentifier}</span>
                       <Badge variant="outline" className="text-xs">
-                        {scammer.dataPoints.length} data points
+                        {scammer.dataPoints.length} contact detail{scammer.dataPoints.length !== 1 ? "s" : ""}
                       </Badge>
                     </div>
                     <div className="flex items-center gap-2">
@@ -376,14 +375,14 @@ Yee Rong - Carousell - Labubu scam'"
                   disabled={selectedCount === 0}
                 >
                   <CheckCircle className="h-4 w-4 mr-2" />
-                  Submit {selectedCount} Report{selectedCount !== 1 ? "s" : ""}
+                  Report {selectedCount > 0 ? `These ${selectedCount} Scammer${selectedCount !== 1 ? "s" : ""}` : "Selected Scammers"}
                 </Button>
                 <Button
                   type="button"
                   variant="outline"
                   onClick={handleSingleConfirm}
                 >
-                  Edit Manually
+                  Edit Before Reporting
                 </Button>
               </div>
             </div>
@@ -436,7 +435,7 @@ Yee Rong - Carousell - Labubu scam'"
                   {result.scammers[0].dataPoints.length > 0 && (
                     <div>
                       <p className="text-sm font-medium mb-2">
-                        Extracted Data Points ({result.scammers[0].dataPoints.length}):
+                        Contact details found ({result.scammers[0].dataPoints.length}):
                       </p>
                       <div className="space-y-2">
                         {result.scammers[0].dataPoints.map((point, index) => (
@@ -476,14 +475,14 @@ Yee Rong - Carousell - Labubu scam'"
               <div className="flex gap-2 pt-2">
                 <Button type="button" onClick={handleSingleConfirm} className="flex-1">
                   <CheckCircle className="h-4 w-4 mr-2" />
-                  Use This Information
+                  Report This Scammer
                 </Button>
                 <Button
                   type="button"
                   variant="outline"
                   onClick={handleSingleConfirm}
                 >
-                  Edit Manually
+                  Edit Before Reporting
                 </Button>
               </div>
             </div>

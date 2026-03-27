@@ -366,28 +366,27 @@ export default function SubmitPage() {
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
             <FileText className="h-8 w-8 text-primary" />
           </div>
-          <h1 className="text-3xl font-bold mb-2">Report a Scam</h1>
+          <h1 className="text-3xl font-bold mb-2">Report a Scammer</h1>
           <p className="text-muted-foreground">
-            Help protect others by sharing details about suspicious activity
+            Takes 2 minutes. Help warn others before they get scammed too.
           </p>
         </div>
 
         {/* Warning */}
         <Alert className="mb-6">
           <AlertTriangle className="h-4 w-4" />
-          <AlertTitle>Important</AlertTitle>
+          <AlertTitle>Please read first</AlertTitle>
           <AlertDescription>
-            Only submit reports about genuine scam attempts. False reports may
-            harm innocent people and could have legal consequences.
+            Only report real scams. Making up a report could hurt someone who has done nothing wrong.
           </AlertDescription>
         </Alert>
 
         {/* Form */}
         <Card>
           <CardHeader>
-            <CardTitle>Scam Details</CardTitle>
+            <CardTitle>Tell Us What Happened</CardTitle>
             <CardDescription>
-              Paste your story and let AI extract the details, or fill in manually.
+              Tell us your story. AI will read it and fill in the details for you.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -403,7 +402,7 @@ export default function SubmitPage() {
                 }`}
               >
                 <Sparkles className="h-4 w-4" />
-                Smart Report
+                Tell My Story
               </button>
               <button
                 type="button"
@@ -415,7 +414,7 @@ export default function SubmitPage() {
                 }`}
               >
                 <List className="h-4 w-4" />
-                Manual Entry
+                Fill It In Myself
               </button>
             </div>
 
@@ -432,7 +431,7 @@ export default function SubmitPage() {
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
                   <span className="bg-card px-2 text-muted-foreground">
-                    or fill in manually below
+                    or fill it in yourself below
                   </span>
                 </div>
               </div>
@@ -445,26 +444,26 @@ export default function SubmitPage() {
                   {/* Scam Type */}
                   <div className="space-y-2">
                     <Label htmlFor="scamType">
-                      Scam Type <span className="text-destructive">*</span>
+                      What kind of scam was it? <span className="text-destructive">*</span>
                     </Label>
                     <Select
                       id="scamType"
                       value={scamType}
                       onChange={(e) => setScamType(e.target.value)}
                       options={scamTypeOptions}
-                      placeholder="Select scam type"
+                      placeholder="Pick the closest one"
                     />
                   </div>
 
                   {/* Platform */}
                   <div className="space-y-2">
-                    <Label htmlFor="platform">Platform (Optional)</Label>
+                    <Label htmlFor="platform">Where did it happen? (Optional)</Label>
                     <Select
                       id="platform"
                       value={platform}
                       onChange={(e) => setPlatform(e.target.value)}
                       options={platformOptions}
-                      placeholder="Where did this happen?"
+                      placeholder="e.g. WhatsApp, Carousell, Facebook..."
                     />
                   </div>
 
@@ -490,26 +489,25 @@ export default function SubmitPage() {
                       onChange={setDataPoints}
                     />
                     <p className="text-xs text-muted-foreground">
-                      Add phone numbers, emails, bank accounts, or other identifiers
-                      related to this scam.
+                      Add the scammer's phone number, email, bank account, or username.
                     </p>
                   </div>
 
                   {/* Description */}
                   <div className="space-y-2">
-                    <Label htmlFor="description">Description (Optional)</Label>
+                    <Label htmlFor="description">Tell us more (Optional)</Label>
                     <Textarea
                       id="description"
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
-                      placeholder="Describe what happened (e.g., how the scammer contacted you, what they asked for)"
+                      placeholder="How did they contact you? What did they ask for? The more you share, the more it helps others."
                       rows={4}
                     />
                   </div>
 
                   {/* Amount Lost */}
                   <div className="space-y-2">
-                    <Label htmlFor="amountLost">Amount Lost (Optional)</Label>
+                    <Label htmlFor="amountLost">How much did you lose? (Optional)</Label>
                     <div className="flex gap-2">
                       <span className="flex items-center px-3 bg-muted rounded-l-md border border-r-0 text-sm text-muted-foreground">
                         RM
@@ -526,7 +524,7 @@ export default function SubmitPage() {
                       />
                     </div>
                     <p className="text-xs text-muted-foreground">
-                      If you lost money, enter the amount. This helps track the impact of scams.
+                      If you lost money, enter the amount. It helps show how serious this scammer is.
                     </p>
                   </div>
 
@@ -547,9 +545,7 @@ export default function SubmitPage() {
                       className="mt-1"
                     />
                     <label htmlFor="confirmed" className="text-sm">
-                      I confirm that this information is accurate to the best of my
-                      knowledge and I understand that false reports may harm
-                      innocent people.
+                      I promise this is true. I know that making up reports is wrong and could hurt innocent people.
                     </label>
                   </div>
 
