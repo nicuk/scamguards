@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { generateReporterHash } from "@/lib/utils/fingerprint";
 import {
   FileText,
   Loader2,
@@ -76,6 +77,11 @@ export default function SubmitPage() {
     { id: crypto.randomUUID(), type: "phone", value: "" },
   ]);
   const [confirmed, setConfirmed] = useState(false);
+  const [reporterHash, setReporterHash] = useState<string | null>(null);
+
+  useEffect(() => {
+    generateReporterHash().then(setReporterHash).catch(() => {});
+  }, []);
 
   const scamTypeOptions = Object.entries(SCAM_TYPES).map(([value, label]) => ({
     value,
@@ -150,6 +156,7 @@ export default function SubmitPage() {
             platform: scammer.platform || null,
             description: scammer.summary || `Scam report for ${scammer.primaryIdentifier}`,
             amountLost: scammer.amountLost,
+            reporterHash,
             dataPoints: scammer.dataPoints.map((dp) => ({
               type: dp.type,
               value: dp.value,
@@ -217,6 +224,7 @@ export default function SubmitPage() {
           value: dp.value,
         }))));
         formData.append("evidence", evidenceFile);
+        if (reporterHash) formData.append("reporterHash", reporterHash);
 
         const response = await fetch("/api/submit", {
           method: "POST",
@@ -243,6 +251,7 @@ export default function SubmitPage() {
             country,
             description: description || null,
             amountLost: amountLost ? parseFloat(amountLost) : null,
+            reporterHash,
             dataPoints: validPoints.map((dp) => ({
               type: dp.type,
               value: dp.value,

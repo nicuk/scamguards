@@ -15,6 +15,7 @@ interface SearchResult {
   dateRange?: { earliest: string; latest: string };
   verifiedCount?: number;
   disputedCount?: number;
+  uniqueReporters?: number;
 }
 
 function ResultsContent() {
@@ -124,6 +125,7 @@ function ResultsContent() {
         dateRange={result.dateRange}
         verifiedCount={result.verifiedCount}
         disputedCount={result.disputedCount}
+        uniqueReporters={result.uniqueReporters}
       />
 
       {/* Actions */}

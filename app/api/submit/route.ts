@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { normalizeDataPoint } from "@/lib/utils/normalize";
+import { scoreCredibility } from "@/lib/utils/credibility";
 import { SCAM_TYPES } from "@/lib/constants";
 
 // Hash IP for privacy
@@ -28,21 +29,22 @@ export async function POST(request: NextRequest) {
     
     let scamType: string;
     let platform: string | null;
-    let country: string = "MY"; // Default to Malaysia
+    let country: string = "MY";
     let description: string | null;
     let amountLost: number | null = null;
     let dataPoints: { type: string; value: string }[];
     let evidenceUrl: string | null = null;
     let isVerified = false;
+    let reporterHash: string | null = null;
 
     if (contentType.includes("multipart/form-data")) {
-      // Parse FormData (with file upload)
       const formData = await request.formData();
       
       scamType = formData.get("scamType") as string;
       platform = (formData.get("platform") as string) || null;
       country = (formData.get("country") as string) || "MY";
       description = (formData.get("description") as string) || null;
+      reporterHash = (formData.get("reporterHash") as string) || null;
       const amountStr = formData.get("amountLost") as string;
       amountLost = amountStr ? parseFloat(amountStr) : null;
       dataPoints = JSON.parse(formData.get("dataPoints") as string || "[]");
@@ -83,6 +85,7 @@ export async function POST(request: NextRequest) {
       description = body.description || null;
       amountLost = body.amountLost || null;
       dataPoints = body.dataPoints || [];
+      reporterHash = body.reporterHash || null;
     }
 
     // Validation
@@ -100,7 +103,18 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create the report
+    // Credibility scoring (no AI, pure heuristics + template detection)
+    const credibility = scoreCredibility(
+      description,
+      dataPoints.length,
+      scamType,
+      ipHash
+    );
+
+    // Low credibility → held for moderation, not immediately visible
+    const reportStatus = credibility.level === "low" ? "pending" : "active";
+
+    // Create the report with reporter_hash (activates DB reputation triggers)
     const { data: report, error: reportError } = await supabase
       .from("reports")
       .insert({
@@ -113,7 +127,8 @@ export async function POST(request: NextRequest) {
         currency: amountLost ? "MYR" : null,
         is_verified: isVerified,
         is_disputed: false,
-        status: "active",
+        status: reportStatus,
+        reporter_hash: reporterHash,
       })
       .select()
       .single();
@@ -191,7 +206,7 @@ export async function POST(request: NextRequest) {
                       maxExistingReportCount >= 5 ? "HIGH" :
                       maxExistingReportCount >= 3 ? "MEDIUM" : "LOW";
 
-    // Log the submission (audit trail)
+    // Log the submission with credibility info
     await supabase.from("audit_logs").insert({
       action: "submit",
       ip_hash: ipHash,
@@ -202,6 +217,10 @@ export async function POST(request: NextRequest) {
         has_evidence: isVerified,
         has_existing_reports: hasExistingReports,
         max_report_count: maxExistingReportCount + 1,
+        credibility_score: credibility.score,
+        credibility_level: credibility.level,
+        credibility_flags: credibility.flags,
+        has_reporter_hash: !!reporterHash,
       },
     });
 
@@ -209,7 +228,7 @@ export async function POST(request: NextRequest) {
       success: true,
       reportId: report.id,
       isVerified,
-      // New: Duplicate detection info
+      isPending: reportStatus === "pending",
       duplicateInfo: {
         hasExistingReports,
         totalPreviousReports: maxExistingReportCount,

@@ -90,6 +90,7 @@ export async function POST(request: NextRequest) {
     let verifiedCount = 0;
     let disputedCount = 0;
     let totalReportCount = 0;
+    let uniqueReporters = 0;
     let confidenceScore = 50;
     let heatLevel = "LOW";
     
@@ -102,6 +103,12 @@ export async function POST(request: NextRequest) {
       
       verifiedCount = matchedReports.filter((r) => r.is_verified).length;
       disputedCount = matchedReports.filter((r) => r.is_disputed).length;
+      
+      // Count unique reporters for corroboration
+      const reporterHashes = new Set(
+        matchedReports.map((r) => r.reporter_hash).filter(Boolean)
+      );
+      uniqueReporters = reporterHashes.size;
       
       // Get the highest report_count from matched data points
       const reportCounts = allMatches
@@ -142,11 +149,13 @@ export async function POST(request: NextRequest) {
       dateRange,
       verifiedCount,
       disputedCount,
-      // New: Scammer profile stats
+      uniqueReporters,
       scammerProfile: {
         totalReportCount,
         confidenceScore,
         heatLevel,
+        uniqueReporters,
+        corroborated: uniqueReporters >= 2,
         message: totalReportCount > 1 
           ? `Reported ${totalReportCount} times by the community`
           : totalReportCount === 1 

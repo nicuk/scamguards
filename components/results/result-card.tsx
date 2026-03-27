@@ -21,6 +21,8 @@ import {
   Shield,
   ShieldCheck,
   ShieldAlert,
+  Users,
+  AlertTriangle,
 } from "lucide-react";
 
 interface ResultCardProps {
@@ -29,6 +31,7 @@ interface ResultCardProps {
   dateRange?: { earliest: string; latest: string };
   verifiedCount?: number;
   disputedCount?: number;
+  uniqueReporters?: number;
 }
 
 export function ResultCard({ 
@@ -37,6 +40,7 @@ export function ResultCard({
   dateRange,
   verifiedCount = 0,
   disputedCount = 0,
+  uniqueReporters = 0,
 }: ResultCardProps) {
   const getImpactIcon = (impact: "positive" | "negative" | "neutral") => {
     switch (impact) {
@@ -77,6 +81,9 @@ export function ResultCard({
               </div>
               <p className="text-sm text-muted-foreground">
                 Found in <strong>{reportCount}</strong> community {reportCount === 1 ? "report" : "reports"}
+                {uniqueReporters >= 2 && (
+                  <> from <strong>{uniqueReporters} different people</strong></>
+                )}
                 {dateRange && (
                   <>
                     {" "}
@@ -92,8 +99,19 @@ export function ResultCard({
                 )}
               </p>
               
-              {/* Verification badges */}
               <div className="flex flex-wrap gap-2 mt-3">
+                {uniqueReporters >= 2 && (
+                  <Badge variant="destructive" className="flex items-center gap-1">
+                    <Users className="h-3 w-3" />
+                    Confirmed by {uniqueReporters} people
+                  </Badge>
+                )}
+                {reportCount === 1 && uniqueReporters <= 1 && (
+                  <Badge variant="outline" className="flex items-center gap-1">
+                    <AlertTriangle className="h-3 w-3" />
+                    Single report — not yet confirmed by others
+                  </Badge>
+                )}
                 {verifiedCount > 0 && (
                   <Badge variant="success" className="flex items-center gap-1">
                     <ShieldCheck className="h-3 w-3" />
