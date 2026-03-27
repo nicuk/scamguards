@@ -4,7 +4,12 @@ import { normalizeDataPoint } from "@/lib/utils/normalize";
 import { scoreCredibility } from "@/lib/utils/credibility";
 import { SCAM_TYPES } from "@/lib/constants";
 
-// Hash IP for privacy
+// Validate reporter_hash format to prevent injection/impersonation
+function isValidReporterHash(hash: string | null): boolean {
+  if (!hash) return false;
+  return /^rh_[0-9a-f]{32}$/.test(hash);
+}
+
 function hashIP(ip: string): string {
   let hash = 0;
   for (let i = 0; i < ip.length; i++) {
@@ -103,7 +108,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Credibility scoring (no AI, pure heuristics + template detection)
+    // Sanitize reporter_hash — reject anything that doesn't match our format
+    if (reporterHash && !isValidReporterHash(reporterHash)) {
+      reporterHash = null;
+    }
+
     const credibility = scoreCredibility(
       description,
       dataPoints.length,

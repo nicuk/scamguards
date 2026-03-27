@@ -66,8 +66,13 @@ export function scoreCredibility(
   if (dataPointCount >= 3) score += 10;
   else if (dataPointCount >= 2) score += 5;
 
-  // Has evidence (caller sets this separately, but scam type specificity helps)
   if (scamType && scamType !== "other") score += 5;
+
+  // Combined low-effort signal: no description + generic type + minimal data
+  if (wordCount === 0 && (!scamType || scamType === "other") && dataPointCount <= 1) {
+    score -= 10;
+    flags.push("zero_effort");
+  }
 
   // --- Template / spam detection ---
   cleanOldTemplates();

@@ -57,6 +57,7 @@ export default function SubmitPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
+  const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [batchSubmitCount, setBatchSubmitCount] = useState(0);
   const [duplicateInfo, setDuplicateInfo] = useState<{
@@ -238,6 +239,7 @@ export default function SubmitPage() {
 
         const result = await response.json();
         setIsVerified(result.isVerified || false);
+        setIsPending(result.isPending || false);
         if (result.duplicateInfo) {
           setDuplicateInfo(result.duplicateInfo);
         }
@@ -265,6 +267,7 @@ export default function SubmitPage() {
         }
 
         const result = await response.json();
+        setIsPending(result.isPending || false);
         if (result.duplicateInfo) {
           setDuplicateInfo(result.duplicateInfo);
         }
@@ -296,6 +299,12 @@ export default function SubmitPage() {
             <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
               <Users className="h-4 w-4" />
               Batch submission complete
+            </div>
+          )}
+          {isPending && (
+            <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
+              <AlertTriangle className="h-4 w-4" />
+              Under review — will appear in search results once checked
             </div>
           )}
           {isVerified && (
@@ -345,6 +354,7 @@ export default function SubmitPage() {
               onClick={() => {
                 setIsSubmitted(false);
                 setIsVerified(false);
+                setIsPending(false);
                 setBatchSubmitCount(0);
                 setScamType("");
                 setPlatform("");

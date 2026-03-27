@@ -154,7 +154,6 @@ export async function POST(request: NextRequest) {
         totalReportCount,
         confidenceScore,
         heatLevel,
-        uniqueReporters,
         corroborated: uniqueReporters >= 2,
         message: totalReportCount > 1 
           ? `Reported ${totalReportCount} times by the community`
