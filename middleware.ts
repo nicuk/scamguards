@@ -153,7 +153,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // Skip rate limiting for certain routes
-  const skipRoutes = ["/api/stats", "/api/admin"];
+  const skipRoutes = ["/api/stats", "/api/admin", "/api/recent-reports"];
   if (skipRoutes.some(route => request.nextUrl.pathname.startsWith(route))) {
     return NextResponse.next();
   }

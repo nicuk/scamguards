@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { HeroSection } from "@/components/home/hero-section";
 import { MalaysiaStatsStrip } from "@/components/home/malaysia-stats-strip";
+import { RecentReportsFeed } from "@/components/home/recent-reports-feed";
 import { HowItWorksSection } from "@/components/home/how-it-works-section";
 import { FounderStorySection } from "@/components/home/founder-story-section";
 import { ScamTypesSection } from "@/components/home/scam-types-section";
@@ -105,6 +106,8 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        <RecentReportsFeed />
 
         <HowItWorksSection />
 
