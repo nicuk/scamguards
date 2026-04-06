@@ -36,7 +36,7 @@ interface Report {
   status: string;
   is_verified: boolean;
   created_at: string;
-  evidence_urls: string[];
+  evidence_url: string | null;
   amount_lost: number | null;
   currency: string;
   data_points: {
@@ -123,7 +123,7 @@ export default function AdminDashboard() {
           status,
           is_verified,
           created_at,
-          evidence_urls,
+          evidence_url,
           amount_lost,
           currency,
           data_points (
@@ -498,13 +498,13 @@ export default function AdminDashboard() {
                 </div>
 
                 {/* Evidence */}
-                {selectedReport.evidence_urls && selectedReport.evidence_urls.length > 0 && (
+                {selectedReport.evidence_url && (
                   <div>
                     <h4 className="text-sm font-medium text-muted-foreground mb-2">
-                      Evidence ({selectedReport.evidence_urls.length} files)
+                      Evidence
                     </h4>
                     <div className="space-y-2">
-                      {selectedReport.evidence_urls.map((url, i) => (
+                      {[selectedReport.evidence_url].filter(Boolean).map((url, i) => (
                         <a
                           key={i}
                           href={url}
