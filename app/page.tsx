@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { HeroSection } from "@/components/home/hero-section";
+import { MalaysiaStatsStrip } from "@/components/home/malaysia-stats-strip";
 import { HowItWorksSection } from "@/components/home/how-it-works-section";
 import { FounderStorySection } from "@/components/home/founder-story-section";
 import { ScamTypesSection } from "@/components/home/scam-types-section";
@@ -93,10 +94,10 @@ export default function HomePage() {
     <>
       <HomeJsonLd />
       <div className="flex flex-col">
-        {/* Hero Section */}
         <HeroSection />
 
-        {/* Platform Stats */}
+        <MalaysiaStatsStrip />
+
         <section className="py-12 bg-background border-b">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
@@ -105,19 +106,14 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* How It Works — dual path: victim or buyer */}
         <HowItWorksSection />
 
-        {/* Founder Story — why this exists */}
         <FounderStorySection />
 
-        {/* Common Scam Types */}
         <ScamTypesSection />
 
-        {/* Trust Section */}
         <TrustSection />
 
-        {/* CTA Section */}
         <CtaSection />
       </div>
     </>

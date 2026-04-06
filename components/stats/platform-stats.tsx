@@ -46,7 +46,7 @@ export function PlatformStats() {
         {[1, 2, 3, 4].map((i) => (
           <div
             key={i}
-            className="bg-muted/50 rounded-lg p-4 animate-pulse h-24"
+            className="rounded-xl p-5 animate-pulse h-28 bg-muted/50"
           />
         ))}
       </div>
@@ -62,27 +62,31 @@ export function PlatformStats() {
       label: "Scammers Reported",
       value: stats.totalReports.toLocaleString(),
       icon: FileText,
-      color: "text-primary",
+      iconColor: "text-primary",
+      accent: "border-l-primary",
     },
     {
       label: "Numbers & Accounts Flagged",
       value: stats.totalDataPoints.toLocaleString(),
       icon: Database,
-      color: "text-primary",
+      iconColor: "text-blue-500",
+      accent: "border-l-blue-500",
       sublabel: "phones, emails, bank accounts",
     },
     {
       label: "Lost to Scams",
       value: stats.totalAmountLost > 0 ? formatMoney(stats.totalAmountLost) : "RM0",
       icon: AlertTriangle,
-      color: "text-destructive",
+      iconColor: "text-destructive",
+      accent: "border-l-destructive",
       sublabel: "reported by victims",
     },
     {
       label: "Checks Run",
       value: stats.totalSearches.toLocaleString(),
       icon: Search,
-      color: "text-primary",
+      iconColor: "text-emerald-500",
+      accent: "border-l-emerald-500",
     },
   ];
 
@@ -92,13 +96,15 @@ export function PlatformStats() {
         {statItems.map((item) => (
           <div
             key={item.label}
-            className="bg-muted/50 rounded-lg p-4 text-center"
+            className={`rounded-xl p-5 bg-card border border-border/50 border-l-4 ${item.accent} hover:shadow-md transition-shadow`}
           >
-            <item.icon className={`h-6 w-6 mx-auto mb-2 ${item.color}`} />
-            <p className="text-2xl font-bold">{item.value}</p>
-            <p className="text-sm text-muted-foreground">{item.label}</p>
+            <div className="flex items-center gap-2 mb-2">
+              <item.icon className={`h-5 w-5 ${item.iconColor}`} />
+              <p className="text-xs text-muted-foreground font-medium">{item.label}</p>
+            </div>
+            <p className="text-3xl font-bold tracking-tight">{item.value}</p>
             {item.sublabel && (
-              <p className="text-xs text-muted-foreground">{item.sublabel}</p>
+              <p className="text-xs text-muted-foreground mt-1">{item.sublabel}</p>
             )}
           </div>
         ))}

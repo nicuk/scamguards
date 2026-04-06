@@ -80,6 +80,51 @@ export function isValidTelegramUsername(username: string): boolean {
 }
 
 /**
+ * Auto-detect input type from raw user input.
+ * Used by the hero search to skip the type selector.
+ */
+export function detectInputType(input: string): string {
+  const trimmed = input.trim();
+
+  if (trimmed.includes("@")) return "email";
+
+  if (/^https?:\/\//i.test(trimmed)) return "website";
+
+  if (/^0x[a-fA-F0-9]{40}$/.test(trimmed) || /^bc1[a-z0-9]{39,59}$/.test(trimmed)) {
+    return "crypto_wallet";
+  }
+
+  if (trimmed.startsWith("@") && /^@[a-zA-Z][a-zA-Z0-9_]{4,31}$/.test(trimmed)) {
+    return "telegram";
+  }
+
+  const digits = trimmed.replace(/\D/g, "");
+
+  // Malaysian phone patterns
+  if (
+    trimmed.startsWith("+60") ||
+    digits.startsWith("60") ||
+    digits.startsWith("01") ||
+    (digits.startsWith("0") && digits.length >= 9 && digits.length <= 12)
+  ) {
+    return "phone";
+  }
+
+  // Bank account: 10-16 digits (no leading 0 pattern that matches phone)
+  if (/^\d[\d\s-]{8,18}\d$/.test(trimmed) && digits.length >= 10 && digits.length <= 16) {
+    return "bank_account";
+  }
+
+  // Mostly digits = likely phone
+  if (digits.length >= 7 && digits.length / trimmed.replace(/\s/g, "").length > 0.7) {
+    return "phone";
+  }
+
+  // Default to phone (most common in Malaysia)
+  return "phone";
+}
+
+/**
  * Validate data point based on type
  */
 export function validateDataPoint(
