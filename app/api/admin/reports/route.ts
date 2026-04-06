@@ -1,10 +1,23 @@
-import { NextRequest, NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/server";
+import { NextResponse } from "next/server";
+import { createClient, createAdminClient } from "@/lib/supabase/server";
+
+const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || "")
+  .split(",")
+  .map((e) => e.trim().toLowerCase())
+  .filter(Boolean);
 
 export const dynamic = "force-dynamic";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
+    // Verify caller is an authenticated admin
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user?.email || !ADMIN_EMAILS.includes(user.email.toLowerCase())) {
+      return NextResponse.json({ error: "Not authorized" }, { status: 403 });
+    }
+
     const adminClient = createAdminClient();
 
     const [reportsResult, statsResult] = await Promise.all([

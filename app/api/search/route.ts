@@ -11,6 +11,10 @@ interface SearchInput {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyRecord = Record<string, any>;
 
+function escapeIlike(value: string): string {
+  return value.replace(/\\/g, "\\\\").replace(/%/g, "\\%").replace(/_/g, "\\_");
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -40,7 +44,7 @@ export async function POST(request: NextRequest) {
           .from("data_points")
           .select("*, reports(*)")
           .eq("type", input.type)
-          .or(`normalized_value.ilike.%${input.normalizedValue}%,value.ilike.%${input.value}%`);
+          .or(`normalized_value.ilike.%${escapeIlike(input.normalizedValue)}%,value.ilike.%${escapeIlike(input.value)}%`);
 
         if (error) {
           console.error("Fuzzy search error:", error);

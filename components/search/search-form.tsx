@@ -27,20 +27,15 @@ export function SearchForm() {
 
   // Handle ?q= param from hero search — auto-detect type and submit
   useEffect(() => {
-    const q = searchParams.get("q");
+    const raw = searchParams.get("q");
+    const q = raw?.trim();
     if (!q || autoSubmitted.current) return;
     autoSubmitted.current = true;
 
     const detectedType = detectInputType(q) as DataPointType;
-    const point: DataPointEntry = {
-      id: crypto.randomUUID(),
-      type: detectedType,
-      value: q,
-    };
-    setDataPoints([point]);
+    setDataPoints([{ id: crypto.randomUUID(), type: detectedType, value: q }]);
     setMode("manual");
 
-    // Auto-submit: navigate to results
     const params = new URLSearchParams();
     params.append("type_0", detectedType);
     params.append("value_0", q);

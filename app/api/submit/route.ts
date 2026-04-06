@@ -244,7 +244,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       reportId: report.id,
-      isVerified,
+      isVerified: autoVerified,
       isPending: reportStatus === "pending",
       duplicateInfo: {
         hasExistingReports,

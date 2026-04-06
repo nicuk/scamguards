@@ -120,9 +120,11 @@ export function detectInputType(input: string): string {
     return "phone";
   }
 
-  // Mostly letters = likely a name
-  const letters = trimmed.replace(/[^a-zA-Z]/g, "").length;
-  if (letters > 0 && letters / trimmed.replace(/\s/g, "").length > 0.7) {
+  // Mostly non-digit, non-symbol characters = likely a name
+  // Covers ASCII, CJK, Malay/Latin-extended, accented characters
+  const nonSpace = trimmed.replace(/\s/g, "");
+  const digitAndSymbolCount = nonSpace.replace(/[^0-9@#$%^&*()_+=\[\]{}<>|\\\/~`]/g, "").length;
+  if (nonSpace.length > 0 && digitAndSymbolCount / nonSpace.length < 0.3) {
     return "name";
   }
 
