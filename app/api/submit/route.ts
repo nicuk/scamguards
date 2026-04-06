@@ -122,6 +122,9 @@ export async function POST(request: NextRequest) {
 
     // Low credibility → held for moderation, not immediately visible
     const reportStatus = credibility.level === "low" ? "pending" : "active";
+    
+    // Auto-verify high-confidence reports (evidence OR high credibility score)
+    const autoVerified = isVerified || credibility.level === "high";
 
     // Create the report with reporter_hash (activates DB reputation triggers)
     const { data: report, error: reportError } = await supabase
@@ -134,7 +137,7 @@ export async function POST(request: NextRequest) {
         evidence_url: evidenceUrl,
         amount_lost: amountLost,
         currency: amountLost ? "MYR" : null,
-        is_verified: isVerified,
+        is_verified: autoVerified,
         is_disputed: false,
         status: reportStatus,
         reporter_hash: reporterHash,
