@@ -3,11 +3,25 @@
 import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { Search, FileText, ArrowLeft, Loader2, AlertCircle } from "lucide-react";
+import { Search, FileText, ArrowLeft, Loader2, AlertCircle, Phone, Mail, CreditCard, MessageCircle, Globe, User, Building2, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ResultCard } from "@/components/results/result-card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import type { AnalysisResult } from "@/lib/ai/analyze";
+
+const TYPE_LABELS: Record<string, { label: string; icon: typeof Phone }> = {
+  phone: { label: "Phone Number", icon: Phone },
+  email: { label: "Email", icon: Mail },
+  bank_account: { label: "Bank Account", icon: CreditCard },
+  whatsapp: { label: "WhatsApp", icon: MessageCircle },
+  telegram: { label: "Telegram", icon: MessageCircle },
+  ewallet: { label: "E-Wallet", icon: Wallet },
+  social_media: { label: "Social Media", icon: Globe },
+  website: { label: "Website", icon: Globe },
+  crypto_wallet: { label: "Crypto Wallet", icon: Wallet },
+  name: { label: "Name", icon: User },
+  company: { label: "Company", icon: Building2 },
+};
 
 interface SearchResult {
   analysis: AnalysisResult;
@@ -21,6 +35,7 @@ interface SearchResult {
 function ResultsContent() {
   const searchParams = useSearchParams();
   const [result, setResult] = useState<SearchResult | null>(null);
+  const [searchedInputs, setSearchedInputs] = useState<{ type: string; value: string }[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -52,6 +67,8 @@ function ResultsContent() {
           setIsLoading(false);
           return;
         }
+
+        setSearchedInputs(inputs);
 
         // Call the search API
         const response = await fetch("/api/search", {
@@ -119,6 +136,28 @@ function ResultsContent() {
 
   return (
     <div className="max-w-2xl mx-auto">
+      {/* What you searched for */}
+      {searchedInputs.length > 0 && (
+        <div className="mb-6 p-4 rounded-xl bg-muted/50 border border-border/50">
+          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">You searched for</p>
+          <div className="flex flex-wrap gap-2">
+            {searchedInputs.map((input, i) => {
+              const typeInfo = TYPE_LABELS[input.type] || { label: input.type, icon: Search };
+              const Icon = typeInfo.icon;
+              return (
+                <div key={i} className="inline-flex items-center gap-2 bg-background border rounded-lg px-3 py-2">
+                  <Icon className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                  <div className="min-w-0">
+                    <span className="text-xs text-muted-foreground">{typeInfo.label}</span>
+                    <p className="font-medium text-sm truncate">{input.value}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       <ResultCard
         result={result.analysis}
         reportCount={result.reportCount}
