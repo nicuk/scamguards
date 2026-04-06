@@ -187,6 +187,12 @@ export function ResultCard({
               This is based on what people have reported — it's not proof by itself.
               Be careful, and check with your bank or the police if you're unsure.
             </p>
+            <p className="mt-2 text-xs">
+              Verify via{" "}
+              <a href="https://semakmule.rmp.gov.my/" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">PDRM SemakMule</a>
+              {" "}or{" "}
+              <a href="https://www.bnm.gov.my/financial-consumer-alert-list" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">BNM Financial Consumer Alert List</a>.
+            </p>
           </div>
         </div>
       </div>

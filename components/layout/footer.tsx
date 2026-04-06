@@ -133,9 +133,11 @@ export function Footer() {
             © {new Date().getFullYear()} ScamGuards Malaysia. All rights
             reserved.
           </p>
-          <p className="text-xs text-muted-foreground mt-2 md:mt-0">
-            Information provided is community-submitted and should not be
-            treated as definitive proof of fraud.
+          <p className="text-xs text-muted-foreground mt-2 md:mt-0 max-w-md text-right">
+            Data compiled from public reports and databases. Verify via{" "}
+            <a href="https://semakmule.rmp.gov.my/" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">PDRM SemakMule</a>
+            {" "}or{" "}
+            <a href="https://www.bnm.gov.my/financial-consumer-alert-list" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">BNM Consumer Alert</a>.
           </p>
         </div>
       </div>
