@@ -25,7 +25,7 @@ export function PlatformStats() {
   useEffect(() => {
     async function fetchStats() {
       try {
-        const response = await fetch("/api/stats");
+        const response = await fetch("/api/stats", { cache: "no-store" });
         if (response.ok) {
           const data = await response.json();
           setStats(data);

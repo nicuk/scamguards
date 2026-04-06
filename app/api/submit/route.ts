@@ -233,6 +233,11 @@ export async function POST(request: NextRequest) {
       },
     });
 
+    // Keep materialized view warm for other consumers (non-blocking)
+    supabase.rpc("refresh_platform_stats").then(({ error }) => {
+      if (error) console.log("Materialized view refresh skipped:", error.message);
+    });
+
     return NextResponse.json({
       success: true,
       reportId: report.id,
