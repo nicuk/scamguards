@@ -1,6 +1,7 @@
+import { Suspense } from "react";
 import { Metadata } from "next";
 import { SearchForm } from "@/components/search/search-form";
-import { Shield } from "lucide-react";
+import { Shield, Loader2 } from "lucide-react";
 import { PAGE_SEO, SITE_URL, generateBreadcrumbSchema } from "@/lib/seo-config";
 
 export const metadata: Metadata = {
@@ -53,7 +54,9 @@ export default function SearchPage() {
         </div>
 
         {/* Search Form */}
-        <SearchForm />
+        <Suspense fallback={<div className="flex justify-center py-12"><Loader2 className="h-8 w-8 animate-spin text-primary" /></div>}>
+          <SearchForm />
+        </Suspense>
       </div>
     </div>
     </>
