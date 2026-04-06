@@ -120,7 +120,12 @@ export function detectInputType(input: string): string {
     return "phone";
   }
 
-  // Default to phone (most common in Malaysia)
+  // Mostly letters = likely a name
+  const letters = trimmed.replace(/[^a-zA-Z]/g, "").length;
+  if (letters > 0 && letters / trimmed.replace(/\s/g, "").length > 0.7) {
+    return "name";
+  }
+
   return "phone";
 }
 

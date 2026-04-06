@@ -55,7 +55,7 @@ export function HeroSection() {
                   type="text"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder={lang === "ms" ? "cth: 012-345 6789" : "e.g. 012-345 6789"}
+                  placeholder={lang === "ms" ? "cth: 012-345 6789 atau nama" : "e.g. 012-345 6789 or a name"}
                   className="w-full h-14 pl-12 pr-4 text-lg rounded-xl border-2 border-input bg-background focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
                   autoFocus
                 />
