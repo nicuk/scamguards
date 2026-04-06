@@ -110,55 +110,15 @@ export default function AdminDashboard() {
 
   const fetchData = async () => {
     try {
-      const supabase = createClient();
-      
-      // Fetch reports with data points
-      const { data: reportsData, error: reportsError } = await supabase
-        .from("reports")
-        .select(`
-          id,
-          scam_type,
-          platform,
-          description,
-          status,
-          is_verified,
-          created_at,
-          evidence_url,
-          amount_lost,
-          currency,
-          data_points (
-            id,
-            type,
-            value
-          )
-        `)
-        .order("created_at", { ascending: false });
-
-      if (!reportsError && reportsData) {
-        setReports(reportsData as Report[]);
+      const response = await fetch("/api/admin/reports");
+      if (!response.ok) {
+        console.error("Failed to fetch admin data");
+        return;
       }
-
-      // Fetch stats
-      const { count: totalReports } = await supabase
-        .from("reports")
-        .select("*", { count: "exact", head: true });
-
-      const { count: verifiedReports } = await supabase
-        .from("reports")
-        .select("*", { count: "exact", head: true })
-        .eq("is_verified", true);
-
-      const { count: totalSearches } = await supabase
-        .from("audit_logs")
-        .select("*", { count: "exact", head: true })
-        .eq("action", "search");
-
-      setStats({
-        totalReports: totalReports || 0,
-        verifiedReports: verifiedReports || 0,
-        totalSearches: totalSearches || 0,
-        pendingModeration: 0,
-      });
+      
+      const data = await response.json();
+      setReports(data.reports || []);
+      setStats(data.stats || null);
     } catch (error) {
       console.error("Fetch data error:", error);
     }
