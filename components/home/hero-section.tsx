@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Sparkles, Search, FileText, Zap, ArrowRight, Loader2 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
-import { detectInputType } from "@/lib/utils/validation";
 
 export function HeroSection() {
   const { t, lang } = useLanguage();
@@ -19,13 +18,7 @@ export function HeroSection() {
     if (!trimmed) return;
 
     setIsSearching(true);
-    const type = detectInputType(trimmed);
-    const params = new URLSearchParams({
-      type_0: type,
-      value_0: trimmed,
-      count: "1",
-    });
-    router.push(`/results?${params.toString()}`);
+    router.push(`/search?q=${encodeURIComponent(trimmed)}`);
   };
 
   return (
@@ -46,7 +39,7 @@ export function HeroSection() {
             {t("heroDescription")}
           </p>
 
-          {/* Search input */}
+          {/* Search input — redirects to /search with AI-powered detection */}
           <form onSubmit={handleSearch} className="max-w-xl mx-auto mb-4">
             <div className="flex gap-2">
               <div className="relative flex-1">
@@ -55,7 +48,7 @@ export function HeroSection() {
                   type="text"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder={lang === "ms" ? "cth: 012-345 6789 atau nama" : "e.g. 012-345 6789 or a name"}
+                  placeholder={lang === "ms" ? "cth: 012-345 6789, nama, atau emel" : "e.g. 012-345 6789, name, or email"}
                   className="w-full h-14 pl-12 pr-4 text-lg rounded-xl border-2 border-input bg-background focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
                   autoFocus
                 />
@@ -69,7 +62,7 @@ export function HeroSection() {
                   <Loader2 className="h-5 w-5 animate-spin" />
                 ) : (
                   <>
-                    <Search className="h-5 w-5 flex-shrink-0" />
+                    <Sparkles className="h-5 w-5 flex-shrink-0" />
                     <span className="hidden sm:inline">
                       {lang === "ms" ? "Semak" : "Check Now"}
                     </span>
@@ -81,6 +74,10 @@ export function HeroSection() {
 
           {/* Trust indicators */}
           <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground mb-6">
+            <span className="flex items-center gap-1.5">
+              <Sparkles className="h-3 w-3 text-blue-500" />
+              {lang === "ms" ? "Dikuasakan AI" : "AI-Powered"}
+            </span>
             <span className="flex items-center gap-1.5">
               <span className="w-2 h-2 bg-green-500 rounded-full" />
               {lang === "ms" ? "100% Percuma" : "100% Free"}
@@ -97,13 +94,6 @@ export function HeroSection() {
 
           {/* Secondary actions */}
           <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
-            <Link
-              href="/search"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              {lang === "ms" ? "Carian lanjutan" : "Advanced search"}
-            </Link>
-            <span className="text-muted-foreground/40">|</span>
             <Link
               href="/submit"
               className="inline-flex items-center gap-1.5 text-primary font-medium hover:underline"

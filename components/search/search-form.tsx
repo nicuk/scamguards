@@ -1,20 +1,21 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect, useRef } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Search, Loader2, Sparkles, List } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { DataPointInput, type DataPointEntry } from "./data-point-input";
 import { SmartPaste } from "./smart-paste";
-import { validateDataPoint } from "@/lib/utils/validation";
+import { validateDataPoint, detectInputType } from "@/lib/utils/validation";
 import type { DataPointType } from "@/lib/constants";
 
 type InputMode = "smart" | "manual";
 
 export function SearchForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [mode, setMode] = useState<InputMode>("smart");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -22,6 +23,30 @@ export function SearchForm() {
     { id: crypto.randomUUID(), type: "phone", value: "" },
   ]);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const autoSubmitted = useRef(false);
+
+  // Handle ?q= param from hero search — auto-detect type and submit
+  useEffect(() => {
+    const q = searchParams.get("q");
+    if (!q || autoSubmitted.current) return;
+    autoSubmitted.current = true;
+
+    const detectedType = detectInputType(q) as DataPointType;
+    const point: DataPointEntry = {
+      id: crypto.randomUUID(),
+      type: detectedType,
+      value: q,
+    };
+    setDataPoints([point]);
+    setMode("manual");
+
+    // Auto-submit: navigate to results
+    const params = new URLSearchParams();
+    params.append("type_0", detectedType);
+    params.append("value_0", q);
+    params.append("count", "1");
+    router.push(`/results?${params.toString()}`);
+  }, [searchParams, router]);
 
   // Handle extracted data from Smart Paste
   const handleExtracted = (extracted: { type: DataPointType; value: string }[]) => {
