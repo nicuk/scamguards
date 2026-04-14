@@ -35,10 +35,6 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: "/",
-    languages: {
-      "en-MY": "/",
-      "ms-MY": "/",
-    },
   },
 
   // Robots
@@ -130,10 +126,10 @@ export default function RootLayout({
         {/* Geo targeting for Malaysia */}
         <meta name="geo.region" content="MY" />
         <meta name="geo.placename" content="Malaysia" />
-        {/* Language alternatives */}
-        <link rel="alternate" hrefLang="en-MY" href={SITE_URL} />
-        <link rel="alternate" hrefLang="ms-MY" href={SITE_URL} />
+        {/* Default language - no hreflang needed since EN/MS serve the same URL via client-side toggle */}
         <link rel="alternate" hrefLang="x-default" href={SITE_URL} />
+        {/* LLM discovery */}
+        <link rel="alternate" type="text/plain" href={`${SITE_URL}/llms.txt`} title="LLM site info" />
         <link rel="alternate" type="application/rss+xml" title="ScamGuards Malaysia" href={`${SITE_URL}/feed.xml`} />
       </head>
       <body className={inter.className}>

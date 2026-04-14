@@ -8,7 +8,28 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/admin/", "/results/"], // Don't index API routes, admin, or result pages
+        disallow: ["/api/", "/admin/", "/results/"],
+      },
+      // Explicitly allow LLM bots for GEO visibility
+      {
+        userAgent: "GPTBot",
+        allow: "/",
+      },
+      {
+        userAgent: "PerplexityBot",
+        allow: "/",
+      },
+      {
+        userAgent: "ClaudeBot",
+        allow: "/",
+      },
+      {
+        userAgent: "Google-Extended",
+        allow: "/",
+      },
+      {
+        userAgent: "Amazonbot",
+        allow: "/",
       },
     ],
     sitemap: `${BASE_URL}/sitemap.xml`,
