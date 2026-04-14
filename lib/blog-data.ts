@@ -559,6 +559,124 @@ export const BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "semak-nombor-telefon-scammer-malaysia",
+    title: "Semak Nombor Telefon Scammer Malaysia: 4 Cara Cepat (2026)",
+    metaTitle:
+      "Semak Nombor Telefon Scammer Malaysia — 4 Cara Check Percuma | ScamGuards",
+    metaDescription:
+      "Cara semak nombor telefon scammer di Malaysia. Guna ScamGuards AI, Semak Mule PDRM, Google, dan Truecaller untuk check nombor penipu percuma sebelum anda bayar.",
+    publishedAt: "2026-04-14",
+    updatedAt: "2026-04-14",
+    readingTime: "6 min read",
+    excerpt:
+      "Nak semak kalau nombor telefon tu penipu? Ini 4 cara percuma untuk check nombor scammer di Malaysia — termasuk Semak Mule PDRM dan AI.",
+    keywords: [
+      "semak nombor telefon scammer",
+      "semak no telefon scammer",
+      "check scammer phone number malaysia",
+      "semak scammer online",
+      "check scammer online malaysia",
+      "semak mule",
+      "semakmule PDRM",
+      "nombor telefon penipu",
+      "cara semak nombor penipu",
+      "how to check if someone is a scammer malaysia",
+    ],
+    sections: [
+      {
+        heading: "Kenapa Anda Perlu Semak Nombor Telefon Sebelum Bayar",
+        content:
+          "Malaysia kehilangan **RM2.77 bilion** kepada penipu pada 2025 — peningkatan 76% daripada tahun sebelumnya (Sumber: Kementerian Dalam Negeri/PDRM). Kebanyakan penipuan bermula dengan satu nombor telefon: penjual di WhatsApp, \"pegawai bank\" yang menelefon, atau orang yang anda baru jumpa online.\n\nSemak nombor telefon sebelum anda transfer duit adalah langkah paling mudah dan paling berkesan untuk elak kena tipu. Ia ambil 10 saat. Percuma. Dan ia boleh selamatkan anda ribuan ringgit.\n\nIni 4 cara terbaik untuk semak nombor telefon scammer di Malaysia.",
+      },
+      {
+        heading: "Cara 1: ScamGuards (AI — Paling Cepat)",
+        content:
+          "**Masa: 10 saat | Kos: Percuma | Perlu daftar: Tidak**\n\n1. Pergi ke **scamguards.app/search**\n2. Tampal nombor telefon yang anda nak semak\n3. Klik \"Semak Sekarang\"\n\nAI ScamGuards akan cari nombor tersebut dalam ribuan laporan penipuan komuniti dan tunjukkan tahap risiko — mencurigakan, selamat, atau tidak diketahui — dengan skor keyakinan.\n\n**Kelebihan:** Carian AI yang pantas, merangkumi nombor telefon, akaun bank, dan emel dalam satu carian. Pangkalan data dikemaskini secara langsung oleh laporan komuniti.\n\n**Bila guna:** Sebelum anda bayar sesiapa yang anda jumpa online — penjual WhatsApp, Carousell, Facebook Marketplace, atau sesiapa yang minta transfer bank.",
+      },
+      {
+        heading: "Cara 2: Semak Mule PDRM (Rasmi Kerajaan)",
+        content:
+          "**Masa: 1 minit | Kos: Percuma | Perlu daftar: Tidak**\n\nSemak Mule adalah portal rasmi CCID PDRM untuk semak sama ada nombor akaun bank atau nombor telefon telah dilaporkan dalam kes jenayah komersil.\n\n1. Pergi ke **ccid.rmp.gov.my/semakmule/**\n2. Pilih jenis carian (nombor telefon atau akaun bank)\n3. Masukkan nombor dan klik \"Semak\"\n\n**Kelebihan:** Data rasmi daripada Polis Diraja Malaysia. Jika nombor muncul di sini, ia telah terlibat dalam kes jenayah yang dilaporkan.\n\n**Had:** Hanya merangkumi kes yang telah dilaporkan kepada polis. Banyak penipuan tidak dilaporkan. Antara muka mungkin lambat pada waktu puncak.\n\n**Tip:** Guna Semak Mule bersama ScamGuards. Semak Mule merangkumi kes rasmi. ScamGuards merangkumi laporan komuniti yang mungkin belum sampai ke polis.",
+      },
+      {
+        heading: "Cara 3: Google Nombor Telefon",
+        content:
+          "**Masa: 30 saat | Kos: Percuma**\n\nCara paling mudah yang ramai orang lupa:\n\n1. Buka Google\n2. Taip nombor telefon dalam tanda petik: **\"+60123456789 scammer\"** atau **\"+60123456789 penipu\"**\n3. Tengok keputusan\n\nJika nombor tersebut pernah dilaporkan di forum Lowyat, Facebook group, atau mana-mana laman web, ia akan muncul dalam keputusan carian.\n\n**Kelebihan:** Merangkumi seluruh internet — forum, media sosial, blog, dan laman aduan.\n\n**Had:** Tidak terstruktur. Anda perlu baca sendiri dan tentukan sama ada ia relevan. Nombor baru tidak akan muncul.",
+      },
+      {
+        heading: "Cara 4: Truecaller / GetContact",
+        content:
+          "**Masa: 10 saat | Kos: Percuma (versi asas)**\n\nAplikasi seperti **Truecaller** dan **GetContact** menggunakan pangkalan data pengguna untuk menunjukkan nama dan label yang dikaitkan dengan nombor telefon.\n\n1. Muat turun Truecaller atau GetContact dari App Store / Play Store\n2. Cari nombor telefon\n3. Tengok jika ada label \"SCAMMER\", \"FRAUD\", atau \"SPAM\"\n\n**Kelebihan:** Cepat. Jika ramai pengguna telah melabelkan nombor sebagai penipu, ia akan ditunjukkan.\n\n**Had:** Bergantung kepada pengguna lain yang melabelkan nombor. Tidak semua penipu dilabelkan. Data mungkin tidak terkini untuk nombor Malaysia.",
+      },
+      {
+        heading: "Cara Terbaik: Guna Lebih Daripada Satu Kaedah",
+        content:
+          "Tiada satu kaedah yang sempurna. Setiap satu merangkumi aspek yang berbeza:\n\n- **ScamGuards**: Laporan komuniti terkini + analisis AI\n- **Semak Mule**: Kes rasmi yang dilaporkan kepada polis\n- **Google**: Seluruh internet\n- **Truecaller/GetContact**: Label daripada pengguna lain\n\n**Cadangan terbaik:** Mulakan dengan ScamGuards (paling cepat dan komprehensif), kemudian semak Semak Mule untuk pengesahan rasmi. Ini ambil kurang daripada 2 minit dan boleh selamatkan anda daripada kehilangan wang.\n\n**Kalau nombor bersih di semua platform — masih berhati-hati.** Penipu sering guna nombor baru. Guna COD atau pembayaran platform (Shopee Guarantee, Carousell Protection) bila boleh.",
+      },
+      {
+        heading: "Apa Nak Buat Kalau Nombor Itu Memang Penipu?",
+        content:
+          "Jika semakan anda mendapati nombor itu pernah dilaporkan:\n\n1. **JANGAN bayar atau transfer wang**\n2. **Tangkap layar semua perbualan** — nombor telefon, profil, senarai produk\n3. **Lapor di ScamGuards** (scamguards.app/submit) — tampal butiran penipu supaya orang lain diberi amaran\n4. **Lapor di WhatsApp** — tekan nama kontrak → Report → Block\n5. **Lapor ke MCMC** — aduan.skmm.gov.my atau hotline 1-800-888-030\n\nJika anda sudah bayar: hubungi hotline penipuan bank anda segera, kemudian NSRC di 997, kemudian buat laporan polis. Baca panduan lengkap kami: [Kena Tipu Online? Apa Nak Buat](/blog/kena-tipu-online-apa-nak-buat).",
+      },
+    ],
+  },
+  {
+    slug: "love-scam-malaysia",
+    title: "Love Scam Malaysia: Cara Kenal Pasti dan Lindungi Diri (2026)",
+    metaTitle:
+      "Love Scam Malaysia — Cara Kenal Pasti & Lapor Penipu Cinta | ScamGuards",
+    metaDescription:
+      "Love scam di Malaysia semakin meningkat. Ketahui tanda-tanda penipu cinta, cara semak identiti mereka, dan langkah lapor jika anda menjadi mangsa. Panduan lengkap 2026.",
+    publishedAt: "2026-04-14",
+    updatedAt: "2026-04-14",
+    readingTime: "7 min read",
+    excerpt:
+      "Love scam adalah penipuan paling emosional dan paling sukar dikesan. Ini tanda-tanda utama, cara untuk semak, dan apa nak buat kalau anda atau orang yang anda sayang terlibat.",
+    keywords: [
+      "love scam malaysia",
+      "love scam",
+      "penipu cinta malaysia",
+      "romance scam malaysia",
+      "scam dating app malaysia",
+      "tanda love scam",
+      "cara kenal pasti love scam",
+      "lapor love scam malaysia",
+      "kena love scam apa nak buat",
+    ],
+    sections: [
+      {
+        heading: "Love Scam di Malaysia: RM43.7 Juta Kerugian pada 2024",
+        content:
+          "Love scam — juga dikenali sebagai romance scam atau penipuan cinta — melibatkan penipu yang berpura-pura mempunyai hubungan romantik dengan mangsa untuk mendapatkan wang.\n\nPada 2024, CCID melaporkan kerugian **RM43.7 juta** daripada love scam di Malaysia sahaja (Sumber: CCID 2024). Dan ini hanyalah kes yang dilaporkan — ramai mangsa malu untuk tampil ke hadapan.\n\nLove scam berbeza daripada penipuan lain kerana ia menyasarkan **emosi, bukan ketamakan**. Mangsa bukan orang bodoh atau lemah — mereka adalah orang biasa yang sedang mencari hubungan. Penipu menggunakan teknik manipulasi psikologi yang sama digunakan oleh sindiket profesional.",
+      },
+      {
+        heading: "Bagaimana Love Scam Berfungsi (Peringkat demi Peringkat)",
+        content:
+          "Love scam mengikuti corak yang boleh diramal:\n\n**Peringkat 1: Pendekatan**\nPenipu menghubungi mangsa melalui dating app (Tinder, Bumble, MalaysianCupid), Facebook, Instagram, atau WhatsApp. Mereka guna gambar profil yang menarik — biasanya dicuri daripada model atau orang sebenar.\n\n**Peringkat 2: Membina Hubungan**\nPenipu meluangkan minggu atau bulan membina hubungan emosi. Mesej setiap hari. Kata-kata cinta. Rancangan masa depan bersama. Mereka belajar tentang kehidupan anda dan gunakan maklumat itu untuk membina kepercayaan.\n\n**Peringkat 3: Krisis**\nTiba-tiba, penipu menghadapi \"kecemasan\" — masalah perubatan, masalah undang-undang, tiket kapal terbang untuk datang jumpa anda, atau peluang pelaburan. Mereka memerlukan wang segera.\n\n**Peringkat 4: Permintaan Wang**\nPenipu minta anda transfer wang — \"sementara sahaja\", \"saya bayar balik minggu depan\", \"kalau anda benar-benar sayang saya\". Permintaan akan berulang dan jumlahnya semakin besar.\n\n**Peringkat 5: Hilang atau Terus Meminta**\nSelepas mendapat wang, penipu sama ada hilang atau mencipta krisis baru untuk mendapatkan lebih banyak wang.",
+      },
+      {
+        heading: "10 Tanda Love Scam yang Perlu Anda Tahu",
+        content:
+          "**Tanda-tanda awal:**\n\n1. **Hubungan berkembang terlalu cepat** — \"I love you\" dalam masa beberapa hari atau minggu.\n2. **Tidak pernah video call** — selalu ada alasan: kamera rosak, internet lambat, sedang bekerja. Mereka boleh hantar gambar tetapi tidak boleh video call secara langsung.\n3. **Berasa terlalu sempurna** — mereka berkata semua yang anda ingin dengar. Minat yang sama. Nilai yang sama. Seolah-olah \"jodoh\".\n4. **Profil tidak konsisten** — gambar kelihatan terlalu profesional, cerita berubah-ubah, atau butiran tidak masuk akal.\n5. **Mendakwa berada di luar negara** — tentera, jurutera minyak, doktor di luar negara, atau usahawan antarabangsa. Ini memberi alasan untuk tidak boleh jumpa secara fizikal.\n\n**Tanda-tanda bahaya besar:**\n\n6. **Minta wang dalam apa jua bentuk** — bank transfer, cryptocurrency, kad hadiah. Tidak kira alasannya.\n7. **\"Jangan beritahu sesiapa\"** — penipu mengasingkan anda daripada keluarga dan kawan supaya tiada siapa boleh memberi amaran.\n8. **Krisis berterusan** — setiap kali satu masalah selesai, masalah baru timbul. Semua memerlukan wang.\n9. **Menolak untuk jumpa** — rancangan untuk bertemu sentiasa dibatalkan pada saat akhir.\n10. **Meminta maklumat peribadi** — nombor IC, butiran bank, kata laluan. Maklumat ini boleh digunakan untuk penipuan identiti.",
+      },
+      {
+        heading: "Cara Semak Kalau Seseorang Itu Penipu Cinta",
+        content:
+          "**Semak nombor telefon mereka:**\n- Pergi ke **scamguards.app/search** dan tampal nombor telefon, emel, atau mana-mana butiran yang mereka berikan. AI akan tunjukkan jika nombor itu pernah dilaporkan.\n\n**Reverse image search gambar profil:**\n- Simpan gambar profil mereka\n- Pergi ke **images.google.com** → klik ikon kamera → muat naik gambar\n- Jika gambar yang sama muncul di profil lain dengan nama berbeza, ia kemungkinan besar dicuri.\n\n**Semak konsistensi cerita:**\n- Catat butiran yang mereka kongsi (tempat kerja, universiti, kampung halaman)\n- Google butiran tersebut — adakah ia masuk akal?\n- Tanya soalan terperinci dan lihat jika jawapan berubah\n\n**Minta video call secara langsung:**\n- Bukan video yang dirakam. Video call langsung di mana anda boleh minta mereka melambai atau menunjukkan sesuatu.\n- Jika mereka sentiasa menolak video call selepas berminggu-minggu berhubung, itu red flag besar.",
+      },
+      {
+        heading: "Apa Nak Buat Kalau Anda Sudah Menjadi Mangsa",
+        content:
+          "**Pertama: Jangan malu.** Love scam bukan salah anda. Penipu ini adalah profesional yang dilatih oleh sindiket untuk memanipulasi emosi. Doktor, peguam, dan ahli perniagaan juga menjadi mangsa.\n\n**Langkah segera:**\n\n1. **Hentikan semua komunikasi** — jangan balas mesej atau panggilan. Sekat nombor.\n2. **Hubungi hotline penipuan bank anda** jika anda telah transfer wang — minta fund recall. Semakin cepat, semakin baik.\n3. **Hubungi NSRC di 997** — Pusat Respons Scam Kebangsaan boleh koordinasi pembekuan akaun.\n4. **Buat laporan polis** di balai polis terdekat. Bawa semua bukti — tangkap layar perbualan, resit pemindahan, butiran profil penipu.\n5. **Lapor di ScamGuards** (scamguards.app/submit) — tampal nombor telefon, akaun bank, dan cerita anda. AI akan keluarkan butiran penting secara automatik. Ini memberi amaran kepada mangsa seterusnya.\n\n**Penting:** Jangan bayar sesiapa yang tiba-tiba muncul dan kata mereka boleh \"recover\" duit anda. Ini adalah **recovery scam** — penipuan kedua yang menyasarkan mangsa love scam.",
+      },
+      {
+        heading: "Soalan Lazim Tentang Love Scam",
+        content:
+          "**Bolehkah saya dapat balik duit yang hilang?**\nIa bergantung kepada berapa cepat anda bertindak. Jika anda lapor dalam 30 minit, bank mungkin boleh bekukan akaun penerima. Selepas 24 jam, peluang sangat rendah. Untuk pemindahan antarabangsa, hampir mustahil.\n\n**Adakah love scam hanya berlaku pada orang tua?**\nTidak. CCID melaporkan mangsa merangkumi semua peringkat umur dari 20-an hingga 60-an. Penipu menyesuaikan pendekatan mereka mengikut profil mangsa.\n\n**Apa beza love scam dan sugar daddy/baby scam?**\nLove scam melibatkan hubungan romantik palsu. Sugar scam melibatkan tawaran kewangan palsu (\"Saya bayar RM5,000 sebulan untuk perbualan\") yang memerlukan anda membayar \"yuran pendaftaran\" terlebih dahulu. Kedua-duanya adalah penipuan.\n\n**Bagaimana kalau penipu mengugut nak sebar gambar/video peribadi saya?**\nIni dipanggil **sextortion** dan ia adalah jenayah serius. JANGAN bayar — pembayaran tidak akan menghentikan mereka. Lapor kepada polis segera dan hubungi MCMC di 1-800-888-030 untuk membuang kandungan tersebut.",
+      },
+    ],
+  },
 ];
 
 export function getBlogBySlug(slug: string): BlogPost | undefined {

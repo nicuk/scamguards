@@ -1,63 +1,62 @@
 import { MetadataRoute } from "next";
 import { getAllScamSlugs } from "@/lib/scam-data";
 import { getAllBlogSlugs } from "@/lib/blog-data";
-
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://scamguards.app";
+import { SITE_URL } from "@/lib/seo-config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   const staticPages: MetadataRoute.Sitemap = [
     {
-      url: BASE_URL,
+      url: SITE_URL,
       lastModified: now,
       changeFrequency: "daily",
       priority: 1.0,
     },
     {
-      url: `${BASE_URL}/search`,
+      url: `${SITE_URL}/search`,
       lastModified: now,
       changeFrequency: "daily",
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/submit`,
+      url: `${SITE_URL}/submit`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/how-it-works`,
+      url: `${SITE_URL}/how-it-works`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
-      url: `${BASE_URL}/scams`,
+      url: `${SITE_URL}/scams`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/blog`,
+      url: `${SITE_URL}/blog`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.7,
     },
     {
-      url: `${BASE_URL}/donate`,
+      url: `${SITE_URL}/donate`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.5,
     },
     {
-      url: `${BASE_URL}/disclaimer`,
+      url: `${SITE_URL}/disclaimer`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.5,
     },
     {
-      url: `${BASE_URL}/dispute`,
+      url: `${SITE_URL}/dispute`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.6,
@@ -65,14 +64,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const scamPages: MetadataRoute.Sitemap = getAllScamSlugs().map((slug) => ({
-    url: `${BASE_URL}/scams/${slug}`,
+    url: `${SITE_URL}/scams/${slug}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
 
   const blogPages: MetadataRoute.Sitemap = getAllBlogSlugs().map((slug) => ({
-    url: `${BASE_URL}/blog/${slug}`,
+    url: `${SITE_URL}/blog/${slug}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.7,

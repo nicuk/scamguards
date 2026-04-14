@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { PAGE_SEO, SITE_URL } from "@/lib/seo-config";
+import { PAGE_SEO } from "@/lib/seo-config";
 
 export const metadata: Metadata = {
   title: PAGE_SEO.results.title,

@@ -10,7 +10,6 @@ import { CtaSection } from "@/components/home/cta-section";
 import { PlatformStats } from "@/components/stats/platform-stats";
 import { PAGE_SEO, SITE_URL, generatePageGraphSchema, generateFAQSchema } from "@/lib/seo-config";
 
-// Enhanced SEO metadata for homepage
 export const metadata: Metadata = {
   title: PAGE_SEO.home.title,
   description: PAGE_SEO.home.description,
@@ -30,7 +29,6 @@ export const metadata: Metadata = {
   },
 };
 
-// FAQ Schema for rich snippets
 const homeFAQs = [
   {
     question: "How does the AI scam checker work?",
@@ -38,14 +36,14 @@ const homeFAQs = [
       "Simply paste any phone number, email, or bank account into ScamGuards. Our AI instantly searches thousands of community scam reports and analyzes patterns to tell you if it's suspicious, safe, or unknown — with a confidence score.",
   },
   {
-    question: "Is ScamGuards's AI scam checker free?",
+    question: "Is ScamGuards' AI scam checker free?",
     answer:
       "Yes, 100% free! No sign-up, no credit card, no limits. Just paste the suspicious details and get instant AI-powered results. Our mission is to protect all Malaysians from scams.",
   },
   {
     question: "How do I check if someone is a scammer in Malaysia?",
     answer:
-      "Copy the phone number, email, bank account, or social media from the suspicious person. Paste it into ScamGuards's search box. Click 'Check Now' and our AI will instantly show you if there are any scam reports.",
+      "Copy the phone number, email, bank account, or social media from the suspicious person. Paste it into ScamGuards' search box. Click 'Check Now' and our AI will instantly show you if there are any scam reports.",
   },
   {
     question: "How do I report a scammer?",
@@ -55,7 +53,7 @@ const homeFAQs = [
   {
     question: "What types of scams does ScamGuards detect?",
     answer:
-      "ScamGuards's AI can detect all common scams in Malaysia: Macau scams, love scams, TCG/collectibles scams (Pokemon, One Piece cards), gold/silver scams, Shopee/Carousell scams, job scams, and more.",
+      "ScamGuards' AI can detect all common scams in Malaysia: Macau scams, love scams, TCG/collectibles scams (Pokemon, One Piece cards), gold/silver scams, Shopee/Carousell scams, job scams, and more.",
   },
   {
     question: "How much money do Malaysians lose to scams?",

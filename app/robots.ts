@@ -1,6 +1,5 @@
 import { MetadataRoute } from "next";
-
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://scamguards.app";
+import { SITE_URL } from "@/lib/seo-config";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -32,6 +31,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: `${BASE_URL}/sitemap.xml`,
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

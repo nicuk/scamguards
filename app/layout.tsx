@@ -23,7 +23,6 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  // Basic metadata
   title: {
     default: SEO_CONFIG.defaultTitle,
     template: `%s | ${SITE_NAME}`,
@@ -31,13 +30,11 @@ export const metadata: Metadata = {
   description: SEO_CONFIG.defaultDescription,
   keywords: SEO_CONFIG.keywords,
 
-  // Canonical & base URL
   metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: "/",
   },
 
-  // Robots
   robots: {
     index: true,
     follow: true,
@@ -50,7 +47,6 @@ export const metadata: Metadata = {
     },
   },
 
-  // Open Graph
   openGraph: {
     type: "website",
     locale: "en_MY",
@@ -59,41 +55,32 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: SEO_CONFIG.defaultTitle,
     description: SEO_CONFIG.defaultDescription,
-    // Images are auto-generated via opengraph-image.tsx
   },
 
-  // Twitter Card
   twitter: {
     card: "summary_large_image",
     site: "@scamguardmy",
     creator: "@scamguardmy",
     title: SEO_CONFIG.defaultTitle,
     description: SEO_CONFIG.defaultDescription,
-    // Images are auto-generated via twitter-image.tsx
   },
 
-  // Icons are auto-generated via icon.tsx and apple-icon.tsx
-
-  // Manifest
   manifest: "/manifest.json",
 
-  // Verification (add your IDs when you have them)
   verification: {
-    google: process.env.GOOGLE_SITE_VERIFICATION || "",
-    other: {
-      "msvalidate.01": process.env.BING_SITE_VERIFICATION || "",
-    },
+    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+    other: process.env.BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION }
+      : {},
   },
 
-  // App info
   applicationName: SITE_NAME,
   creator: "ScamGuards Malaysia",
   publisher: "ScamGuards Malaysia",
   category: "Security",
 
-  // Other
   formatDetection: {
-    telephone: false, // Prevent phone number detection styling
+    telephone: false,
   },
 };
 
@@ -116,19 +103,15 @@ export default function RootLayout({
     <html lang="en" dir="ltr">
       <head>
         <JsonLd />
-        {/* Preconnect to external resources */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
-        {/* Geo targeting for Malaysia */}
         <meta name="geo.region" content="MY" />
         <meta name="geo.placename" content="Malaysia" />
-        {/* Default language - no hreflang needed since EN/MS serve the same URL via client-side toggle */}
         <link rel="alternate" hrefLang="x-default" href={SITE_URL} />
-        {/* LLM discovery */}
         <link rel="alternate" type="text/plain" href={`${SITE_URL}/llms.txt`} title="LLM site info" />
         <link rel="alternate" type="application/rss+xml" title="ScamGuards Malaysia" href={`${SITE_URL}/feed.xml`} />
       </head>

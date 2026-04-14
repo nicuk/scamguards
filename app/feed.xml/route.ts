@@ -1,7 +1,6 @@
 import { BLOG_POSTS } from "@/lib/blog-data";
 import { SCAM_TYPES } from "@/lib/scam-data";
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://scamguards.app";
+import { SITE_URL } from "@/lib/seo-config";
 
 export async function GET() {
   const blogItems = BLOG_POSTS.map(
