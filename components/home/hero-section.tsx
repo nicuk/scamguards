@@ -22,8 +22,26 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative py-16 lg:py-28 bg-gradient-to-b from-primary/5 via-muted/30 to-background">
-      <div className="container mx-auto px-4">
+    <section className="relative py-16 lg:py-28 overflow-hidden">
+      {/* Video background */}
+      <div className="absolute inset-0 w-full h-full">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source
+            src="https://res.cloudinary.com/dc6iyacqv/video/upload/v1/2026-04-26-9056-A_clean_minimal_qbk6ql"
+            type="video/mp4"
+          />
+        </video>
+        {/* Gradient overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 px-4 py-2 rounded-full text-sm font-semibold mb-6">
             <Sparkles className="h-4 w-4" />
