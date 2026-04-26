@@ -109,6 +109,8 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+        <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         <meta name="geo.region" content="MY" />
         <meta name="geo.placename" content="Malaysia" />
         <link rel="alternate" hrefLang="x-default" href={SITE_URL} />

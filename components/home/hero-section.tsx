@@ -1,16 +1,43 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Sparkles, Search, FileText, Zap, ArrowRight, Loader2 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
+
+const CLOUDINARY_BASE =
+  "https://res.cloudinary.com/dc6iyacqv/video/upload";
+const VIDEO_PUBLIC_ID = "2026-04-26-9056-A_clean_minimal_qbk6ql";
+const VIDEO_POSTER = `${CLOUDINARY_BASE}/so_0,f_auto,q_auto,w_1280/${VIDEO_PUBLIC_ID}.jpg`;
+const VIDEO_WEBM = `${CLOUDINARY_BASE}/q_auto:eco,vc_auto,w_1280/${VIDEO_PUBLIC_ID}.webm`;
+const VIDEO_MP4 = `${CLOUDINARY_BASE}/q_auto:eco,vc_auto,w_1280/${VIDEO_PUBLIC_ID}.mp4`;
 
 export function HeroSection() {
   const { t, lang } = useLanguage();
   const router = useRouter();
   const [query, setQuery] = useState("");
   const [isSearching, setIsSearching] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const tryPlay = () => {
+      const p = video.play();
+      if (p && typeof p.catch === "function") p.catch(() => {});
+    };
+    if (video.readyState >= 2) {
+      tryPlay();
+    } else {
+      video.addEventListener("loadeddata", tryPlay, { once: true });
+      video.addEventListener("canplay", tryPlay, { once: true });
+    }
+    return () => {
+      video.removeEventListener("loadeddata", tryPlay);
+      video.removeEventListener("canplay", tryPlay);
+    };
+  }, []);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,18 +51,23 @@ export function HeroSection() {
   return (
     <section className="relative py-16 lg:py-28 overflow-hidden">
       {/* Video background */}
-      <div className="absolute inset-0 w-full h-full">
+      <div
+        className="absolute inset-0 w-full h-full bg-cover bg-center"
+        style={{ backgroundImage: `url(${VIDEO_POSTER})` }}
+      >
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
+          preload="auto"
+          poster={VIDEO_POSTER}
+          aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source
-            src="https://res.cloudinary.com/dc6iyacqv/video/upload/v1/2026-04-26-9056-A_clean_minimal_qbk6ql"
-            type="video/mp4"
-          />
+          <source src={VIDEO_WEBM} type="video/webm" />
+          <source src={VIDEO_MP4} type="video/mp4" />
         </video>
         {/* Gradient overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
