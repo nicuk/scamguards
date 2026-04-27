@@ -151,6 +151,7 @@ export const PAGE_SEO = {
 
 const ORG_ID = `${SITE_URL}/#org`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
+const WEBAPP_ID = `${SITE_URL}/#webapp`;
 
 export function generateRootGraphSchema() {
   return {
@@ -188,6 +189,34 @@ export function generateRootGraphSchema() {
           "query-input": "required name=search_term_string",
         },
         inLanguage: ["en-MY", "ms-MY"],
+      },
+      {
+        "@type": "WebApplication",
+        "@id": WEBAPP_ID,
+        name: SITE_NAME,
+        url: SITE_URL,
+        applicationCategory: "SecurityApplication",
+        applicationSubCategory: "Scam Detection",
+        operatingSystem: "Any",
+        browserRequirements: "Requires JavaScript",
+        description: SEO_CONFIG.defaultDescription,
+        inLanguage: ["en-MY", "ms-MY"],
+        isAccessibleForFree: true,
+        publisher: { "@id": ORG_ID },
+        offers: {
+          "@type": "Offer",
+          price: 0,
+          priceCurrency: "MYR",
+          availability: "https://schema.org/InStock",
+        },
+        featureList: [
+          "AI-powered scam phone number checker",
+          "Bank account scam database lookup",
+          "Email and WhatsApp scammer verification",
+          "Community-sourced scam reports",
+          "Bilingual support (English & Bahasa Malaysia)",
+        ],
+        audience: { "@type": "Audience", geographicArea: { "@type": "Country", name: "Malaysia" } },
       },
     ],
   };
@@ -243,6 +272,12 @@ export function generateArticleSchema(post: {
     },
     mainEntityOfPage: { "@type": "WebPage", "@id": `${post.url}/#webpage` },
     isPartOf: { "@id": WEBSITE_ID },
+    image: {
+      "@type": "ImageObject",
+      url: `${post.url}/opengraph-image`,
+      width: 1200,
+      height: 630,
+    },
   };
 }
 
