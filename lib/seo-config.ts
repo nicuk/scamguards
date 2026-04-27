@@ -208,6 +208,7 @@ export function generateRootGraphSchema() {
           price: 0,
           priceCurrency: "MYR",
           availability: "https://schema.org/InStock",
+          priceValidUntil: `${new Date().getFullYear() + 1}-12-31`,
         },
         featureList: [
           "AI-powered scam phone number checker",

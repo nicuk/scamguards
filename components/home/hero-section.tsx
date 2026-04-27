@@ -9,7 +9,7 @@ import { useLanguage } from "@/lib/language-context";
 const CLOUDINARY_BASE =
   "https://res.cloudinary.com/dc6iyacqv/video/upload";
 const VIDEO_PUBLIC_ID = "2026-04-26-9056-A_clean_minimal_qbk6ql";
-const VIDEO_POSTER = `${CLOUDINARY_BASE}/so_0,f_auto,q_auto,w_1280/${VIDEO_PUBLIC_ID}.jpg`;
+const VIDEO_POSTER = `${CLOUDINARY_BASE}/so_0,f_auto,q_auto,w_auto,dpr_auto/${VIDEO_PUBLIC_ID}.jpg`;
 const VIDEO_WEBM = `${CLOUDINARY_BASE}/q_auto:eco,vc_auto,w_1280/${VIDEO_PUBLIC_ID}.webm`;
 const VIDEO_MP4 = `${CLOUDINARY_BASE}/q_auto:eco,vc_auto,w_1280/${VIDEO_PUBLIC_ID}.mp4`;
 
@@ -23,6 +23,14 @@ export function HeroSection() {
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+    const reduceMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) {
+      video.pause();
+      video.removeAttribute("autoplay");
+      return;
+    }
     const tryPlay = () => {
       const p = video.play();
       if (p && typeof p.catch === "function") p.catch(() => {});
