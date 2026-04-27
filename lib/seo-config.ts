@@ -226,7 +226,8 @@ export function generatePageGraphSchema(
   pageUrl: string,
   pageName: string,
   pageDescription: string,
-  extras: Record<string, unknown>[] = []
+  extras: Record<string, unknown>[] = [],
+  speakableSelectors: string[] = ["h1"]
 ) {
   return {
     "@context": "https://schema.org",
@@ -242,7 +243,7 @@ export function generatePageGraphSchema(
         inLanguage: "en-MY",
         speakable: {
           "@type": "SpeakableSpecification",
-          cssSelector: ["h1", "#faq", "#how-it-works", ".tldr"],
+          cssSelector: speakableSelectors,
         },
       },
       ...extras,

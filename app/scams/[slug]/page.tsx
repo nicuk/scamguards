@@ -80,7 +80,8 @@ export default function ScamTypePage({
     `${SITE_URL}/scams/${scam.slug}`,
     scam.metaTitle,
     scam.metaDescription,
-    [faqSchema, breadcrumbSchema, howToSchema]
+    [faqSchema, breadcrumbSchema, howToSchema],
+    ["h1", ".tldr"]
   );
 
   return (
@@ -105,7 +106,7 @@ export default function ScamTypePage({
           <div className="mb-8">
             <div className="text-5xl mb-4">{scam.heroEmoji}</div>
             <h1 className="text-3xl md:text-4xl font-bold mb-4">{scam.title} in Malaysia</h1>
-            <p className="text-lg font-medium leading-relaxed mb-4">{scam.tldr}</p>
+            <p className="tldr text-lg font-medium leading-relaxed mb-4">{scam.tldr}</p>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-destructive/10 text-destructive text-sm font-medium">
               <AlertTriangle className="h-4 w-4" />
               {scam.stats}

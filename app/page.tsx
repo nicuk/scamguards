@@ -78,7 +78,8 @@ function HomeJsonLd() {
     SITE_URL,
     PAGE_SEO.home.title,
     PAGE_SEO.home.description,
-    [faqSchema]
+    [faqSchema],
+    ["h1", "#how-it-works"]
   );
   return (
     <script
