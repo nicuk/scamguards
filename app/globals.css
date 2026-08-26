@@ -78,3 +78,196 @@
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
+/* ---------- Sponsored bid board ---------- */
+/*
+ * Content is visible by default. The reveal classes only add an animation on
+ * top of an already-painted board, so a headless render or a background tab
+ * never ships this section blank.
+ */
+
+@keyframes board-settle {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Bid figures drop into place like a price board flipping over */
+@keyframes bid-flip {
+  from {
+    opacity: 0;
+    transform: translateY(-0.32em);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes live-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes live-ring {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(2.8);
+  }
+}
+
+.board-settle.is-live {
+  animation: board-settle 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.bid-flip.is-live {
+  animation: bid-flip 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.live-dot {
+  animation: live-pulse 2s ease-in-out infinite;
+}
+
+.live-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: inherit;
+  animation: live-ring 2s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .board-settle.is-live,
+  .bid-flip.is-live {
+    animation: none;
+  }
+
+  .live-dot,
+  .live-dot::after {
+    animation: none;
+  }
+
+  .live-dot::after {
+    display: none;
+  }
+}
+
+/* ---------- Magnetic sponsor cells ---------- */
+/*
+ * Each cell exposes --px/--py (pointer offset from centre, -1..1) and an
+ * --accent sampled from that sponsor's logo. Layers translate by different
+ * multipliers so the logo leads the text, which reads as depth rather than
+ * the whole block sliding.
+ */
+
+.sponsor-cell {
+  --px: 0;
+  --py: 0;
+}
+
+.sponsor-magnet {
+  transform: translate3d(
+    calc(var(--px) * var(--pull, 6px)),
+    calc(var(--py) * var(--pull, 6px)),
+    0
+  );
+  /* Slow spring back when the pointer leaves, snappy while tracking */
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.sponsor-cell.is-tracking .sponsor-magnet {
+  transition-duration: 0.09s;
+}
+
+/* Accent wash that follows the pointer */
+.sponsor-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease-out;
+  background: radial-gradient(
+    16rem circle at var(--sx, 50%) var(--sy, 50%),
+    color-mix(in srgb, var(--accent) 12%, transparent),
+    transparent 68%
+  );
+}
+
+.sponsor-cell:hover .sponsor-glow,
+.sponsor-cell:focus-visible .sponsor-glow {
+  opacity: 1;
+}
+
+/* Accent ring drawn inside the cell so the board's rounded clip stays clean */
+.sponsor-cell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+  box-shadow: inset 0 0 0 1.5px
+    color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.sponsor-cell:hover::after,
+.sponsor-cell:focus-visible::after {
+  opacity: 1;
+}
+
+/* Resting accent: the logo sits on a tint of its own brand colour */
+.sponsor-logo-tile {
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--accent) 22%, transparent);
+  transition: background 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.sponsor-cell:hover .sponsor-logo-tile {
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--accent) 42%, transparent);
+}
+
+/* Coarse pointers get no magnet and no follow-glow, just the resting tint */
+@media (hover: none), (pointer: coarse) {
+  .sponsor-magnet {
+    transform: none;
+  }
+
+  .sponsor-glow {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sponsor-magnet {
+    transform: none;
+    transition: none;
+  }
+
+  .sponsor-glow {
+    transition: none;
+  }
+}

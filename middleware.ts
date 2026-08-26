@@ -8,6 +8,10 @@ const RATE_LIMITS: Record<string, { limit: number; windowSeconds: number; banAft
   dispute: { limit: 3, windowSeconds: 3600, banAfter: 15 },       // 3/hr, ban after 15
   extract: { limit: 20, windowSeconds: 3600, banAfter: 50 },      // 20/hr (AI calls)
   "analyze-report": { limit: 10, windowSeconds: 3600, banAfter: 30 }, // 10/hr (AI calls)
+  // Sponsored slots. More specific "parent/child" keys win over "parent".
+  "sponsors/enquiry": { limit: 3, windowSeconds: 3600, banAfter: 15 }, // 3/hr (emails + Slack)
+  "sponsors/click": { limit: 30, windowSeconds: 3600, banAfter: 200 }, // 30/hr (click counter)
+  sponsors: { limit: 120, windowSeconds: 3600, banAfter: 600 },        // 120/hr (public read)
 };
 
 // Cooldown between submissions (seconds)
@@ -181,9 +185,17 @@ export async function middleware(request: NextRequest) {
     );
   }
 
-  // Determine action from path
+  // Determine action from path. Prefer the two-segment key ("sponsors/enquiry")
+  // so sibling routes under one namespace can carry different limits, and fall
+  // back to the single segment ("search", "submit").
   const pathParts = request.nextUrl.pathname.split("/");
-  const action = pathParts[2]; // /api/search, /api/submit, etc.
+  const parentAction = pathParts[2]; // /api/search, /api/submit, etc.
+  const nestedAction = pathParts[3]
+    ? `${parentAction}/${pathParts[3]}`
+    : undefined;
+
+  const action =
+    nestedAction && RATE_LIMITS[nestedAction] ? nestedAction : parentAction;
 
   const config = RATE_LIMITS[action];
   if (!config) {

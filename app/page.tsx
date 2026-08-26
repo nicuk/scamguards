@@ -6,9 +6,13 @@ import { HowItWorksSection } from "@/components/home/how-it-works-section";
 import { FounderStorySection } from "@/components/home/founder-story-section";
 import { ScamTypesSection } from "@/components/home/scam-types-section";
 import { TrustSection } from "@/components/home/trust-section";
+import { SponsoredProjectsSection } from "@/components/home/sponsored-projects-section";
 import { CtaSection } from "@/components/home/cta-section";
 import { PlatformStats } from "@/components/stats/platform-stats";
 import { PAGE_SEO, SITE_URL, generatePageGraphSchema, generateFAQSchema } from "@/lib/seo-config";
+
+// Sponsor bids and click counts refresh on this cadence.
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: PAGE_SEO.home.title,
@@ -95,6 +99,8 @@ export default function HomePage() {
       <HomeJsonLd />
       <div className="flex flex-col">
         <HeroSection />
+
+        <SponsoredProjectsSection />
 
         <MalaysiaStatsStrip />
 
