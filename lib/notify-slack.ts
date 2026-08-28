@@ -14,7 +14,13 @@ export async function notifySlack(
   const webhookUrl = process.env.SLACK_WEBHOOK_URL;
 
   if (!webhookUrl) {
-    // Not configured (e.g. local dev) — silently skip.
+    // Loud on the server, silent to the visitor. A missing webhook means a
+    // real enquiry was saved with nobody notified, which is worth seeing in
+    // the logs rather than discovering weeks later.
+    console.warn(
+      "[notify-slack] SLACK_WEBHOOK_URL is not set — notification skipped. " +
+        "The record was still saved."
+    );
     return false;
   }
 
@@ -49,6 +55,13 @@ function escapeMrkdwn(value: string): string {
   return value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
+/**
+ * The webhook posts into #aeorival-signals, which already carries alerts from
+ * another property. Every message leads with the site so the two are never
+ * confused at a glance.
+ */
+const SITE_NAME = "ScamGuards";
+
 export type SponsorEnquiryNotification = {
   name: string;
   email: string;
@@ -82,8 +95,8 @@ export function buildSponsorEnquiryMessage(
       text: {
         type: "plain_text",
         text: beatsTopBid
-          ? "💰 New sponsor bid — beats the top slot"
-          : "💬 New sponsorship enquiry",
+          ? `💰 ${SITE_NAME} — sponsor bid beats the top slot`
+          : `💬 ${SITE_NAME} — sponsorship enquiry`,
         emoji: true,
       },
     },
@@ -108,13 +121,13 @@ export function buildSponsorEnquiryMessage(
     elements: [
       {
         type: "mrkdwn",
-        text: "ScamGuards · sponsored slots",
+        text: `${SITE_NAME} · sponsored slots · scamguards.app`,
       },
     ],
   });
 
   return {
-    text: `New sponsorship enquiry from ${name} — $${enquiry.bidAmount}`,
+    text: `${SITE_NAME}: sponsorship enquiry from ${name} — $${enquiry.bidAmount}`,
     blocks,
   };
 }
