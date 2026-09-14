@@ -17,14 +17,14 @@ export function SponsorSlots({ sponsors, minBid }: SponsorSlotsProps) {
   const [clicks, setClicks] = useState<Record<string, number>>(() =>
     Object.fromEntries(sponsors.map((s) => [s.slug, s.clickCount]))
   );
-  const boardRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   const topBid = sponsors.length
     ? Math.max(...sponsors.map((s) => s.bidAmount))
     : minBid;
 
   useEffect(() => {
-    const node = boardRef.current;
+    const node = panelRef.current;
     if (!node || typeof IntersectionObserver === "undefined") return;
 
     const observer = new IntersectionObserver(
@@ -56,44 +56,49 @@ export function SponsorSlots({ sponsors, minBid }: SponsorSlotsProps) {
 
   return (
     <>
-      <div className="mb-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
-        <p className="flex items-center gap-2 text-[13px] text-muted-foreground">
-          <span
-            className="live-dot relative h-1.5 w-1.5 shrink-0 rounded-full bg-primary"
-            aria-hidden="true"
-          />
-          <span>
-            <span className="font-medium text-foreground">Sponsored</span> — three
-            slots, highest bid ranks first
-          </span>
-        </p>
-
-        <button
-          type="button"
-          onClick={() => setEnquiryOpen(true)}
-          className="group inline-flex min-h-[44px] items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[13px] font-medium text-primary transition-colors hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 sm:min-h-[36px]"
-        >
-          <Gavel className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-rotate-12" />
-          Bid from ${minBid}
-        </button>
-      </div>
-
       <div
-        ref={boardRef}
-        className={`board-settle ${live ? "is-live" : ""}
-          grid grid-cols-1 divide-y overflow-hidden rounded-xl border
-          bg-background md:grid-cols-3 md:divide-x md:divide-y-0`}
+        ref={panelRef}
+        className={`sponsor-panel board-settle ${live ? "is-live" : ""}`}
       >
-        {sponsors.map((sponsor, index) => (
-          <SponsorCell
-            key={sponsor.slug}
-            sponsor={sponsor}
-            rank={index + 1}
-            clickCount={clicks[sponsor.slug] ?? 0}
-            live={live}
-            onTrack={trackClick}
-          />
-        ))}
+        <div className="sponsor-panel-head">
+          <div className="min-w-0">
+            <p className="sponsor-panel-title">
+              These sponsors help keep ScamGuards free
+            </p>
+            <p className="mt-0.5 flex items-center gap-2 text-xs text-[var(--sp-ink-3)]">
+              <span
+                className="live-dot relative h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--sp-live)]"
+                aria-hidden="true"
+              />
+              <span>
+                <span className="font-semibold text-[var(--sp-ink-2)]">Sponsored</span>
+                {" "}· three slots, highest bid ranks first
+              </span>
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setEnquiryOpen(true)}
+            className="sponsor-bid-button group"
+          >
+            <Gavel className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-rotate-12" />
+            Bid from ${minBid}
+          </button>
+        </div>
+
+        <div className="sponsor-board">
+          {sponsors.map((sponsor, index) => (
+            <SponsorCell
+              key={sponsor.slug}
+              sponsor={sponsor}
+              rank={index + 1}
+              clickCount={clicks[sponsor.slug] ?? 0}
+              live={live}
+              onTrack={trackClick}
+            />
+          ))}
+        </div>
       </div>
 
       <SponsorEnquiryDialog
@@ -188,13 +193,14 @@ function SponsorCell({
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
       style={{ ["--accent" as string]: sponsor.accentColor }}
-      className={`sponsor-cell group relative flex flex-col gap-3 p-4
-        transition-colors duration-200 focus-visible:outline-none sm:p-5
-        ${isTopBid ? "bg-primary/[0.035]" : ""}`}
+      className={`sponsor-cell group ${isTopBid ? "is-top-bid" : ""}`}
     >
       <span className="sponsor-glow" aria-hidden="true" />
 
-      <div className="sponsor-magnet relative flex items-center gap-3" style={{ ["--pull" as string]: "9px" }}>
+      <div
+        className="sponsor-magnet sponsor-cell-head relative flex items-center gap-3"
+        style={{ ["--pull" as string]: "9px" }}
+      >
         <span className="sponsor-logo-tile flex h-11 w-11 shrink-0 items-center justify-center rounded-lg">
           <Image
             src={sponsor.logoPath}
@@ -206,43 +212,38 @@ function SponsorCell({
         </span>
 
         <span className="min-w-0 flex-1">
-          <span className="block whitespace-nowrap text-[15px] font-semibold leading-tight">
+          <span className="block whitespace-nowrap text-[15px] font-semibold leading-tight text-[var(--sp-ink)]">
             {sponsor.name}
           </span>
-          <span className="block truncate text-xs text-foreground/68">
+          <span className="block truncate text-xs text-[var(--sp-ink-3)]">
             {sponsor.domain}
           </span>
         </span>
 
-        <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground/60 transition-all duration-300 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[var(--accent)]" />
+        <ArrowUpRight className="sponsor-arrow h-4 w-4 shrink-0" />
       </div>
 
-      <p className="sponsor-magnet relative line-clamp-2 text-[13px] leading-relaxed text-foreground/75">
+      <p className="sponsor-magnet sponsor-cell-desc relative line-clamp-2 text-[13px] leading-relaxed text-[var(--sp-ink-2)]">
         {sponsor.description}
       </p>
 
       {/* The price is the point of a bid board, so it carries the weight */}
       <div
-        className="sponsor-magnet relative mt-auto flex items-baseline justify-between gap-3 pt-1"
+        className="sponsor-magnet sponsor-cell-price relative mt-auto flex items-baseline justify-between gap-3 pt-1"
         style={{ ["--pull" as string]: "4px" }}
       >
         <span className="flex items-baseline gap-2">
           <span
-            className={`bid-flip ${live ? "is-live" : ""} text-[26px] font-semibold leading-none tracking-tight tabular-nums`}
+            className={`bid-flip sponsor-bid-figure ${live ? "is-live" : ""} font-semibold leading-none tracking-tight tabular-nums text-[var(--sp-ink)]`}
             style={{ animationDelay: `${(rank - 1) * 90 + 120}ms` }}
           >
             ${sponsor.bidAmount}
           </span>
-          {isTopBid && (
-            <span className="rounded-full bg-primary px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-primary-foreground">
-              Top bid
-            </span>
-          )}
+          {isTopBid && <span className="sponsor-top-pill">Top bid</span>}
         </span>
 
-        <span className="text-xs tabular-nums text-foreground/68">
-          {clickCount.toLocaleString()}{" "}
-          {clickCount === 1 ? "click" : "clicks"}
+        <span className="text-xs tabular-nums text-[var(--sp-ink-3)]">
+          {clickCount.toLocaleString()} {clickCount === 1 ? "click" : "clicks"}
         </span>
       </div>
     </a>

@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 
 /**
@@ -191,3 +192,18 @@ function withCampaignTags(sponsors: Sponsor[]): Sponsor[] {
     url: withUtm(sponsor.url),
   }));
 }
+
+/**
+ * Display read for page renders. Blog and scam guides are statically generated,
+ * so an uncached read would bake bids and click counts in at build time
+ * forever. Caching here for five minutes also sets that as the revalidate
+ * window for every route that renders the board.
+ *
+ * API routes must keep calling getSponsors() directly: the enquiry price floor
+ * is validated against live bids, and a cached floor would reintroduce the
+ * "page says $21, server rejects $21" mismatch.
+ */
+export const getCachedSponsors = unstable_cache(getSponsors, ["sponsors"], {
+  revalidate: 300,
+  tags: ["sponsors"],
+});

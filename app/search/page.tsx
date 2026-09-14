@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { Metadata } from "next";
 import { SearchForm } from "@/components/search/search-form";
+import { SponsoredProjectsSection } from "@/components/home/sponsored-projects-section";
 import { Shield, Loader2 } from "lucide-react";
 import { PAGE_SEO, SITE_URL, generateBreadcrumbSchema } from "@/lib/seo-config";
 
@@ -57,6 +58,8 @@ export default function SearchPage() {
         <Suspense fallback={<div className="flex justify-center py-12"><Loader2 className="h-8 w-8 animate-spin text-primary" /></div>}>
           <SearchForm />
         </Suspense>
+
+        <SponsoredProjectsSection placement="inline" className="mt-10" />
       </div>
     </div>
     </>

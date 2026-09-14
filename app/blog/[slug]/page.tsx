@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Clock, ArrowLeft, Search, FileText } from "lucide-react";
 import { BLOG_POSTS, getBlogBySlug, getAllBlogSlugs } from "@/lib/blog-data";
+import { SponsoredProjectsSection } from "@/components/home/sponsored-projects-section";
 import { SITE_URL, generatePageGraphSchema, generateArticleSchema, generateBreadcrumbSchema } from "@/lib/seo-config";
 
 export function generateStaticParams() {
@@ -101,6 +102,10 @@ export default function BlogPostPage({
             </h1>
             <p className="text-lg text-muted-foreground">{post.excerpt}</p>
           </header>
+
+          {/* First thing after the title: every reader sees it, including the
+              majority who never scroll far into a long guide */}
+          <SponsoredProjectsSection placement="inline" className="mb-10" />
 
           {/* Content */}
           <div className="space-y-10">

@@ -81,10 +81,234 @@
 
 /* ---------- Sponsored bid board ---------- */
 /*
- * Content is visible by default. The reveal classes only add an animation on
- * top of an already-painted board, so a headless render or a background tab
- * never ships this section blank.
+ * A deep-ink panel derived from the primary hue (220). It is the only dark
+ * surface on an otherwise light site, which is what makes it stand out on
+ * every page it appears on. Tokens are scoped to the panel so the rest of the
+ * site's palette is untouched.
+ *
+ * Content is visible by default: reveal classes only add an animation on top
+ * of an already-painted panel, so a headless render or background tab never
+ * ships the section blank.
  */
+
+.sponsor-panel {
+  --sp-bg: hsl(224 52% 11%);
+  --sp-board: hsl(225 50% 8% / 0.6);
+  --sp-rule: hsl(222 34% 22%);
+  --sp-ink: hsl(210 40% 98%);
+  /* Secondary steps are set bright enough to hold 4.5:1 even under the
+     lightest accent glow (TCGIntel gold at full hover) */
+  --sp-ink-2: hsl(216 36% 88%);
+  --sp-ink-3: hsl(216 28% 80%);
+  --sp-live: hsl(152 68% 52%);
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  container-type: inline-size;
+  padding: 0.375rem;
+  border-radius: 1rem;
+  color: var(--sp-ink);
+  background:
+    radial-gradient(110% 120% at 0% 0%, hsl(220 80% 55% / 0.2), transparent 58%),
+    var(--sp-bg);
+  box-shadow:
+    inset 0 1px 0 hsl(0 0% 100% / 0.07),
+    0 24px 48px -28px hsl(224 70% 12% / 0.6),
+    0 2px 6px -2px hsl(224 60% 12% / 0.25);
+}
+
+.sponsor-panel ::selection {
+  background: hsl(220 80% 55% / 0.5);
+  color: hsl(0 0% 100%);
+}
+
+.sponsor-panel-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  padding: 0.5rem 0.625rem 0.625rem 0.75rem;
+}
+
+.sponsor-panel-title {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--sp-ink);
+  text-wrap: balance;
+}
+
+@container (min-width: 38rem) {
+  .sponsor-panel-title {
+    font-size: 17px;
+  }
+}
+
+.sponsor-bid-figure {
+  font-size: 26px;
+}
+
+.sponsor-bid-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  padding: 0.4rem 0.9rem;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--sp-ink);
+  background: hsl(0 0% 100% / 0.08);
+  border: 1px solid hsl(0 0% 100% / 0.16);
+  transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+.sponsor-bid-button:hover {
+  background: hsl(0 0% 100% / 0.14);
+  border-color: hsl(0 0% 100% / 0.3);
+}
+
+.sponsor-bid-button:focus-visible {
+  outline: 2px solid hsl(0 0% 100% / 0.85);
+  outline-offset: 2px;
+}
+
+@media (min-width: 640px) {
+  .sponsor-bid-button {
+    min-height: 36px;
+  }
+}
+
+/*
+ * Stacked by default; three across once the panel itself has the room.
+ * A container query rather than a viewport breakpoint, so the same board
+ * works as a full-width band and inside a 42rem article column.
+ */
+.sponsor-board {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background: var(--sp-board);
+  border: 1px solid var(--sp-rule);
+}
+
+.sponsor-cell {
+  --px: 0;
+  --py: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  color: var(--sp-ink);
+  transition: background-color 0.2s ease-out;
+}
+
+.sponsor-cell + .sponsor-cell {
+  border-top: 1px solid var(--sp-rule);
+}
+
+.sponsor-cell.is-top-bid {
+  background: hsl(220 80% 60% / 0.08);
+}
+
+.sponsor-cell:hover {
+  background: hsl(0 0% 100% / 0.04);
+}
+
+.sponsor-cell:focus-visible {
+  outline: none;
+}
+
+/*
+ * Narrow panels (phones, and anywhere the panel sits near the top of a page)
+ * switch each slot to a compact row: identity left, price right, one line of
+ * pitch beneath. Three rows stay prominent without pushing the page's own
+ * content a full screen down.
+ */
+@container (max-width: 37.99rem) {
+  .sponsor-cell {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "head price"
+      "desc desc";
+    column-gap: 0.75rem;
+    row-gap: 0.5rem;
+    padding: 0.875rem 1rem;
+  }
+
+  .sponsor-cell .sponsor-cell-head {
+    grid-area: head;
+  }
+
+  .sponsor-cell .sponsor-cell-desc {
+    grid-area: desc;
+    -webkit-line-clamp: 1;
+  }
+
+  .sponsor-cell .sponsor-cell-price {
+    grid-area: price;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 0.3rem;
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .sponsor-cell .sponsor-arrow {
+    display: none;
+  }
+
+  .sponsor-cell .sponsor-bid-figure {
+    font-size: 22px;
+  }
+}
+
+@container (min-width: 38rem) {
+  .sponsor-board {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .sponsor-cell + .sponsor-cell {
+    border-top: 0;
+    border-left: 1px solid var(--sp-rule);
+  }
+}
+
+@container (min-width: 52rem) {
+  .sponsor-cell {
+    padding: 1.25rem;
+  }
+}
+
+.sponsor-top-pill {
+  border-radius: 9999px;
+  padding: 0.125rem 0.5rem;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: hsl(0 0% 100%);
+  background: hsl(var(--primary));
+}
+
+.sponsor-arrow {
+  color: var(--sp-ink-3);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease-out;
+}
+
+.sponsor-cell:hover .sponsor-arrow,
+.sponsor-cell:focus-visible .sponsor-arrow {
+  transform: translate(2px, -2px);
+  /* Lifted toward white so the icon keeps 3:1 against the dark ground */
+  color: color-mix(in srgb, var(--accent) 45%, white);
+}
 
 @keyframes board-settle {
   from {
@@ -118,14 +342,14 @@
     transform: scale(1);
   }
   50% {
-    opacity: 0.3;
+    opacity: 0.35;
     transform: scale(0.8);
   }
 }
 
 @keyframes live-ring {
   0% {
-    opacity: 0.5;
+    opacity: 0.55;
     transform: scale(1);
   }
   70%,
@@ -156,22 +380,6 @@
   animation: live-ring 2s ease-out infinite;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .board-settle.is-live,
-  .bid-flip.is-live {
-    animation: none;
-  }
-
-  .live-dot,
-  .live-dot::after {
-    animation: none;
-  }
-
-  .live-dot::after {
-    display: none;
-  }
-}
-
 /* ---------- Magnetic sponsor cells ---------- */
 /*
  * Each cell exposes --px/--py (pointer offset from centre, -1..1) and an
@@ -179,11 +387,6 @@
  * multipliers so the logo leads the text, which reads as depth rather than
  * the whole block sliding.
  */
-
-.sponsor-cell {
-  --px: 0;
-  --py: 0;
-}
 
 .sponsor-magnet {
   transform: translate3d(
@@ -200,7 +403,10 @@
   transition-duration: 0.09s;
 }
 
-/* Accent wash that follows the pointer */
+/*
+ * Accent light that follows the pointer. It can run stronger than it could on
+ * a light ground, because on ink it adds colour without eroding text contrast.
+ */
 .sponsor-glow {
   position: absolute;
   inset: 0;
@@ -209,8 +415,8 @@
   transition: opacity 0.35s ease-out;
   background: radial-gradient(
     16rem circle at var(--sx, 50%) var(--sy, 50%),
-    color-mix(in srgb, var(--accent) 12%, transparent),
-    transparent 68%
+    color-mix(in srgb, var(--accent) 26%, transparent),
+    transparent 70%
   );
 }
 
@@ -227,27 +433,31 @@
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s ease-out;
-  box-shadow: inset 0 0 0 1.5px
-    color-mix(in srgb, var(--accent) 55%, transparent);
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--accent) 70%, white);
 }
 
-.sponsor-cell:hover::after,
-.sponsor-cell:focus-visible::after {
+.sponsor-cell:hover::after {
   opacity: 1;
 }
 
-/* Resting accent: the logo sits on a tint of its own brand colour */
+.sponsor-cell:focus-visible::after {
+  opacity: 1;
+  box-shadow: inset 0 0 0 2px hsl(0 0% 100% / 0.85);
+}
+
+/*
+ * Resting accent: every logo sits on a tint of its own brand colour, so the
+ * board carries three brand colours before anyone hovers.
+ */
 .sponsor-logo-tile {
-  background: color-mix(in srgb, var(--accent) 10%, transparent);
-  box-shadow: inset 0 0 0 1px
-    color-mix(in srgb, var(--accent) 22%, transparent);
-  transition: background 0.3s ease-out, box-shadow 0.3s ease-out;
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 48%, transparent);
+  transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out;
 }
 
 .sponsor-cell:hover .sponsor-logo-tile {
-  background: color-mix(in srgb, var(--accent) 18%, transparent);
-  box-shadow: inset 0 0 0 1px
-    color-mix(in srgb, var(--accent) 42%, transparent);
+  background: color-mix(in srgb, var(--accent) 34%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 75%, transparent);
 }
 
 /* Coarse pointers get no magnet and no follow-glow, just the resting tint */
@@ -262,12 +472,24 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .board-settle.is-live,
+  .bid-flip.is-live,
+  .live-dot,
+  .live-dot::after {
+    animation: none;
+  }
+
+  .live-dot::after {
+    display: none;
+  }
+
   .sponsor-magnet {
     transform: none;
     transition: none;
   }
 
-  .sponsor-glow {
+  .sponsor-glow,
+  .sponsor-arrow {
     transition: none;
   }
 }

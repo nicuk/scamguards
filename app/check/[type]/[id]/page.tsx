@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
+import { SponsoredProjectsSection } from "@/components/home/sponsored-projects-section";
 import {
   AlertTriangle,
   ArrowLeft,
@@ -343,6 +344,8 @@ export default async function CheckPage({
           </Link>
         </div>
       </section>
+
+      <SponsoredProjectsSection placement="inline" className="mb-8" />
 
       <p className="text-xs text-muted-foreground">
         Disagree with a report?{" "}

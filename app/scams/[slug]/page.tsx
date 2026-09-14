@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { SponsoredProjectsSection } from "@/components/home/sponsored-projects-section";
 import {
   AlertTriangle,
   CheckCircle,
@@ -112,6 +113,8 @@ export default function ScamTypePage({
               {scam.stats}
             </div>
           </div>
+
+          <SponsoredProjectsSection placement="inline" className="mb-10" />
 
           {/* Full description */}
           <div className="mb-12">
