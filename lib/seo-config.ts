@@ -258,6 +258,8 @@ export function generateArticleSchema(post: {
   url: string;
   publishedAt: string;
   updatedAt: string;
+  /** BCP 47 language tag. Omitted for articles that never declared one. */
+  inLanguage?: string;
 }) {
   return {
     "@type": "Article",
@@ -265,6 +267,7 @@ export function generateArticleSchema(post: {
     description: post.description,
     datePublished: post.publishedAt,
     dateModified: post.updatedAt,
+    ...(post.inLanguage ? { inLanguage: post.inLanguage } : {}),
     author: { "@id": ORG_ID },
     publisher: {
       "@id": ORG_ID,

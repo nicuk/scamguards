@@ -119,7 +119,6 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         <meta name="geo.region" content="MY" />
         <meta name="geo.placename" content="Malaysia" />
-        <link rel="alternate" hrefLang="x-default" href={SITE_URL} />
         <link rel="alternate" type="text/plain" href={`${SITE_URL}/llms.txt`} title="LLM site info" />
         <link rel="alternate" type="application/rss+xml" title="ScamGuards Malaysia" href={`${SITE_URL}/feed.xml`} />
       </head>

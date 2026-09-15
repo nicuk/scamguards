@@ -1,3 +1,29 @@
+/** One step in a numbered step diagram. `body` supports **bold**. */
+export interface BlogStep {
+  title: string;
+  body: string;
+}
+
+/** A screenshot shown under a section. Dimensions are the file's intrinsic size. */
+export interface BlogFigure {
+  src: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+}
+
+export interface BlogSection {
+  heading: string;
+  content: string;
+  /** Rendered as a numbered step diagram after the section text. */
+  steps?: BlogStep[];
+  /** Short label above the step diagram, e.g. "Report in 3 steps". */
+  stepsLabel?: string;
+  /** Screenshots after the text (and diagram), side by side on wider screens. */
+  figures?: BlogFigure[];
+}
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -8,7 +34,15 @@ export interface BlogPost {
   readingTime: string;
   excerpt: string;
   keywords: string[];
-  sections: { heading: string; content: string }[];
+  /** Article language. Omitted means English. */
+  language?: "en" | "ms";
+  /**
+   * The same article in the other language. Drives the language link under the
+   * title and the hreflang alternates. (Named with a capital S on purpose: the
+   * content verifier counts `slug:` occurrences to find posts.)
+   */
+  translationSlug?: string;
+  sections: BlogSection[];
 }
 
 export const BLOG_POSTS: BlogPost[] = [
@@ -674,6 +708,232 @@ export const BLOG_POSTS: BlogPost[] = [
         heading: "Soalan Lazim Tentang Love Scam",
         content:
           "**Bolehkah saya dapat balik duit yang hilang?**\nIa bergantung kepada berapa cepat anda bertindak. Jika anda lapor dalam 30 minit, bank mungkin boleh bekukan akaun penerima. Selepas 24 jam, peluang sangat rendah. Untuk pemindahan antarabangsa, hampir mustahil.\n\n**Adakah love scam hanya berlaku pada orang tua?**\nTidak. CCID melaporkan mangsa merangkumi semua peringkat umur dari 20-an hingga 60-an. Penipu menyesuaikan pendekatan mereka mengikut profil mangsa.\n\n**Apa beza love scam dan sugar daddy/baby scam?**\nLove scam melibatkan hubungan romantik palsu. Sugar scam melibatkan tawaran kewangan palsu (\"Saya bayar RM5,000 sebulan untuk perbualan\") yang memerlukan anda membayar \"yuran pendaftaran\" terlebih dahulu. Kedua-duanya adalah penipuan.\n\n**Bagaimana kalau penipu mengugut nak sebar gambar/video peribadi saya?**\nIni dipanggil **sextortion** dan ia adalah jenayah serius. JANGAN bayar — pembayaran tidak akan menghentikan mereka. Lapor kepada polis segera dan hubungi MCMC di 1-800-888-030 untuk membuang kandungan tersebut.",
+      },
+    ],
+  },
+  {
+    slug: "expose-scammer-malaysia",
+    title: "Want to Expose a Scammer in Malaysia? 3 Steps That Actually Hurt Them",
+    metaTitle: "Expose a Scammer in Malaysia Legally | ScamGuards",
+    metaDescription:
+      "Angry at a scammer? Posting their photo can backfire. Freeze their money, put their number and bank account on record, and warn others in 3 simple steps.",
+    publishedAt: "2026-09-15",
+    updatedAt: "2026-09-15",
+    readingTime: "7 min read",
+    excerpt:
+      "Posting a scammer's face and bank account online feels like justice, but it rarely stops them and can put you on the wrong side of Malaysia's doxxing law. Here's the revenge that works: three steps, mostly copy and paste.",
+    keywords: [
+      "expose scammer malaysia",
+      "shame scammer malaysia",
+      "punish scammer malaysia",
+      "report scammer bank account malaysia",
+      "scammer phone number malaysia",
+      "997 scam hotline",
+      "doxxing law malaysia",
+    ],
+    language: "en",
+    translationSlug: "cara-dedah-scammer-malaysia",
+    sections: [
+      {
+        heading: "The short answer: 3 steps that hit a scammer where it hurts",
+        content:
+          "If you've just been scammed, the urge to post their face, name and bank account everywhere is completely understandable. It's also the move that does the least damage to the scammer.\n\nWhat actually hurts a scammer is losing the money, losing the account, and being caught out by the next person before that person pays. You can set all three in motion today, and most of it is copy and paste.",
+        stepsLabel: "Report a scammer in 3 steps",
+        steps: [
+          {
+            title: "Call 997 right away",
+            body: "The National Scam Response Centre can move to **freeze the money** before it's withdrawn. The call also counts as your police report.",
+          },
+          {
+            title: "Copy and paste it into ScamGuards",
+            body: "Paste the chat or your story at **scamguards.app/submit**. AI pulls out the bank account, phone number and other details for you to check, then you send it.",
+          },
+          {
+            title: "Warn people the safe way",
+            body: "Share the ScamGuards check, not their photo. The next person who searches that number or account sees the warning **before** they pay.",
+          },
+        ],
+      },
+      {
+        heading: "A common story, and the post that backfires",
+        content:
+          "A common pattern looks like this. Someone in a Facebook group is selling concert tickets below the official price. The seller replies fast, sends a screenshot of the tickets and asks for a deposit to hold them. You transfer. The replies stop, the post disappears, and your WhatsApp messages sit on one grey tick.\n\nThe next thing many victims do is post the seller's profile photo, the name on the bank account and the phone number in every group they're in, with a warning in capital letters. It feels like justice. In practice it tends to go wrong in three ways.\n\n**The name on the account is often not the scammer.** Syndicates move money through mule accounts (akaun keldai), often rented or bought from people who aren't running the scam. The law already goes after those accounts: since October 2024, letting someone else use your account is an offence under Penal Code section 424B, carrying one to seven years' jail, and carrying out the unlawful transactions under section 424C carries three to ten years ([Low & Partners](https://www.lowpartners.com/keldai-accounts-when-helping-a-friend-becomes-a-criminal-offence)).\n\n**The face may be stolen.** Profile photos are often lifted from real, unrelated people. Posting them passes the harm on to someone else.\n\n**You can end up the one facing charges.** Penal Code amendments that came into force on 11 July 2025 made distributing someone's personal information without permission, known as doxxing, a serious crime punishable by up to three years in prison ([Bernama](https://www.bernama.com/en/news.php?id=2444315)).\n\nMeanwhile the scammer simply switches numbers. A viral post warns people for a day or two. A record attached to their number and account keeps warning people for as long as it's there.",
+      },
+      {
+        heading: "Step 1: Call 997 before you post anything",
+        content:
+          "Money sent to a scammer usually sits in the receiving account for a short while before it's pushed on through other accounts. That window is your best chance, which is why the first call is to **997**, the National Scam Response Centre (NSRC).\n\nThe NSRC is led by the Royal Malaysia Police together with Bank Negara Malaysia, MCMC and the National Anti-Financial Crime Centre, and it now runs 24 hours a day ([Fintech News Malaysia](https://fintechnews.my/56987/security/malaysia-scam-centre/), March 2026). In January 2026 alone it intercepted RM2.408 billion across 19,438 scam-related calls. The Deputy Home Minister urged victims to call within the golden period of less than 24 hours, because late reports give syndicates time to move the money in layers ([The Sun](https://thesun.my/news/malaysia-news/people-issues/nsrc-freezes-rm2-4-billion-in-scam-funds-in-january-2026/)).\n\nYou don't need a separate trip to the balai polis either. Speaking in March 2026, Fahmi Fadzil said: “We no longer need to make a separate police report; 997 is enough” ([The Star](https://www.thestar.com.my/news/nation/2026/03/04/call-997-if-you-are-scammed-says-fahmi)).\n\nBefore you dial, have these ready: your bank, the amount and time of each transfer, the transaction reference, and the account number you paid. Acting fast improves your chances of getting money back, but recovery is never guaranteed. For the bank side in detail, read our guide on [getting your money back after a scam](/blog/how-to-get-money-back-scammed-malaysia).",
+      },
+      {
+        heading: "Step 2: Copy, paste, done. Put their details on record",
+        content:
+          "Once the money side is moving, make sure the scammer's details are recorded where the next victim will actually look. You don't need to fill in a form field by field.\n\nGo to [scamguards.app/submit](/submit) and use **Tell My Story**. Paste the WhatsApp chat, the seller's post, or just describe what happened in your own words, then tap **Read My Story**. The AI reads it, writes a short summary, and picks out what it finds, such as the bank account, the WhatsApp number, the scam type and the platform. It shows you all of it before anything is sent. Remove anything wrong, then tap **Report This Scammer**. If it missed something, choose **Edit Before Reporting** and add it yourself.\n\nThe numbers, bank accounts and emails in your report are saved with it. When anyone later searches one of them on ScamGuards, your report comes up, and reported numbers and accounts get their own page on the site. That's the version of exposing a scammer that's still working long after a viral post has been buried, because the warning appears at the exact moment someone is about to transfer money.\n\nTwo things make your report count. **Write what happened and include every detail you have**: reports with a proper description, more than one detail and a specific scam type are published straight away, while very thin ones are held for review first. And it's fair both ways: anyone who believes they were reported by mistake can file a dispute, and ScamGuards presents reports as community information, not legal proof.\n\nHere's what it looks like on a phone. The number and account are masked examples, not a real person.",
+        figures: [
+          {
+            src: "/blog/expose-scammer-malaysia/report-paste.webp",
+            alt: "The Tell My Story box on the ScamGuards report page with a scam story pasted in, mentioning a Maybank account and a WhatsApp number, masked as 5641 XXXX XXXX and 012-XXX XXXX",
+            caption: "Paste the chat or write what happened, then tap Read My Story.",
+            width: 672,
+            height: 788,
+          },
+          {
+            src: "/blog/expose-scammer-malaysia/report-found.webp",
+            alt: "ScamGuards showing Done! Here's what we found: an AI summary of the ticket scam, scam type E-commerce Scam, platform Facebook, and three details found: a masked bank account, a masked WhatsApp number and the Facebook group, with Report This Scammer and Edit Before Reporting buttons",
+            caption: "The AI finds the bank account and WhatsApp number for you. Nothing is sent until you tap Report This Scammer.",
+            width: 672,
+            height: 1404,
+          },
+        ],
+      },
+      {
+        heading: "Step 3: Warn the next person, and check before you pay again",
+        content:
+          "Instead of sharing a scammer's face, share the check. Tell your group chat the number or account has been reported and send people to [scamguards.app/search](/search). Anyone can paste the details and see the reports for themselves, and nobody's personal photos get passed around.\n\nThe same tool protects you next time. If the result shows reports, don't pay, and add your own report so the warning gets stronger. If it shows none, remember the results page's own caution: it's based on what people have reported and isn't proof by itself. Pay through the platform or by cash on delivery where you can, and you can also cross-check a bank account on PDRM's Semak Mule at semakmule.rmp.gov.my.",
+        stepsLabel: "Check a seller in 2 steps",
+        steps: [
+          {
+            title: "Paste the message",
+            body: "Copy the seller's message, or just their number or bank account, into **scamguards.app/search** and tap **Scan This Message**. AI finds the contact details in it.",
+          },
+          {
+            title: "Search and read the result",
+            body: "Tap **Search for Reports** to see if it's been reported. **No reports isn't a green light**, it only means nobody has reported it yet.",
+          },
+        ],
+        figures: [
+          {
+            src: "/blog/expose-scammer-malaysia/check-found.webp",
+            alt: "The Paste a Message box on the ScamGuards search page after scanning a ticket seller's message, showing Found 2 contact details, a masked bank account and WhatsApp number, a suggestion that it looks like an ecommerce scam, and a Search for Reports button",
+            caption: "It picks the bank account and WhatsApp number out of the message. Then tap Search for Reports.",
+            width: 672,
+            height: 1322,
+          },
+          {
+            src: "/blog/expose-scammer-malaysia/check-result.webp",
+            alt: "The ScamGuards result screen for a masked phone number, showing No Reports Found and an explanation that no matching reports were found",
+            caption: "No reports found only means nobody has reported it yet.",
+            width: 780,
+            height: 974,
+          },
+        ],
+      },
+      {
+        heading: "How ScamGuards helps",
+        content:
+          "ScamGuards is a community-driven scam checker for Malaysia. It exists because its founder was scammed in a WhatsApp trading card group that claimed to filter out scammers. Every report someone submits makes the next person's check more useful.\n\nThe stakes are big. Malaysians lost about RM2.8 billion to scams in 2025, according to Bank Negara Malaysia's 2025 Annual Report ([Fintech News Malaysia](https://fintechnews.my/57531/cyber-security/malaysians-lost-rm2-8-billion-to-scams-in-2025-is-bnms-response-matching-the-crisis/)), and a lot of it starts with one number or bank account nobody thought to check.\n\nSo when you're angry, point that anger somewhere that works. **Call 997** first. Then [report the scammer on ScamGuards](/submit) by pasting the chat, and [check any seller before you pay](/search). If it happened to you, it isn't your fault, and you're far from powerless.",
+      },
+    ],
+  },
+  {
+    slug: "cara-dedah-scammer-malaysia",
+    title: "Nak Dedah Scammer? 3 Langkah Yang Betul-Betul Buat Mereka Rugi",
+    metaTitle: "Cara Dedah Scammer Malaysia Dengan Selamat | ScamGuards",
+    metaDescription:
+      "Geram kena tipu? Viralkan gambar scammer boleh makan diri. Bekukan duit, simpan nombor dan akaun bank mereka dalam rekod, dan beri amaran dalam 3 langkah.",
+    publishedAt: "2026-09-15",
+    updatedAt: "2026-09-15",
+    readingTime: "6 minit bacaan",
+    excerpt:
+      "Viralkan muka dan akaun bank scammer memang puas hati, tapi jarang hentikan mereka, malah boleh buat anda sendiri kena di bawah undang-undang doxxing. Ini cara balas yang betul: tiga langkah, kebanyakannya salin dan tampal.",
+    keywords: [
+      "dedah scammer",
+      "senarai scammer malaysia",
+      "viralkan scammer",
+      "lapor akaun bank scammer",
+      "akaun keldai",
+      "NSRC 997",
+      "undang-undang doxxing malaysia",
+    ],
+    language: "ms",
+    translationSlug: "expose-scammer-malaysia",
+    sections: [
+      {
+        heading: "Jawapan ringkas: 3 langkah yang betul-betul kena pada scammer",
+        content:
+          "Baru kena tipu, memang rasa nak sebar gambar, nama dan nombor akaun scammer tu ke semua group. Perasaan tu normal. Masalahnya, itulah langkah yang paling kurang menyusahkan scammer.\n\nYang betul-betul buat scammer rugi ialah duit kena bekukan, akaun kena tutup, dan mangsa seterusnya dapat tahu sebelum sempat bayar. Ketiga-tiganya boleh anda mulakan hari ini juga, dan kebanyakannya cuma salin dan tampal.",
+        stepsLabel: "Lapor scammer dalam 3 langkah",
+        steps: [
+          {
+            title: "Telefon 997 segera",
+            body: "Pusat Respons Scam Kebangsaan boleh bertindak untuk **bekukan duit** sebelum dikeluarkan. Panggilan itu juga dikira sebagai laporan polis anda.",
+          },
+          {
+            title: "Salin dan tampal ke ScamGuards",
+            body: "Tampal perbualan atau cerita anda di **scamguards.app/submit**. AI keluarkan akaun bank, nombor telefon dan butiran lain untuk anda semak, kemudian hantar.",
+          },
+          {
+            title: "Beri amaran dengan cara selamat",
+            body: "Kongsi semakan ScamGuards, bukan gambar mereka. Orang seterusnya yang cari nombor atau akaun itu akan nampak amaran **sebelum** bayar.",
+          },
+        ],
+      },
+      {
+        heading: "Cerita yang selalu berlaku, dan post yang makan diri",
+        content:
+          "Corak biasa macam ni. Ada orang dalam group Facebook jual tiket konsert bawah harga rasmi. Penjual balas laju, hantar tangkap layar tiket, dan minta deposit untuk simpan tiket. Anda pun transfer. Lepas tu dia senyap, post hilang, dan mesej WhatsApp anda tinggal satu tick kelabu.\n\nRamai mangsa terus post gambar profil penjual, nama pada akaun bank dan nombor telefon ke semua group, siap dengan amaran huruf besar. Rasa macam dapat keadilan. Tapi selalunya ia jadi masalah dalam tiga cara.\n\n**Nama pada akaun selalunya bukan scammer.** Sindiket guna akaun keldai, yang kerap disewa atau dibeli daripada orang yang bukan dalang scam itu. Undang-undang sudah pun kejar akaun-akaun ini: sejak Oktober 2024, benarkan orang lain guna akaun anda adalah kesalahan di bawah seksyen 424B Kanun Keseksaan dengan penjara satu hingga tujuh tahun, dan melakukan transaksi haram di bawah seksyen 424C membawa penjara tiga hingga sepuluh tahun ([Low & Partners](https://www.lowpartners.com/keldai-accounts-when-helping-a-friend-becomes-a-criminal-offence)).\n\n**Gambar tu mungkin dicuri.** Gambar profil scammer selalunya diambil daripada orang lain yang tak ada kena-mengena. Sebar gambar itu cuma pindahkan mudarat kepada orang yang tak bersalah.\n\n**Anda pula yang boleh didakwa.** Pindaan Kanun Keseksaan yang berkuat kuasa pada 11 Julai 2025 menjadikan penyebaran maklumat peribadi orang lain tanpa izin, atau doxxing, satu jenayah serius yang boleh dihukum penjara sehingga tiga tahun ([Bernama](https://www.bernama.com/en/news.php?id=2444315)).\n\nScammer pula cuma tukar nombor. Post viral beri amaran sehari dua. Rekod pada nombor dan akaun mereka terus beri amaran selagi ia ada.",
+      },
+      {
+        heading: "Langkah 1: Telefon 997 dulu, jangan post dulu",
+        content:
+          "Duit yang anda hantar kepada scammer biasanya duduk dalam akaun penerima sekejap sebelum dipindahkan ke akaun lain. Tempoh itulah peluang terbaik anda, sebab itu panggilan pertama ialah ke **997**, Pusat Respons Scam Kebangsaan (NSRC).\n\nNSRC diketuai Polis Diraja Malaysia bersama Bank Negara Malaysia, MCMC dan Pusat Kawalan Jenayah Kewangan Nasional, dan kini beroperasi 24 jam sehari ([Fintech News Malaysia](https://fintechnews.my/56987/security/malaysia-scam-centre/), Mac 2026). Pada Januari 2026 sahaja, NSRC memintas RM2.408 bilion daripada 19,438 panggilan berkaitan scam. Timbalan Menteri Dalam Negeri menggesa mangsa menelefon dalam tempoh emas kurang 24 jam, kerana laporan lewat memberi sindiket masa untuk pindahkan duit berlapis-lapis ([The Sun](https://thesun.my/news/malaysia-news/people-issues/nsrc-freezes-rm2-4-billion-in-scam-funds-in-january-2026/)).\n\nAnda juga tak perlu ke balai polis secara berasingan. Bercakap pada Mac 2026, Fahmi Fadzil berkata: “We no longer need to make a separate police report; 997 is enough” ([The Star](https://www.thestar.com.my/news/nation/2026/03/04/call-997-if-you-are-scammed-says-fahmi)), iaitu laporan polis berasingan tidak lagi diperlukan kerana 997 sudah memadai.\n\nSebelum dail, sediakan: nama bank anda, jumlah dan masa setiap pemindahan, nombor rujukan transaksi, dan nombor akaun yang anda bayar. Bertindak cepat meningkatkan peluang dapat balik duit, tetapi pulangan tidak pernah dijamin. Untuk langkah dengan pihak bank, baca panduan kami [Kena Tipu Online? Apa Nak Buat](/blog/kena-tipu-online-apa-nak-buat).",
+      },
+      {
+        heading: "Langkah 2: Salin, tampal, siap. Simpan butiran mereka dalam rekod",
+        content:
+          "Bila urusan duit sudah bergerak, pastikan butiran scammer direkodkan di tempat mangsa seterusnya betul-betul akan cari. Anda tak perlu isi borang satu per satu.\n\nPergi ke [scamguards.app/submit](/submit) dan guna **Tell My Story**. Tampal perbualan WhatsApp, post penjual, atau tulis sahaja apa yang berlaku dalam bahasa anda sendiri, kemudian tekan **Read My Story**. AI akan baca, tulis ringkasan pendek, dan keluarkan apa yang dijumpai, seperti akaun bank, nombor WhatsApp, jenis scam dan platform. Semuanya ditunjukkan kepada anda sebelum apa-apa dihantar. Buang yang salah, kemudian tekan **Report This Scammer**. Kalau ada yang tertinggal, pilih **Edit Before Reporting** dan tambah sendiri.\n\nNombor telefon, akaun bank dan emel dalam laporan anda disimpan bersama laporan itu. Bila sesiapa cari salah satu daripadanya di ScamGuards, laporan anda akan keluar, dan nombor serta akaun yang pernah dilaporkan mendapat halaman sendiri di laman ini. Inilah cara dedah scammer yang masih berkesan lama selepas post viral tenggelam, kerana amaran muncul tepat ketika seseorang hendak transfer duit.\n\nDua perkara buat laporan anda lebih bermakna. **Ceritakan apa yang berlaku dan masukkan semua butiran yang ada**: laporan yang ada penerangan, lebih daripada satu butiran dan jenis scam yang jelas diterbitkan terus, manakala laporan yang terlalu nipis disemak dahulu. Ia juga adil untuk semua pihak: sesiapa yang rasa dilaporkan secara salah boleh buat pertikaian, dan ScamGuards memaparkan laporan sebagai maklumat komuniti, bukan bukti undang-undang.\n\nBeginilah rupanya di telefon. Nombor dan akaun di bawah adalah contoh yang ditutup, bukan orang sebenar. Paparan borang di laman ini dalam Bahasa Inggeris.",
+        figures: [
+          {
+            src: "/blog/cara-dedah-scammer-malaysia/report-paste.webp",
+            alt: "Kotak Tell My Story di halaman laporan ScamGuards dengan cerita scam dalam Bahasa Melayu ditampal, menyebut akaun Maybank dan nombor WhatsApp yang ditutup sebagai 5641 XXXX XXXX dan 012-XXX XXXX",
+            caption: "Tampal perbualan atau tulis apa yang berlaku, kemudian tekan Read My Story.",
+            width: 672,
+            height: 788,
+          },
+          {
+            src: "/blog/cara-dedah-scammer-malaysia/report-found.webp",
+            alt: "ScamGuards memaparkan Done! Here's what we found: ringkasan AI tentang scam tiket, jenis E-commerce Scam, platform Facebook group, serta akaun bank dan nombor WhatsApp yang ditutup, dengan butang Report This Scammer dan Edit Before Reporting",
+            caption: "AI jumpa akaun bank dan nombor WhatsApp untuk anda. Tiada apa dihantar sehingga anda tekan Report This Scammer.",
+            width: 672,
+            height: 1188,
+          },
+        ],
+      },
+      {
+        heading: "Langkah 3: Beri amaran kepada orang lain, dan semak sebelum bayar lagi",
+        content:
+          "Daripada kongsi muka scammer, kongsi semakannya. Beritahu group anda yang nombor atau akaun itu sudah dilaporkan dan hantar mereka ke [scamguards.app/search](/search). Sesiapa pun boleh tampal butiran dan tengok laporannya sendiri, tanpa gambar peribadi sesiapa disebarkan.\n\nAlat yang sama melindungi anda lain kali. Kalau keputusan menunjukkan ada laporan, jangan bayar, dan tambah laporan anda supaya amaran jadi lebih kuat. Kalau tiada laporan, ingat peringatan pada halaman keputusan itu sendiri: ia berdasarkan apa yang dilaporkan orang dan bukan bukti semata-mata. Bayar melalui platform atau secara COD bila boleh, dan anda juga boleh semak akaun bank di Semak Mule PDRM di semakmule.rmp.gov.my.",
+        stepsLabel: "Semak penjual dalam 2 langkah",
+        steps: [
+          {
+            title: "Tampal mesej",
+            body: "Salin mesej penjual, atau nombor telefon atau akaun bank sahaja, ke **scamguards.app/search** dan tekan **Scan This Message**. AI akan cari butiran hubungan di dalamnya.",
+          },
+          {
+            title: "Cari dan baca keputusan",
+            body: "Tekan **Search for Reports** untuk tahu sama ada ia pernah dilaporkan. **Tiada laporan bukan lampu hijau**, ia cuma bermaksud belum ada orang yang melaporkannya.",
+          },
+        ],
+        figures: [
+          {
+            src: "/blog/cara-dedah-scammer-malaysia/check-found.webp",
+            alt: "Kotak Paste a Message di halaman carian ScamGuards selepas mengimbas mesej penjual tiket dalam Bahasa Melayu, menunjukkan Found 2 contact details, akaun bank dan nombor WhatsApp yang ditutup, cadangan bahawa ia kelihatan seperti ecommerce scam, dan butang Search for Reports",
+            caption: "Ia keluarkan akaun bank dan nombor WhatsApp daripada mesej. Kemudian tekan Search for Reports.",
+            width: 672,
+            height: 1322,
+          },
+          {
+            src: "/blog/cara-dedah-scammer-malaysia/check-result.webp",
+            alt: "Skrin keputusan ScamGuards untuk nombor telefon yang ditutup, menunjukkan No Reports Found dan penerangan bahawa tiada laporan sepadan dijumpai",
+            caption: "Tiada laporan hanya bermaksud belum ada orang yang melaporkannya.",
+            width: 780,
+            height: 974,
+          },
+        ],
+      },
+      {
+        heading: "Bagaimana ScamGuards membantu",
+        content:
+          "ScamGuards ialah platform semakan scam berasaskan komuniti untuk Malaysia. Ia wujud kerana pengasasnya sendiri pernah kena tipu dalam group WhatsApp kad dagangan yang mendakwa menapis scammer. Setiap laporan yang dihantar menjadikan semakan orang seterusnya lebih berguna.\n\nTaruhannya besar. Rakyat Malaysia kerugian kira-kira RM2.8 bilion akibat scam pada 2025, menurut Laporan Tahunan 2025 Bank Negara Malaysia ([Fintech News Malaysia](https://fintechnews.my/57531/cyber-security/malaysians-lost-rm2-8-billion-to-scams-in-2025-is-bnms-response-matching-the-crisis/)), dan banyak daripadanya bermula dengan satu nombor atau akaun bank yang tidak disemak.\n\nJadi bila geram, salurkan ke tempat yang berkesan. **Telefon 997** dahulu. Kemudian [lapor scammer di ScamGuards](/submit) dengan menampal perbualan, dan [semak mana-mana penjual sebelum bayar](/search). Kalau ia berlaku kepada anda, itu bukan salah anda, dan anda bukannya tak berdaya.",
       },
     ],
   },

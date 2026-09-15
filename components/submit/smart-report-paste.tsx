@@ -367,7 +367,7 @@ Yee Rong - Carousell - Labubu scam'"
               ))}
 
               {/* Batch Actions */}
-              <div className="flex gap-2 pt-2">
+              <div className="flex flex-col gap-2 pt-2 sm:flex-row">
                 <Button
                   type="button"
                   onClick={handleBatchConfirm}
@@ -472,7 +472,7 @@ Yee Rong - Carousell - Labubu scam'"
               )}
 
               {/* Single Actions */}
-              <div className="flex gap-2 pt-2">
+              <div className="flex flex-col gap-2 pt-2 sm:flex-row">
                 <Button type="button" onClick={handleSingleConfirm} className="flex-1">
                   <CheckCircle className="h-4 w-4 mr-2" />
                   Report This Scammer

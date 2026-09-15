@@ -6,7 +6,25 @@ import { BLOG_POSTS, getBlogBySlug, getAllBlogSlugs } from "@/lib/blog-data";
 import { SCAM_TYPES } from "@/lib/scam-data";
 import { getScamsForBlog } from "@/lib/internal-links";
 import { SponsoredProjectsSection } from "@/components/home/sponsored-projects-section";
+import { StepFlow } from "@/components/blog/step-flow";
+import { ArticleFigures } from "@/components/blog/article-figures";
 import { SITE_URL, generatePageGraphSchema, generateArticleSchema, generateBreadcrumbSchema } from "@/lib/seo-config";
+
+/**
+ * Inline formatting for authored article text: **bold** and [label](url).
+ * Only site-relative and https URLs become links, so no other scheme (e.g.
+ * javascript:) can ever render as one. External links open in a new tab.
+ */
+function renderInline(text: string): string {
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground">$1</strong>')
+    .replace(/\[([^\]]+)\]\(((?:\/|https:\/\/)[^)\s]+)\)/g, (_match, label, href) => {
+      const external = href.startsWith("https://");
+      return `<a href="${href}" class="font-medium text-primary underline underline-offset-2 hover:no-underline"${
+        external ? ' target="_blank" rel="noopener noreferrer"' : ""
+      }>${label}</a>`;
+    });
+}
 
 export function generateStaticParams() {
   return getAllBlogSlugs().map((slug) => ({ slug }));
@@ -20,18 +38,37 @@ export function generateMetadata({
   const post = getBlogBySlug(params.slug);
   if (!post) return {};
 
+  const translation = post.translationSlug
+    ? getBlogBySlug(post.translationSlug)
+    : undefined;
+  const url = (slug: string) => `${SITE_URL}/blog/${slug}`;
+  const english = post.language === "ms" ? translation : post;
+  const malay = post.language === "ms" ? post : translation;
+
   return {
     title: post.metaTitle,
     description: post.metaDescription,
     keywords: post.keywords,
     alternates: {
-      canonical: `${SITE_URL}/blog/${post.slug}`,
+      canonical: url(post.slug),
+      // Only for a genuine translated pair, so each version points search
+      // engines at its counterpart instead of competing with it
+      ...(translation && english && malay
+        ? {
+            languages: {
+              "en-MY": url(english.slug),
+              "ms-MY": url(malay.slug),
+              "x-default": url(english.slug),
+            },
+          }
+        : {}),
     },
     openGraph: {
       title: post.metaTitle,
       description: post.metaDescription,
       url: `${SITE_URL}/blog/${post.slug}`,
       type: "article",
+      locale: post.language === "ms" ? "ms_MY" : "en_MY",
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt,
     },
@@ -59,7 +96,11 @@ export default function BlogPostPage({
     url: postUrl,
     publishedAt: post.publishedAt,
     updatedAt: post.updatedAt,
+    ...(post.language ? { inLanguage: post.language === "ms" ? "ms-MY" : "en-MY" } : {}),
   });
+  const translation = post.translationSlug
+    ? getBlogBySlug(post.translationSlug)
+    : undefined;
   const pageGraph = generatePageGraphSchema(
     postUrl,
     post.title,
@@ -74,7 +115,10 @@ export default function BlogPostPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(pageGraph) }}
       />
 
-      <article className="container mx-auto px-4 py-12">
+      <article
+        className="container mx-auto px-4 py-12"
+        lang={post.language === "ms" ? "ms-MY" : undefined}
+      >
         <div className="max-w-2xl mx-auto">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
@@ -104,6 +148,19 @@ export default function BlogPostPage({
               {post.title}
             </h1>
             <p className="text-lg text-muted-foreground">{post.excerpt}</p>
+            {translation && (
+              <Link
+                href={`/blog/${translation.slug}`}
+                hrefLang={translation.language === "ms" ? "ms-MY" : "en-MY"}
+                lang={translation.language === "ms" ? "ms-MY" : "en-MY"}
+                className="mt-4 inline-flex min-h-[44px] items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+              >
+                {translation.language === "ms"
+                  ? "Baca dalam Bahasa Melayu"
+                  : "Read this guide in English"}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            )}
           </header>
 
           {/* First thing after the title: every reader sees it, including the
@@ -120,16 +177,14 @@ export default function BlogPostPage({
                     <p
                       key={j}
                       className="text-muted-foreground leading-relaxed mb-4"
-                      dangerouslySetInnerHTML={{
-                        __html: paragraph
-                          .replace(
-                            /\*\*(.*?)\*\*/g,
-                            '<strong class="text-foreground">$1</strong>'
-                          ),
-                      }}
+                      dangerouslySetInnerHTML={{ __html: renderInline(paragraph) }}
                     />
                   ))}
                 </div>
+                {section.steps && (
+                  <StepFlow steps={section.steps} label={section.stepsLabel} />
+                )}
+                {section.figures && <ArticleFigures figures={section.figures} />}
               </section>
             ))}
           </div>

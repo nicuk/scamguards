@@ -25,6 +25,8 @@ const SCAM_TO_BLOGS: Record<string, string[]> = {
     "shopee-carousell-scams-malaysia",
     "scam-shopee-carousell-malaysia-bm",
     "kena-tipu-online-apa-nak-buat",
+    "expose-scammer-malaysia",
+    "cara-dedah-scammer-malaysia",
   ],
   "gold-silver-scam": [
     "whatsapp-scammer-malaysia-how-to-check",
@@ -40,6 +42,7 @@ export const BM_BLOG_SLUGS = new Set([
   "scam-shopee-carousell-malaysia-bm",
   "semak-nombor-telefon-scammer-malaysia",
   "love-scam-malaysia",
+  "cara-dedah-scammer-malaysia",
 ]);
 
 // Every slug above must exist. The lookups below skip unknown slugs, so a
