@@ -24,10 +24,10 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: {
-    default: SEO_CONFIG.defaultTitle,
-    template: `%s | ${SITE_NAME}`,
-  },
+  // No title template: every page already writes its full title including the
+  // brand ("… | ScamGuards"), and a "%s | ScamGuards Malaysia" template doubled
+  // it, pushing titles past what search results show.
+  title: SEO_CONFIG.defaultTitle,
   description: SEO_CONFIG.defaultDescription,
   keywords: SEO_CONFIG.keywords,
 

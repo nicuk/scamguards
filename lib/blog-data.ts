@@ -331,11 +331,11 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "shopee-carousell-scams-malaysia",
-    title: "Shopee & Carousell Scams in Malaysia: How to Spot and Report",
+    title: "Shopee & Carousell Scams in Malaysia: How to Check a Seller Before You Pay",
     metaTitle:
-      "Shopee & Carousell Scams Malaysia - How to Spot Fake Sellers | ScamGuards",
+      "Is This Shopee or Carousell Seller a Scam? How to Check | ScamGuards",
     metaDescription:
-      "How to spot and report scammers on Shopee, Carousell, and Lazada in Malaysia. Red flags, buyer protection tips, and what to do if you've been scammed.",
+      "Seller moved you to WhatsApp or asked for a bank transfer? That's the top scam sign on Shopee, Carousell and Lazada in Malaysia. How to check a seller first.",
     publishedAt: "2025-03-22",
     updatedAt: "2025-03-23",
     readingTime: "6 min read",
