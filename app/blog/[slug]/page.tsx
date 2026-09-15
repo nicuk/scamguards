@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -26,6 +27,62 @@ function renderInline(text: string): string {
         external ? ' target="_blank" rel="noopener noreferrer"' : ""
       }>${label}</a>`;
     });
+}
+
+const BODY_TEXT = "text-[17px] leading-relaxed text-foreground/80 md:text-lg";
+
+/**
+ * Renders one section's authored text. Blank lines separate blocks; inside a
+ * block, lines starting "- " become a bulleted list and lines starting "1. "
+ * a numbered list, and any other line is a paragraph. Without this, list lines
+ * ran together into one paragraph, which is hard to read on a phone.
+ */
+function renderContent(content: string) {
+  const nodes: ReactNode[] = [];
+  content.split("\n\n").forEach((block, b) => {
+    const pending: { list: { ordered: boolean; items: string[] } | null } = { list: null };
+    const flush = (key: string) => {
+      const list = pending.list;
+      if (!list) return;
+      const Tag = list.ordered ? "ol" : "ul";
+      nodes.push(
+        <Tag
+          key={key}
+          className={`${BODY_TEXT} mb-5 space-y-2 pl-6 ${list.ordered ? "list-decimal" : "list-disc"} marker:text-primary`}
+        >
+          {list.items.map((item, i) => (
+            <li key={i} className="pl-1" dangerouslySetInnerHTML={{ __html: renderInline(item) }} />
+          ))}
+        </Tag>
+      );
+      pending.list = null;
+    };
+
+    block.split("\n").forEach((rawLine, l) => {
+      const line = rawLine.trim();
+      if (!line) return;
+      const bullet = line.match(/^- (.*)$/);
+      const numbered = line.match(/^\d+\. (.*)$/);
+      const item = bullet ?? numbered;
+      if (item) {
+        const ordered = Boolean(numbered);
+        if (pending.list && pending.list.ordered !== ordered) flush(`${b}-${l}-list`);
+        if (!pending.list) pending.list = { ordered, items: [] };
+        pending.list.items.push(item[1]);
+        return;
+      }
+      flush(`${b}-${l}-list`);
+      nodes.push(
+        <p
+          key={`${b}-${l}`}
+          className={`${BODY_TEXT} mb-4`}
+          dangerouslySetInnerHTML={{ __html: renderInline(line) }}
+        />
+      );
+    });
+    flush(`${b}-end`);
+  });
+  return nodes;
 }
 
 export function generateStaticParams() {
@@ -174,15 +231,7 @@ export default function BlogPostPage({
             {post.sections.map((section, i) => (
               <section key={i}>
                 <h2 className="text-2xl font-bold mb-4">{section.heading}</h2>
-                <div className="prose prose-gray dark:prose-invert max-w-none">
-                  {section.content.split("\n\n").map((paragraph, j) => (
-                    <p
-                      key={j}
-                      className="text-muted-foreground leading-relaxed mb-4"
-                      dangerouslySetInnerHTML={{ __html: renderInline(paragraph) }}
-                    />
-                  ))}
-                </div>
+                <div className="max-w-none">{renderContent(section.content)}</div>
                 {section.steps && (
                   <StepFlow steps={section.steps} label={section.stepsLabel} />
                 )}
