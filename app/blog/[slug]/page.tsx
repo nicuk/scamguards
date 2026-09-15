@@ -8,19 +8,21 @@ import { getScamsForBlog } from "@/lib/internal-links";
 import { SponsoredProjectsSection } from "@/components/home/sponsored-projects-section";
 import { StepFlow } from "@/components/blog/step-flow";
 import { ArticleFigures } from "@/components/blog/article-figures";
+import { INLINE_LINK_CLASS, linkSitePaths } from "@/lib/inline-links";
 import { SITE_URL, generatePageGraphSchema, generateArticleSchema, generateBreadcrumbSchema } from "@/lib/seo-config";
 
 /**
- * Inline formatting for authored article text: **bold** and [label](url).
- * Only site-relative and https URLs become links, so no other scheme (e.g.
- * javascript:) can ever render as one. External links open in a new tab.
+ * Inline formatting for authored article text: plain scamguards.app/submit
+ * style mentions, **bold** and [label](url). Only site-relative and https URLs
+ * become links, so no other scheme (e.g. javascript:) can ever render as one.
+ * External links open in a new tab.
  */
 function renderInline(text: string): string {
-  return text
+  return linkSitePaths(text)
     .replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground">$1</strong>')
     .replace(/\[([^\]]+)\]\(((?:\/|https:\/\/)[^)\s]+)\)/g, (_match, label, href) => {
       const external = href.startsWith("https://");
-      return `<a href="${href}" class="font-medium text-primary underline underline-offset-2 hover:no-underline"${
+      return `<a href="${href}" class="${INLINE_LINK_CLASS}"${
         external ? ' target="_blank" rel="noopener noreferrer"' : ""
       }>${label}</a>`;
     });

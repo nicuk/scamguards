@@ -5,9 +5,11 @@ import {
   saveImpressions30d,
 } from "@/lib/search-impressions";
 
-// Daily refresh of the search-impressions figure on the sponsor board
-// (scheduled in vercel.json). Visitors need no cron: they are counted
-// first-party as they happen.
+// Refresh of the search-impressions figure on the sponsor board. NOT scheduled:
+// it needs GSC_CLIENT_EMAIL and GSC_PRIVATE_KEY, which aren't set, so a daily
+// run only logged an error. To turn it on, set those and add
+// { "path": "/api/cron/site-stats", "schedule": "45 6 * * *" } to vercel.json.
+// Visitors need no cron: they are counted first-party as they happen.
 //
 // On failure it writes NOTHING. Yesterday's figure carries a captured_at and
 // is hidden once it is more than three days old, so a broken cron degrades to

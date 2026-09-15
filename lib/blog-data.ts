@@ -937,6 +937,146 @@ export const BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "scam-victim-help-malaysia",
+    title: "Lost Your Savings to a Scam? Free Help for Scam Victims in Malaysia",
+    metaTitle: "Scam Victim Help Malaysia: Free Support | ScamGuards",
+    metaDescription:
+      "Lost money to a scam in Malaysia? Free help for what comes next: 997 runs 24/7, AKPK for debt, a free credit check, fake recovery offers and who to talk to.",
+    publishedAt: "2026-09-15",
+    updatedAt: "2026-09-15",
+    readingTime: "7 min read",
+    excerpt:
+      "The first hour is about stopping the transfer. The weeks after are about debt, your credit record, fake \"recovery agents\" and the shame nobody talks about. Every service in this guide is free.",
+    keywords: [
+      "scam victim help malaysia",
+      "lost savings to scam malaysia",
+      "scam victim support malaysia",
+      "akpk debt help after scam",
+      "fund recovery scam malaysia",
+      "free credit report eccris",
+      "fmos complaint bank fraud",
+    ],
+    language: "en",
+    translationSlug: "bantuan-mangsa-scam-malaysia",
+    sections: [
+      {
+        heading: "The Short Answer: Free Help, in This Order",
+        content:
+          "Losing money to a scam is a crime done to you, not a mistake to be ashamed of. Malaysia recorded **66,204 online scam cases** and losses of **RM2.97 billion** in 2025, the Inspector-General of Police said in June 2026 ([theSun](https://thesun.my/news/malaysia-news/crime/online-scam-losses-hit-rm2-97-billion-in-2025-says-igp/)). You are far from alone.\n\nIf the money left your account in the last few hours, stop here and follow [how to get your money back](/blog/how-to-get-money-back-scammed-malaysia) first: call your bank, then **997**. The National Scam Response Centre line now runs **24 hours a day** ([MyGOV](https://www.malaysia.gov.my/en/categories/safety-and-community/cybersecurity/nsrc-997-hotline)).\n\nThis guide is for what comes after: the bills, the debt, the messages from people offering to help, and the feeling that you can't tell anyone. Every service below is free.",
+        stepsLabel: "Your first week after a scam",
+        steps: [
+          {
+            title: "Report it properly",
+            body: "Call **997** and your bank, then make a police report within 24 hours. The bank needs the report number, and so will any complaint later.",
+          },
+          {
+            title: "Protect what's left",
+            body: "Check your free credit report for loans you never took, and don't pay anyone who promises to recover your money.",
+          },
+          {
+            title: "Get help with debt and stress",
+            body: "AKPK sorts out bank debt at no cost. Befrienders (03-7627 2929) answers 24 hours a day.",
+          },
+        ],
+      },
+      {
+        heading: "If the Scam Left You in Debt, Go to AKPK Before Any Lender",
+        content:
+          "A common pattern after a big loss: the credit card is maxed out, the personal loan payment is due, and the quickest-looking fix is another loan. That usually makes things worse.\n\n**AKPK** (Agensi Kaunseling dan Pengurusan Kredit), set up by Bank Negara Malaysia, gives financial advice and runs a **Debt Management Programme (DMP)**, both at no cost ([AKPK](https://www.akpk.org.my/debt-management)). An AKPK adviser builds one repayment plan and agrees it with your lenders.\n\n**Who it can help** ([AKPK FAQ](https://www.akpk.org.my/faq-details/16)):\n- Individuals with bank debt such as credit cards, personal loans, hire purchase or a housing loan\n- Total debt of up to RM5 million with participating lenders\n- People struggling to pay who have not been declared bankrupt\n\n**What to know first:**\n- AKPK cannot restructure debts owed to licensed moneylenders, and it doesn't lend money\n- Your credit cards are withdrawn once you join\n- AKPK doesn't use agents. Anyone charging you to \"apply to AKPK for you\" is not from AKPK\n\nCall AKPK on **03-2616 7766**, apply at [customer.akpk.org.my](https://customer.akpk.org.my), or walk in to a branch on a weekday.\n\n**If you're tempted to borrow from a moneylender,** check the licence first in KPKT's **i-KrediKom** app or at kpkt.gov.my. Licensed lenders are capped at 12% a year on secured loans and 18% on unsecured ones, and must show their licence number in adverts ([KPKT](https://www.kpkt.gov.my/index.php/pages/view/585)). Report an unlicensed lender to the police.",
+      },
+      {
+        heading: "Check Whether Anyone Took a Loan in Your Name",
+        content:
+          "If you sent a copy of your IC, a selfie holding your MyKad, or your banking login during the scam, assume someone may try to use them.\n\n**Your CCRIS report is free.** Bank Negara Malaysia's CCRIS lists the loans and credit facilities in your name at participating lenders, and you can view it online through **eCCRIS** at no charge ([BNM](https://www.bnm.gov.my/ccris)). Sign up at eccris.bnm.gov.my with your MyKad and internet banking, or register at an AKPK branch.\n\nCTOS also gives a free basic report twice a year ([CTOS](https://ctoscredit.com.my/)). It shows court cases and bankruptcy records rather than your CCRIS loans, so it's worth checking both.\n\n**If you find a loan or card you never applied for:**\n1. Contact that lender straight away and tell them it isn't yours\n2. Make a police report and give the lender the report number\n3. Tell your own bank that your details were exposed in a scam\n\nCCRIS covers the last 12 months and not every lender reports to it, so check again in a few months.",
+      },
+      {
+        heading: "Watch for the Second Scam: \"We Can Get Your Money Back\"",
+        content:
+          "People who have just lost money are often targeted a second time. It usually arrives as a Facebook ad or a WhatsApp message from someone claiming to be a recovery agent, a lawyer or even the NSRC, offering to get your money back for a fee.\n\nThe police have warned about exactly this. In April 2026, Bukit Aman's commercial crime department said scammers were posing as NSRC representatives and collecting fees from victims in several payments ([Malay Mail](https://www.malaymail.com/news/malaysia/2026/04/13/pay-more-lose-more-police-warn-of-double-scam-trapping-victims-with-fake-recovery-offers/216147)). PDRM has also exposed a fake Facebook ad that used its logo to promise scam refunds ([Malay Mail](https://www.malaymail.com/news/malaysia/2025/05/18/scam-ad-promising-to-recover-scam-money-is-a-scam-itself-pdrm-warn/177151)), and fake \"appointment letters\" claiming the NFCC returns money to victims ([The Vibes](https://www.thevibes.com/articles/news/117151/police-warn-public-against-fake-fund-recovery-documents)).\n\n**Three rules that don't change:**\n- The police, the NSRC and your bank never charge a fee to return scammed money\n- Nobody can promise you'll get it back\n- A \"processing fee\", \"tax\" or \"release fee\" before a refund is the scam\n\n**Before you reply to any recovery offer,** paste their message into scamguards.app/search. The **Paste a Message** box picks out the phone numbers, bank accounts and emails in it so you can check each one against community reports.",
+      },
+      {
+        heading: "When the Bank Says No",
+        content:
+          "Banks don't refund every scam loss, and the answer depends on how the money left your account.\n\n**If the transaction was unauthorised** (you didn't approve it, for example after a phishing link took over your online banking), Bank Negara's rules on fair treatment for e-banking fraud victims have applied to banks since 1 October 2024 ([BNM](https://www.bnm.gov.my/-/pd-fair-treatment24)). Your bank must:\n- tell you within 3 working days what information it needs\n- advise you to make a police report\n- offer interest-free provisional credit of up to RM5,000, or the disputed amount if that's lower, if its investigation runs past 14 working days\n- give you its decision in writing\n\n**If you approved the transfer yourself** because you were deceived, those rules may not apply. Ask the bank for its decision in writing anyway.\n\n**Then escalate for free.** If you disagree with your bank's or e-wallet's final decision, or it hasn't replied within 60 days, file a complaint with the **Financial Markets Ombudsman Service (FMOS)**, which took over from the OFS in 2025. It costs nothing, covers unauthorised transactions up to RM250,000, and accepts cases within 6 months of the bank's final decision ([FMOS](https://www.fmos.org.my/en/faq/)). You can call FMOS on 03-2272 2811. Complaints about how a bank treated you can also go to Bank Negara through BNMLINK on 1-300-88-5465.",
+      },
+      {
+        heading: "You Don't Have to Carry This Alone, and Your Report Still Counts",
+        content:
+          "Shame keeps many victims quiet. A counsellor interviewed by The Star in August 2026 named ego, shame, guilt and desperation as reasons some victims never report ([The Star](https://www.thestar.com.my/news/nation/2026/08/31/scams-that-steal-more-than-money)). Scam syndicates are organised and practised at this. Being deceived by them says nothing about your intelligence.\n\n**Free people to talk to:**\n- **Befrienders KL:** 03-7627 2929, 24 hours, free and confidential ([Befrienders](https://www.befrienders.org.my/))\n- **Talian HEAL 15555:** the Ministry of Health's mental health line, 8am to midnight every day ([The Star](https://www.thestar.com.my/news/nation/2026/07/09/malaysias-mental-health-helpline-received-more-than-230000-calls-since-launch-says-health-ministry))\n- **Talian Kasih 15999** or WhatsApp 019-261 5999: 24 hours, including counselling and welfare support ([MyGOV](https://www.malaysia.gov.my/en/topics/talian-kasih-15999))\n\nIf you are thinking about ending your life, call Befrienders now or go to the nearest hospital emergency department.\n\n**How ScamGuards helps.** Your money may be gone, but the scammer's phone number and bank account are still being used on someone else. Go to scamguards.app/submit, choose **Tell My Story** and paste the chat. **Read My Story** pulls out details such as the phone number and platform for you to review, and nothing is sent until you press **Report This Scammer**. Every number or account with an active report gets its own public check page, so the next person who searches it sees your warning. It takes a few minutes, and it's something you can do today.",
+      },
+    ],
+  },
+  {
+    slug: "bantuan-mangsa-scam-malaysia",
+    title: "Hilang Duit Simpanan Kena Scam? Bantuan Percuma untuk Mangsa di Malaysia",
+    metaTitle: "Bantuan Mangsa Scam Malaysia: Sokongan Percuma | ScamGuards",
+    metaDescription:
+      "Kena scam dan hilang duit? Bantuan percuma selepas itu: talian 997 24 jam, AKPK untuk hutang, semak CCRIS percuma, tawaran pemulihan palsu dan tempat mengadu.",
+    publishedAt: "2026-09-15",
+    updatedAt: "2026-09-15",
+    readingTime: "7 minit bacaan",
+    excerpt:
+      "Jam pertama ialah tentang menghentikan pindahan duit. Minggu-minggu selepasnya ialah tentang hutang, rekod kredit, \"ejen pemulihan\" palsu dan rasa malu yang jarang dibincangkan. Semua bantuan di sini percuma.",
+    keywords: [
+      "bantuan mangsa scam",
+      "mangsa scam malaysia",
+      "hilang duit simpanan kena scam",
+      "kena scam banyak hutang",
+      "akpk bantuan hutang",
+      "semak ccris percuma",
+      "scam pemulihan dana",
+    ],
+    language: "ms",
+    translationSlug: "scam-victim-help-malaysia",
+    sections: [
+      {
+        heading: "Jawapan Ringkas: Bantuan Percuma, Ikut Urutan Ini",
+        content:
+          "Kena scam ialah jenayah yang dilakukan terhadap anda, bukan kesilapan yang patut dimalukan. Pada 2025, Malaysia mencatatkan **66,204 kes scam dalam talian** dengan kerugian **RM2.97 bilion**, menurut Ketua Polis Negara pada Jun 2026 ([theSun](https://thesun.my/news/malaysia-news/crime/online-scam-losses-hit-rm2-97-billion-in-2025-says-igp/)). Anda bukan seorang diri.\n\nKalau duit baru keluar dari akaun dalam beberapa jam lepas, berhenti di sini dan ikut [panduan kena tipu online](/blog/kena-tipu-online-apa-nak-buat) dahulu: hubungi bank anda, kemudian **997**. Talian Pusat Respons Scam Kebangsaan (NSRC) kini beroperasi **24 jam sehari** ([MyGOV](https://www.malaysia.gov.my/en/categories/safety-and-community/cybersecurity/nsrc-997-hotline)).\n\nPanduan ini untuk apa yang datang selepas itu: bil, hutang, mesej daripada orang yang menawarkan bantuan, dan rasa tak boleh bercerita kepada sesiapa. Semua perkhidmatan di bawah percuma.",
+        stepsLabel: "Minggu pertama selepas kena scam",
+        steps: [
+          {
+            title: "Lapor dengan betul",
+            body: "Hubungi **997** dan bank anda, kemudian buat laporan polis dalam masa 24 jam. Bank perlukan nombor laporan itu, begitu juga sebarang aduan kemudian.",
+          },
+          {
+            title: "Lindungi apa yang tinggal",
+            body: "Semak laporan kredit percuma untuk pinjaman yang anda tak pernah buat, dan jangan bayar sesiapa yang janji dapatkan balik duit anda.",
+          },
+          {
+            title: "Dapatkan bantuan hutang dan tekanan",
+            body: "AKPK bantu urus hutang bank tanpa bayaran. Befrienders (03-7627 2929) menjawab 24 jam sehari.",
+          },
+        ],
+      },
+      {
+        heading: "Kalau Scam Tinggalkan Hutang, Pergi ke AKPK Dulu",
+        content:
+          "Corak biasa selepas kerugian besar: kad kredit dah penuh, bayaran pinjaman peribadi dah sampai, dan jalan paling cepat nampaknya ambil pinjaman lagi. Selalunya itu hanya memburukkan keadaan.\n\n**AKPK** (Agensi Kaunseling dan Pengurusan Kredit), yang ditubuhkan oleh Bank Negara Malaysia, memberi nasihat kewangan dan menjalankan **Program Pengurusan Kredit (PPK)**, kedua-duanya tanpa bayaran ([AKPK](https://www.akpk.org.my/debt-management)). Penasihat AKPK akan menyusun satu pelan bayaran balik dan mendapatkan persetujuan pemberi pinjaman anda.\n\n**Siapa yang boleh dibantu** ([Soalan Lazim AKPK](https://www.akpk.org.my/faq-details/16)):\n- Individu yang ada hutang bank seperti kad kredit, pinjaman peribadi, sewa beli atau pinjaman perumahan\n- Jumlah hutang sehingga RM5 juta dengan pemberi pinjaman yang menyertai program\n- Mereka yang sukar membayar dan belum diisytiharkan bankrap\n\n**Perkara yang perlu tahu dulu:**\n- AKPK tidak boleh menyusun semula hutang dengan pemberi pinjam wang berlesen, dan AKPK tidak memberi pinjaman\n- Kad kredit anda akan ditarik balik sebaik menyertai program\n- AKPK tidak melantik ejen. Sesiapa yang minta bayaran untuk \"mohon AKPK bagi pihak anda\" bukan wakil AKPK\n\nHubungi AKPK di **03-2616 7766**, mohon di [customer.akpk.org.my](https://customer.akpk.org.my), atau datang ke cawangan pada hari bekerja.\n\n**Kalau terfikir nak pinjam daripada pemberi pinjam wang,** semak lesennya dulu dalam aplikasi **i-KrediKom** KPKT atau di kpkt.gov.my. Pemberi pinjam wang berlesen dihadkan kepada faedah 12% setahun untuk pinjaman bercagar dan 18% untuk tanpa cagaran, dan mesti memaparkan nombor lesen dalam iklan ([KPKT](https://www.kpkt.gov.my/index.php/pages/view/585)). Laporkan pemberi pinjam wang tanpa lesen (ah long) kepada polis.",
+      },
+      {
+        heading: "Semak Kalau Ada Orang Buat Pinjaman Guna Nama Anda",
+        content:
+          "Kalau anda pernah hantar salinan IC, swafoto dengan MyKad, atau maklumat log masuk bank semasa kena scam, anggap ada orang mungkin cuba menggunakannya.\n\n**Laporan CCRIS anda percuma.** CCRIS Bank Negara Malaysia menyenaraikan pinjaman dan kemudahan kredit atas nama anda di institusi yang menyertainya, dan anda boleh melihatnya dalam talian melalui **eCCRIS** tanpa bayaran ([BNM](https://www.bnm.gov.my/ccris)). Daftar di eccris.bnm.gov.my dengan MyKad dan perbankan internet, atau daftar di cawangan AKPK.\n\nCTOS juga menyediakan laporan asas percuma dua kali setahun ([CTOS](https://ctoscredit.com.my/)). Laporan itu menunjukkan kes mahkamah dan rekod kebankrapan, bukan pinjaman CCRIS anda, jadi eloklah semak kedua-duanya.\n\n**Kalau jumpa pinjaman atau kad yang anda tak pernah mohon:**\n1. Hubungi pemberi pinjaman itu segera dan beritahu ia bukan milik anda\n2. Buat laporan polis dan berikan nombor laporan kepada pemberi pinjaman\n3. Beritahu bank anda sendiri bahawa maklumat anda terdedah dalam scam\n\nCCRIS merangkumi 12 bulan terakhir dan bukan semua pemberi pinjaman melapor kepadanya, jadi semak semula selepas beberapa bulan.",
+      },
+      {
+        heading: "Hati-hati Scam Kedua: \"Kami Boleh Dapatkan Balik Duit Anda\"",
+        content:
+          "Orang yang baru kehilangan duit sering disasarkan buat kali kedua. Biasanya ia datang sebagai iklan Facebook atau mesej WhatsApp daripada seseorang yang mengaku ejen pemulihan dana, peguam atau wakil NSRC, yang menawarkan untuk mendapatkan balik duit anda dengan bayaran.\n\nPolis sudah memberi amaran tentang perkara ini. Pada April 2026, Jabatan Siasatan Jenayah Komersial Bukit Aman berkata scammer menyamar sebagai wakil NSRC dan mengutip bayaran daripada mangsa secara berperingkat ([Malay Mail](https://www.malaymail.com/news/malaysia/2026/04/13/pay-more-lose-more-police-warn-of-double-scam-trapping-victims-with-fake-recovery-offers/216147)). PDRM juga pernah mendedahkan iklan Facebook palsu yang menggunakan logonya untuk menjanjikan bayaran balik ([Malay Mail](https://www.malaymail.com/news/malaysia/2025/05/18/scam-ad-promising-to-recover-scam-money-is-a-scam-itself-pdrm-warn/177151)), serta \"surat pelantikan\" palsu yang mendakwa NFCC memulangkan duit kepada mangsa ([The Vibes](https://www.thevibes.com/articles/news/117151/police-warn-public-against-fake-fund-recovery-documents)).\n\n**Tiga peraturan yang tidak berubah:**\n- Polis, NSRC dan bank anda tidak pernah mengenakan bayaran untuk memulangkan duit yang kena scam\n- Tiada sesiapa boleh menjanjikan duit anda pasti kembali\n- \"Yuran pemprosesan\", \"cukai\" atau \"yuran pelepasan\" sebelum bayaran balik, itulah scamnya\n\n**Sebelum membalas mana-mana tawaran pemulihan,** tampal mesej mereka di scamguards.app/search. Kotak **Paste a Message** akan mengeluarkan nombor telefon, akaun bank dan e-mel di dalamnya supaya anda boleh menyemak setiap satu dengan laporan komuniti.",
+      },
+      {
+        heading: "Bila Bank Kata Tidak",
+        content:
+          "Bank tidak memulangkan setiap kerugian scam, dan jawapannya bergantung pada bagaimana duit itu keluar dari akaun anda.\n\n**Kalau transaksi itu tanpa kebenaran** (anda tidak meluluskannya, contohnya selepas pautan phishing mengambil alih perbankan dalam talian anda), peraturan Bank Negara tentang layanan adil untuk mangsa penipuan e-perbankan terpakai kepada bank sejak 1 Oktober 2024 ([BNM](https://www.bnm.gov.my/-/pd-fair-treatment24)). Bank anda mesti:\n- memberitahu dalam masa 3 hari bekerja maklumat yang diperlukan\n- menasihati anda membuat laporan polis\n- menawarkan kredit sementara tanpa faedah sehingga RM5,000, atau jumlah yang dipertikaikan jika lebih rendah, kalau siasatannya melebihi 14 hari bekerja\n- memberi keputusan secara bertulis\n\n**Kalau anda sendiri yang meluluskan pindahan** kerana ditipu, peraturan itu mungkin tidak terpakai. Minta juga keputusan bank secara bertulis.\n\n**Kemudian bawa ke peringkat seterusnya, percuma.** Kalau anda tidak bersetuju dengan keputusan akhir bank atau e-dompet, atau tiada jawapan dalam 60 hari, failkan aduan kepada **Financial Markets Ombudsman Service (FMOS)**, yang menggantikan OFS pada 2025. Ia percuma, meliputi transaksi tanpa kebenaran sehingga RM250,000, dan menerima kes dalam masa 6 bulan dari keputusan akhir bank ([FMOS](https://www.fmos.org.my/en/faq/)). Hubungi FMOS di 03-2272 2811. Aduan tentang cara bank melayan anda juga boleh dibawa ke Bank Negara melalui BNMLINK di 1-300-88-5465.",
+      },
+      {
+        heading: "Anda Tak Perlu Tanggung Seorang Diri, dan Laporan Anda Masih Bermakna",
+        content:
+          "Rasa malu membuatkan ramai mangsa mendiamkan diri. Seorang kaunselor yang ditemu bual The Star pada Ogos 2026 menyebut ego, malu, rasa bersalah dan terdesak sebagai sebab sesetengah mangsa tidak melapor ([The Star](https://www.thestar.com.my/news/nation/2026/08/31/scams-that-steal-more-than-money)). Sindiket scam tersusun dan mahir dalam kerja ini. Tertipu oleh mereka tidak bermaksud anda kurang bijak.\n\n**Tempat bercakap yang percuma:**\n- **Befrienders KL:** 03-7627 2929, 24 jam, percuma dan sulit ([Befrienders](https://www.befrienders.org.my/))\n- **Talian HEAL 15555:** talian kesihatan mental Kementerian Kesihatan, 8 pagi hingga 12 tengah malam setiap hari ([The Star](https://www.thestar.com.my/news/nation/2026/07/09/malaysias-mental-health-helpline-received-more-than-230000-calls-since-launch-says-health-ministry))\n- **Talian Kasih 15999** atau WhatsApp 019-261 5999: 24 jam, termasuk khidmat kaunseling dan kebajikan ([MyGOV](https://www.malaysia.gov.my/en/topics/talian-kasih-15999))\n\nKalau anda terfikir untuk menamatkan nyawa, hubungi Befrienders sekarang atau pergi ke jabatan kecemasan hospital terdekat.\n\n**Bagaimana ScamGuards membantu.** Duit anda mungkin sudah hilang, tetapi nombor telefon dan akaun bank scammer itu masih digunakan untuk menipu orang lain. Pergi ke scamguards.app/submit, pilih **Tell My Story** dan tampal perbualan. **Read My Story** akan mengeluarkan butiran seperti nombor telefon dan platform untuk anda semak, dan tiada apa dihantar sehingga anda tekan **Report This Scammer**. Setiap nombor atau akaun yang ada laporan aktif mendapat halaman semakan awamnya sendiri, jadi orang seterusnya yang mencarinya akan nampak amaran anda. Ia hanya ambil beberapa minit, dan boleh dibuat hari ini.",
+      },
+    ],
+  },
 ];
 
 export function getBlogBySlug(slug: string): BlogPost | undefined {

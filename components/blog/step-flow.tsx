@@ -1,12 +1,16 @@
 import type { BlogStep } from "@/lib/blog-data";
+import { linkSitePaths } from "@/lib/inline-links";
 
-/** Escapes authored text, then turns **bold** into <strong>. */
+/** Escapes authored text, links site paths, then turns **bold** into <strong>. */
 function inlineBold(text: string): string {
   const escaped = text
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
-  return escaped.replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground">$1</strong>');
+  return linkSitePaths(escaped).replace(
+    /\*\*(.*?)\*\*/g,
+    '<strong class="text-foreground">$1</strong>'
+  );
 }
 
 /**
