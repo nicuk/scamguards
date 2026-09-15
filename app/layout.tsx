@@ -12,6 +12,7 @@ import {
 } from "@/lib/seo-config";
 import { GoogleAnalytics } from "@/components/analytics";
 import { Analytics } from "@vercel/analytics/next";
+import { SiteActivityBeacon } from "@/components/site-activity";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -125,6 +126,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <GoogleAnalytics />
         <Analytics />
+        <SiteActivityBeacon />
         <LanguageProvider>
           <div className="min-h-screen flex flex-col">
             <Header />

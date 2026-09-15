@@ -4,14 +4,65 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Gavel } from "lucide-react";
 import type { Sponsor } from "@/lib/sponsors";
+import { useVisitorWindow } from "@/components/site-activity";
 import { SponsorEnquiryDialog } from "./sponsor-enquiry-dialog";
+
+type SiteReach = {
+  /** Visitors over the trailing window, or null when there is nothing to show. */
+  visitors: number | null;
+  /** Days the visitor figure actually covers, capped at 30. */
+  days: number | null;
+  /** Search impressions over 30 days, pre-formatted on the server (5.6K). */
+  impressions: string | null;
+};
 
 type SponsorSlotsProps = {
   sponsors: Sponsor[];
   minBid: number;
+  reach: SiteReach;
 };
 
-export function SponsorSlots({ sponsors, minBid }: SponsorSlotsProps) {
+/**
+ * "548 visitors / 30 days · 5.6K search impressions / 30 days", as on the
+ * TCGIntel board. Each figure renders only when it exists: visitors are counted
+ * first-party and corrected live by the beacon; impressions come from Search
+ * Console and are hidden once stale. With neither, the pill does not render.
+ */
+function AudiencePill({ reach }: { reach: SiteReach }) {
+  const { visitors, days } = useVisitorWindow({
+    visitors: reach.visitors,
+    days: reach.days,
+  });
+
+  const showVisitors = typeof visitors === "number" && visitors > 0;
+  if (!showVisitors && !reach.impressions) return null;
+
+  return (
+    <p className="sponsor-audience">
+      {showVisitors && (
+        <span className="sponsor-audience-seg">
+          <b>{visitors.toLocaleString("en-US")}</b> visitors
+          {days ? (
+            <span className="sponsor-audience-window">
+              {" "}/ {days} {days === 1 ? "day" : "days"}
+            </span>
+          ) : null}
+        </span>
+      )}
+      {showVisitors && reach.impressions && (
+        <span className="sponsor-audience-sep" aria-hidden="true">·</span>
+      )}
+      {reach.impressions && (
+        <span className="sponsor-audience-seg">
+          <b>{reach.impressions}</b> search impressions
+          <span className="sponsor-audience-window"> / 30 days</span>
+        </span>
+      )}
+    </p>
+  );
+}
+
+export function SponsorSlots({ sponsors, minBid, reach }: SponsorSlotsProps) {
   const [live, setLive] = useState(false);
   const [enquiryOpen, setEnquiryOpen] = useState(false);
   const [clicks, setClicks] = useState<Record<string, number>>(() =>
@@ -65,16 +116,19 @@ export function SponsorSlots({ sponsors, minBid }: SponsorSlotsProps) {
             <p className="sponsor-panel-title">
               These sponsors help keep ScamGuards free
             </p>
-            <p className="mt-0.5 flex items-center gap-2 text-xs text-[var(--sp-ink-3)]">
-              <span
-                className="live-dot relative h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--sp-live)]"
-                aria-hidden="true"
-              />
-              <span>
-                <span className="font-semibold text-[var(--sp-ink-2)]">Sponsored</span>
-                {" "}· three slots, highest bid ranks first
-              </span>
-            </p>
+            <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1.5">
+              <p className="flex items-center gap-2 text-xs text-[var(--sp-ink-3)]">
+                <span
+                  className="live-dot relative h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--sp-live)]"
+                  aria-hidden="true"
+                />
+                <span>
+                  <span className="font-semibold text-[var(--sp-ink-2)]">Sponsored</span>
+                  {" "}· three slots, highest bid ranks first
+                </span>
+              </p>
+              <AudiencePill reach={reach} />
+            </div>
           </div>
 
           <button

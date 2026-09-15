@@ -1,27 +1,5 @@
 import { unstable_cache } from "next/cache";
-import { createClient as createSupabaseClient } from "@supabase/supabase-js";
-
-/**
- * Cookie-free read client. Sponsor slots are public data, so this deliberately
- * avoids `cookies()` — reading cookies would opt the whole home page out of
- * static rendering.
- */
-function createReadClient() {
-  const url =
-    process.env.NEXT_PUBLIC_SUPABASE_URL ||
-    process.env.NEXT_PUBLIC_STORAGE_SUPABASE_URL ||
-    process.env.STORAGE_SUPABASE_URL!;
-
-  const anonKey =
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-    process.env.NEXT_PUBLIC_STORAGE_SUPABASE_ANON_KEY ||
-    process.env.NEXT_PUBLIC_STORAGE_SUPABASE_PUBLISHABLE_KEY ||
-    process.env.STORAGE_SUPABASE_PUBLISHABLE_KEY!;
-
-  return createSupabaseClient(url, anonKey, {
-    auth: { persistSession: false, autoRefreshToken: false },
-  });
-}
+import { createReadClient } from "@/lib/supabase/read";
 
 export type Sponsor = {
   slug: string;

@@ -12,6 +12,10 @@ const RATE_LIMITS: Record<string, { limit: number; windowSeconds: number; banAft
   "sponsors/enquiry": { limit: 3, windowSeconds: 3600, banAfter: 15 }, // 3/hr (emails + Slack)
   "sponsors/click": { limit: 30, windowSeconds: 3600, banAfter: 200 }, // 30/hr (click counter)
   sponsors: { limit: 120, windowSeconds: 3600, banAfter: 600 },        // 120/hr (public read)
+  // Visitor counter. A cheap, cookie-deduped write; the limit caps inflation per
+  // IP. The ban threshold is deliberately out of reach: a school or office behind
+  // one IP must never be locked out of search because many people visited.
+  visit: { limit: 60, windowSeconds: 3600, banAfter: 100000 },
 };
 
 // Cooldown between submissions (seconds)

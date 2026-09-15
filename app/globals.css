@@ -147,6 +147,42 @@
   }
 }
 
+/* Audience figures in a pill, as on the TCGIntel board. Blue-tinted so it reads
+   as measurement rather than as another sponsor or a call to action. */
+.sponsor-audience {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.45rem;
+  max-width: 100%;
+  padding: 0.25rem 0.7rem;
+  border-radius: 9999px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: hsl(213 80% 82%);
+  background: hsl(220 85% 60% / 0.12);
+  border: 1px solid hsl(218 80% 70% / 0.32);
+  font-variant-numeric: tabular-nums;
+}
+
+.sponsor-audience b {
+  font-weight: 700;
+  color: hsl(212 100% 88%);
+}
+
+.sponsor-audience-window {
+  color: hsl(215 35% 72%);
+}
+
+/* A wrapped pill keeps each figure whole; only the gap between them breaks */
+.sponsor-audience-seg {
+  white-space: nowrap;
+}
+
+.sponsor-audience-sep {
+  color: hsl(215 35% 72%);
+}
+
 .sponsor-bid-figure {
   font-size: 26px;
 }
