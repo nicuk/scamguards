@@ -1,8 +1,10 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Clock, ArrowLeft, Search, FileText } from "lucide-react";
+import { Clock, ArrowLeft, ArrowRight, Search, FileText } from "lucide-react";
 import { BLOG_POSTS, getBlogBySlug, getAllBlogSlugs } from "@/lib/blog-data";
+import { SCAM_TYPES } from "@/lib/scam-data";
+import { getScamsForBlog } from "@/lib/internal-links";
 import { SponsoredProjectsSection } from "@/components/home/sponsored-projects-section";
 import { SITE_URL, generatePageGraphSchema, generateArticleSchema, generateBreadcrumbSchema } from "@/lib/seo-config";
 
@@ -45,6 +47,7 @@ export default function BlogPostPage({
   if (!post) notFound();
 
   const postUrl = `${SITE_URL}/blog/${post.slug}`;
+  const relatedScams = getScamsForBlog(post.slug);
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: "Home", url: SITE_URL },
     { name: "Blog", url: `${SITE_URL}/blog` },
@@ -149,6 +152,24 @@ export default function BlogPostPage({
                 <FileText className="h-5 w-5" />
                 Report a Scammer
               </Link>
+            </div>
+          </div>
+
+          {/* Scam type guides */}
+          <div className="mt-12 pt-8 border-t">
+            <h3 className="text-xl font-bold mb-4">Scam Type Guides</h3>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {(relatedScams.length > 0 ? relatedScams : SCAM_TYPES).map((s) => (
+                <Link
+                  key={s.slug}
+                  href={`/scams/${s.slug}`}
+                  className="flex items-center gap-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors"
+                >
+                  <span className="text-2xl">{s.heroEmoji}</span>
+                  <span className="font-medium text-sm">{s.title} in Malaysia</span>
+                  <ArrowRight className="h-4 w-4 ml-auto text-muted-foreground" />
+                </Link>
+              ))}
             </div>
           </div>
 

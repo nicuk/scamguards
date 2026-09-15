@@ -5,6 +5,7 @@ import { RecentReportsFeed } from "@/components/home/recent-reports-feed";
 import { HowItWorksSection } from "@/components/home/how-it-works-section";
 import { FounderStorySection } from "@/components/home/founder-story-section";
 import { ScamTypesSection } from "@/components/home/scam-types-section";
+import { GuidesSection } from "@/components/home/guides-section";
 import { TrustSection } from "@/components/home/trust-section";
 import { SponsoredProjectsSection } from "@/components/home/sponsored-projects-section";
 import { CtaSection } from "@/components/home/cta-section";
@@ -119,6 +120,8 @@ export default function HomePage() {
         <FounderStorySection />
 
         <ScamTypesSection />
+
+        <GuidesSection />
 
         <TrustSection />
 

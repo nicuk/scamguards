@@ -21,6 +21,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { SCAM_TYPES, getScamBySlug, getAllScamSlugs } from "@/lib/scam-data";
+import { getBlogsForScam } from "@/lib/internal-links";
 import { SITE_URL, generatePageGraphSchema, generateFAQSchema, generateBreadcrumbSchema } from "@/lib/seo-config";
 
 export function generateStaticParams() {
@@ -59,6 +60,7 @@ export default function ScamTypePage({
   const scam = getScamBySlug(params.slug);
   if (!scam) notFound();
 
+  const relatedBlogs = getBlogsForScam(scam.slug);
   const faqSchema = generateFAQSchema(scam.faqs);
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: "Home", url: SITE_URL },
@@ -270,6 +272,25 @@ export default function ScamTypePage({
               Report a Scammer
             </Link>
           </div>
+
+          {/* Related blog guides */}
+          {relatedBlogs.length > 0 && (
+            <section className="mb-12">
+              <h2 className="text-xl font-bold mb-4">Related Guides</h2>
+              <div className="space-y-3">
+                {relatedBlogs.map((p) => (
+                  <Link
+                    key={p.slug}
+                    href={`/blog/${p.slug}`}
+                    className="block p-4 rounded-lg border hover:bg-muted/50 transition-colors"
+                  >
+                    <h3 className="font-medium mb-1">{p.title}</h3>
+                    <p className="text-sm text-muted-foreground">{p.excerpt}</p>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* Other scam types */}
           <section>
