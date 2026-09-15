@@ -118,3 +118,10 @@ INSERT INTO public.site_visit_days (day, visitors) VALUES
   ('2026-09-09', 29), ('2026-09-10', 18), ('2026-09-11', 26), ('2026-09-12', 11),
   ('2026-09-13', 10)
 ON CONFLICT (day) DO UPDATE SET visitors = EXCLUDED.visitors;
+
+-- 2026-09-14 fell between the backfill above and first-party counting, which
+-- only went live with the 2026-09-15 deploy, so nothing counted it. Filled on
+-- 2026-09-15 with Vercel's final figure for the completed day. DO NOTHING so a
+-- re-run can never overwrite a first-party count.
+INSERT INTO public.site_visit_days (day, visitors) VALUES ('2026-09-14', 12)
+ON CONFLICT (day) DO NOTHING;

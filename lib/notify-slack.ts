@@ -56,9 +56,9 @@ function escapeMrkdwn(value: string): string {
 }
 
 /**
- * The webhook posts into #aeorival-signals, which already carries alerts from
- * another property. Every message leads with the site so the two are never
- * confused at a glance.
+ * The destination channel is fixed by whichever webhook SLACK_WEBHOOK_URL
+ * holds, and it is shared with alerts from other properties. Every message
+ * leads with the site so they are never confused at a glance.
  */
 const SITE_NAME = "ScamGuards";
 
