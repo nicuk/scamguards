@@ -304,6 +304,21 @@
   .sponsor-cell .sponsor-bid-figure {
     font-size: 22px;
   }
+
+  /* The top-bid pill stacks under the price instead of beside it. Side by side
+     it widened the price column enough to truncate the sponsor's domain on a
+     320px phone. */
+  .sponsor-cell .sponsor-cell-price > span:first-child {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+  }
+
+  /* Rows share the tallest row's height, so the stacked pill on the top-bid
+     row does not leave the three slots visibly unequal */
+  .sponsor-board {
+    grid-auto-rows: 1fr;
+  }
 }
 
 @container (min-width: 38rem) {

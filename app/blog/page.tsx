@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BookOpen, ArrowRight, Clock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { BLOG_POSTS } from "@/lib/blog-data";
+import { SponsoredProjectsSection } from "@/components/home/sponsored-projects-section";
 import { SITE_URL, generatePageGraphSchema, generateBreadcrumbSchema, generateItemListSchema } from "@/lib/seo-config";
 
 export const metadata: Metadata = {
@@ -72,9 +73,13 @@ export default function BlogIndexPage() {
           </p>
         </div>
 
+        <SponsoredProjectsSection placement="inline" className="mb-10" />
+
         <div className="space-y-6">
           {BLOG_POSTS.map((post) => (
-            <Link key={post.slug} href={`/blog/${post.slug}`}>
+            // block: an inline <a> ignores the list's vertical spacing, which
+            // left every card touching the next with no gap
+            <Link key={post.slug} href={`/blog/${post.slug}`} className="block">
               <Card className="hover:bg-muted/50 transition-colors cursor-pointer">
                 <CardContent className="py-6">
                   <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">

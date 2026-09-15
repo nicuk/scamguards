@@ -66,7 +66,7 @@ export function TrustSection() {
                 Always verify details via official channels.
               </p>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-w-2xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 max-w-2xl mx-auto">
               {DATA_SOURCES.map((src) => (
                 <a
                   key={src.name}

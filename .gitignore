@@ -42,3 +42,8 @@ next-env.d.ts
 
 # Internal working docs
 _internal/
+
+# Content planning docs (strategy, keywords) - kept local, repo is public
+APPROVED-FACTS.md
+CONTENT-BRIEF.md
+KEYWORD-LEDGER.md
