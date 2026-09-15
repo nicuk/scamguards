@@ -90,7 +90,7 @@ export function HeroSection() {
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
-            {t("heroTitle")}
+            {t("heroTitle")}{" "}
             <span className="mt-3 block text-xl font-semibold tracking-normal text-foreground/80 md:text-2xl">
               {t("heroTitleSub")}
             </span>

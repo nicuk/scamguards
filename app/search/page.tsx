@@ -49,7 +49,7 @@ export default function SearchPage() {
             <Shield className="h-8 w-8 text-primary" />
           </div>
           <h1 className="text-3xl font-bold mb-2">
-            Is This Person a Scammer?
+            Is This Person a Scammer?{" "}
             <span className="mt-2 block text-lg font-semibold text-foreground/80 md:text-xl">
               Check a phone number, email or bank account in Malaysia
             </span>
