@@ -31,7 +31,7 @@ export default function DonatePage() {
         {/* Where money goes */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle className="text-lg flex items-center gap-2">
+            <CardTitle as="h2" className="text-lg flex items-center gap-2">
               <Sparkles className="h-5 w-5 text-primary" />
               {lang === "ms"
                 ? "Ke mana wang anda pergi"

@@ -136,7 +136,7 @@ export async function generateMetadata({
   const label = checkTypeLabel(type);
   const url = `${SITE_URL}${buildCheckPath(type, canonical)}`;
 
-  const title = `Is ${display} a Scammer? — ${label} Reports | ${SITE_NAME}`;
+  const title = `Is ${display} a Scammer? ${label} Reports | ScamGuards`;
   const description = `Check if ${display} has been reported as a scammer in Malaysia. Community-sourced reports, AI risk assessment, and official reporting channels (NSRC 997, PDRM).`;
 
   return {

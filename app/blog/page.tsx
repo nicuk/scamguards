@@ -7,7 +7,7 @@ import { SponsoredProjectsSection } from "@/components/home/sponsored-projects-s
 import { SITE_URL, generatePageGraphSchema, generateBreadcrumbSchema, generateItemListSchema } from "@/lib/seo-config";
 
 export const metadata: Metadata = {
-  title: "Scam Prevention Blog - Guides & Tips | ScamGuards Malaysia",
+  title: "Scam Prevention Guides for Malaysia | ScamGuards",
   description:
     "Practical guides to protect yourself from scams in Malaysia. Learn how to spot fake sellers, what to do if scammed, and rules to stay safe online.",
   keywords: [

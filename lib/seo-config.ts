@@ -61,9 +61,9 @@ export const SEO_CONFIG = {
 
 export const PAGE_SEO = {
   home: {
-    title: "Scam Malaysia? Check Scammer Phone Numbers & Bank Accounts Free | ScamGuards",
+    title: "Free Scam Check Malaysia: Phone & Bank Accounts | ScamGuards",
     description:
-      "Semak nombor telefon scammer & check bank account sebelum transfer. Paste any phone number, email, or akaun bank — instantly see if reported as scam. Free, no sign-up. AI-powered.",
+      "Semak nombor telefon scammer & akaun bank before you transfer. Paste a phone number, email or bank account to see if it was reported. Free, no sign-up.",
     keywords: [
       "scam malaysia",
       "check scammer phone number malaysia",
@@ -76,9 +76,9 @@ export const PAGE_SEO = {
     ],
   },
   search: {
-    title: "Semak Nombor Telefon Scammer & Check Bank Account Malaysia | ScamGuards",
+    title: "Semak Nombor Telefon Scammer & Akaun Bank | ScamGuards",
     description:
-      "Check scammer phone number Malaysia — paste any nombor telefon, email, or akaun bank to see if it's been reported. AI scans thousands of reports instantly. Free, no sign-up. Semak scammer online.",
+      "Check a scammer phone number in Malaysia. Paste any nombor telefon, email or akaun bank to see if it has been reported. Free, no sign-up. Semak scammer online.",
     keywords: [
       "semak nombor telefon scammer",
       "semak no telefon scammer",
@@ -93,9 +93,9 @@ export const PAGE_SEO = {
     ],
   },
   submit: {
-    title: "Report Scammer Malaysia - Lapor Scammer Phone Number & Bank Account | ScamGuards",
+    title: "Report a Scammer in Malaysia (Lapor Scammer) | ScamGuards",
     description:
-      "Report scammer Malaysia — just paste the phone number, bank account, or your whole chat conversation. AI automatically extracts all details. No manual forms. Cara report scammer percuma.",
+      "Report a scammer in Malaysia. Paste the phone number, bank account or whole chat, and AI pulls out the details for you to check. Cara report scammer percuma.",
     keywords: [
       "report scammer malaysia",
       "lapor scammer malaysia",
@@ -110,9 +110,9 @@ export const PAGE_SEO = {
     ],
   },
   howItWorks: {
-    title: "How to Check & Report Scammers in Malaysia (SemakMule, NSRC 997, ScamGuards)",
+    title: "How to Check & Report Scammers in Malaysia | ScamGuards",
     description:
-      "Step-by-step: how to check scammer phone numbers via Semak Mule, report to NSRC 997, and use ScamGuards' AI to verify suspicious contacts. Cara semak dan lapor scammer Malaysia.",
+      "How to check a scammer's number with Semak Mule and ScamGuards, and report to NSRC 997. Cara semak dan lapor scammer di Malaysia, step by step.",
     keywords: [
       "how to check scammer malaysia",
       "how to report scammer malaysia",

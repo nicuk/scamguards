@@ -120,7 +120,7 @@ export default function DisputePage() {
         {/* Form */}
         <Card>
           <CardHeader>
-            <CardTitle>Dispute Details</CardTitle>
+            <CardTitle as="h2">Dispute Details</CardTitle>
             <CardDescription>
               Please provide as much detail as possible to help us review your
               dispute.

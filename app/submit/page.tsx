@@ -403,7 +403,7 @@ export default function SubmitPage() {
         {/* Form */}
         <Card>
           <CardHeader>
-            <CardTitle>Tell Us What Happened</CardTitle>
+            <CardTitle as="h2">Tell Us What Happened</CardTitle>
             <CardDescription>
               Tell us your story. AI will read it and fill in the details for you.
             </CardDescription>

@@ -57,7 +57,7 @@ export default function DisclaimerPage() {
           {/* Main Disclaimer */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle as="h2" className="flex items-center gap-2">
                 <AlertTriangle className="h-5 w-5 text-warning" />
                 Important Notice
               </CardTitle>
@@ -91,7 +91,7 @@ export default function DisclaimerPage() {
           {/* User-Submitted Data */}
           <Card>
             <CardHeader>
-              <CardTitle>User-Submitted Data</CardTitle>
+              <CardTitle as="h2">User-Submitted Data</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-muted-foreground">
               <p>
@@ -114,7 +114,7 @@ export default function DisclaimerPage() {
           {/* PDPA Compliance */}
           <Card id="privacy">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle as="h2" className="flex items-center gap-2">
                 <Shield className="h-5 w-5" />
                 Privacy Policy (PDPA Compliance)
               </CardTitle>
@@ -125,7 +125,7 @@ export default function DisclaimerPage() {
                 (PDPA) 2010. This section explains how we handle data.
               </p>
 
-              <h4 className="font-semibold text-foreground">Data We Collect</h4>
+              <h3 className="font-semibold text-foreground">Data We Collect</h3>
               <ul className="list-disc list-inside space-y-1 ml-4">
                 <li>
                   <strong>Report Data:</strong> Information you voluntarily
@@ -142,25 +142,25 @@ export default function DisclaimerPage() {
                 </li>
               </ul>
 
-              <h4 className="font-semibold text-foreground mt-4">
+              <h3 className="font-semibold text-foreground mt-4">
                 How We Use Data
-              </h4>
+              </h3>
               <ul className="list-disc list-inside space-y-1 ml-4">
                 <li>To provide scam risk assessments to users</li>
                 <li>To improve our analysis algorithms</li>
                 <li>To detect and prevent abuse of the platform</li>
               </ul>
 
-              <h4 className="font-semibold text-foreground mt-4">
+              <h3 className="font-semibold text-foreground mt-4">
                 Data Protection
-              </h4>
+              </h3>
               <ul className="list-disc list-inside space-y-1 ml-4">
                 <li>Sensitive data is masked in search results</li>
                 <li>We do not sell or share data with third parties</li>
                 <li>Data is stored securely with encryption</li>
               </ul>
 
-              <h4 className="font-semibold text-foreground mt-4">Your Rights</h4>
+              <h3 className="font-semibold text-foreground mt-4">Your Rights</h3>
               <p>Under PDPA 2010, you have the right to:</p>
               <ul className="list-disc list-inside space-y-1 ml-4">
                 <li>Access data held about you</li>
@@ -174,7 +174,7 @@ export default function DisclaimerPage() {
           {/* Dispute & Takedown */}
           <Card>
             <CardHeader>
-              <CardTitle>Dispute & Takedown Requests</CardTitle>
+              <CardTitle as="h2">Dispute & Takedown Requests</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-muted-foreground">
               <p>
@@ -202,7 +202,7 @@ export default function DisclaimerPage() {
           {/* Limitation of Liability */}
           <Card>
             <CardHeader>
-              <CardTitle>Limitation of Liability</CardTitle>
+              <CardTitle as="h2">Limitation of Liability</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-muted-foreground">
               <p>
@@ -225,7 +225,7 @@ export default function DisclaimerPage() {
           {/* Contact */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle as="h2" className="flex items-center gap-2">
                 <Mail className="h-5 w-5" />
                 Contact Us
               </CardTitle>

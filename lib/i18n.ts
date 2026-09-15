@@ -13,6 +13,7 @@ export const translations = {
     // Hero
     tagline: "AI-Powered Scam Detection",
     heroTitle: "Is This a Scammer?",
+    heroTitleSub: "Check any phone number or bank account in Malaysia",
     heroDescription: "Paste any phone number, email, or bank account. Our AI instantly checks if it's been reported as a scam.",
     
     // Buttons
@@ -81,6 +82,7 @@ export const translations = {
     // Hero
     tagline: "Pengesanan Penipuan AI",
     heroTitle: "Ini Penipu Ke?",
+    heroTitleSub: "Semak nombor telefon atau akaun bank di Malaysia",
     heroDescription: "Tampal nombor telefon, emel, atau akaun bank. AI kami semak serta-merta jika ia pernah dilaporkan sebagai penipuan.",
     
     // Buttons

@@ -20,7 +20,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold mb-4">Quick Links</h4>
+            <h2 className="font-semibold mb-4">Quick Links</h2>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
@@ -67,7 +67,7 @@ export function Footer() {
 
           {/* Legal */}
           <div>
-            <h4 className="font-semibold mb-4">Legal</h4>
+            <h2 className="font-semibold mb-4">Legal</h2>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
@@ -98,7 +98,7 @@ export function Footer() {
 
           {/* Community */}
           <div>
-            <h4 className="font-semibold mb-4">Community</h4>
+            <h2 className="font-semibold mb-4">Community</h2>
             <ul className="space-y-3 text-sm">
               <li className="text-muted-foreground">
                 Help protect Malaysians from scams by reporting suspicious

@@ -48,9 +48,14 @@ export default function SearchPage() {
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
             <Shield className="h-8 w-8 text-primary" />
           </div>
-          <h1 className="text-3xl font-bold mb-2">Is This Person a Scammer?</h1>
+          <h1 className="text-3xl font-bold mb-2">
+            Is This Person a Scammer?
+            <span className="mt-2 block text-lg font-semibold text-foreground/80 md:text-xl">
+              Check a phone number, email or bank account in Malaysia
+            </span>
+          </h1>
           <p className="text-muted-foreground">
-            Got a suspicious number, email, or bank account? See if anyone has already reported it.
+            Paste what they sent you and see if anyone has already reported it.
           </p>
         </div>
 

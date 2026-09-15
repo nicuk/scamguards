@@ -86,7 +86,7 @@ export const SCAM_TYPES: ScamType[] = [
     slug: "tcg-collectibles-scam",
     title: "TCG & Collectibles Scam",
     metaTitle:
-      "TCG & Collectibles Scam Malaysia - One Piece, Pokemon Card Scams | ScamGuards",
+      "TCG Card Scams Malaysia: One Piece & Pokemon | ScamGuards",
     metaDescription:
       "Protect yourself from fake TCG sellers in Malaysia. Scammers on WhatsApp groups, Carousell & Facebook sell fake One Piece, Pokemon cards and never deliver. Check sellers first.",
     heroEmoji: "🃏",
@@ -286,7 +286,7 @@ export const SCAM_TYPES: ScamType[] = [
     slug: "ecommerce-scam",
     title: "E-commerce Scam",
     metaTitle:
-      "E-commerce Scam Malaysia - Shopee, Carousell & Online Shopping Fraud | ScamGuards",
+      "E-commerce Scams Malaysia: Shopee & Carousell | ScamGuards",
     metaDescription:
       "Avoid online shopping scams on Shopee, Carousell, Facebook Marketplace & Lazada in Malaysia. Learn to spot fake sellers, check before you buy. Free AI scam checker.",
     heroEmoji: "🛒",

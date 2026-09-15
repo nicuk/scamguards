@@ -50,7 +50,7 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: "how-to-spot-tcg-scam-malaysia",
     title: "How to Spot a TCG Card Scam in Malaysia (2025 Guide)",
     metaTitle:
-      "How to Spot a TCG Card Scam in Malaysia - One Piece, Pokemon | ScamGuards",
+      "How to Spot a TCG Card Scam in Malaysia | ScamGuards",
     metaDescription:
       "Complete guide to spotting fake TCG sellers in Malaysia. Covers WhatsApp groups, Carousell, Facebook. Protect yourself from One Piece and Pokemon card scams.",
     publishedAt: "2025-03-15",
@@ -492,7 +492,7 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: "kena-tipu-online-apa-nak-buat",
     title: "Kena Tipu Online? Ini Apa Yang Perlu Anda Buat Segera",
     metaTitle:
-      "Kena Tipu Online Malaysia - Apa Nak Buat & Cara Dapat Balik Duit | ScamGuards",
+      "Kena Tipu Online? Apa Nak Buat Segera | ScamGuards",
     metaDescription:
       "Kena tipu online? Jangan panik. Panduan langkah demi langkah untuk dapatkan balik duit anda — dalam masa 30 minit. Nombor hotline bank, NSRC 997, dan cara buat laporan.",
     publishedAt: "2025-03-22",
@@ -547,7 +547,7 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: "scam-shopee-carousell-malaysia-bm",
     title: "Scam Shopee & Carousell Malaysia: Cara Kenal Pasti dan Lapor",
     metaTitle:
-      "Penipu Shopee & Carousell Malaysia - Cara Kenal Pasti Penjual Palsu | ScamGuards",
+      "Scam Shopee & Carousell: Kenal Penjual Palsu | ScamGuards",
     metaDescription:
       "Cara kenal pasti penipu di Shopee, Carousell, dan Lazada Malaysia. Red flag, tips perlindungan pembeli, dan apa nak buat kalau kena tipu.",
     publishedAt: "2025-03-22",
